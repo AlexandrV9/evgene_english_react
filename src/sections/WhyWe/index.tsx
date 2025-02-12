@@ -1,4 +1,4 @@
-import { Button, Flex, Section, Title } from "@/ui";
+import { Button, Flex, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { AdvantagesList } from "./AdvantagesList";
 
@@ -10,9 +10,7 @@ export const WhyWe = ({ className }: WhyWeProps) => {
   return (
     <StyledWhyWe id="why-we" className={className}>
       <div className="why-we__wrapper">
-        <Title color="accent" as="h3" mb="3.2rem">
-          почему мы?
-        </Title>
+        <SectionTitle color="accent">почему мы?</SectionTitle>
 
         <Flex>
           <Flex vertical gap="7rem" align="start">

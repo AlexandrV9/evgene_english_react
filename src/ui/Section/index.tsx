@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
+import { Title, TitleProps } from "../Typography/Title";
 
 interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -7,6 +8,18 @@ interface SectionProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Section = ({ children, ...otherProps }: SectionProps) => {
   return <StyledSection {...otherProps}>{children}</StyledSection>;
+};
+
+interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {
+  children: string;
+}
+
+export const SectionTitle = ({ children, ...otherProps }: SectionTitleProps) => {
+  return (
+    <Title as="h3" color="accent" mb={20} {...otherProps}>
+      {children}
+    </Title>
+  );
 };
 
 const StyledSection = styled.section`

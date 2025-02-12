@@ -1,7 +1,7 @@
 import { Icon, Title } from "@/ui";
 import styled from "styled-components";
 import { BonusesList } from "./BonusesList";
-import { Section } from "../../ui/Section";
+import { Section, SectionTitle } from "../../ui/Section";
 
 import StartsIcon from "@/assets/icons/stars.svg";
 
@@ -13,9 +13,7 @@ export const Bonuses = ({ className }: BonusesProps) => {
   return (
     <StyledBonuses id="bonuses" className={className}>
       <div className="title_wrapper">
-        <Title color="accent" as="h3" mb="3.2rem" align="end" className="title">
-          бонусы
-        </Title>
+        <SectionTitle align="end" className="title">бонусы</SectionTitle>
         <Icon svg={StartsIcon} className="icon" />
       </div>
 

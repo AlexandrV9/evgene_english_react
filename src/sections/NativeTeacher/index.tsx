@@ -1,4 +1,4 @@
-import { Button, Flex, Icon, Text, Title } from "@/ui";
+import { Button, Flex, Icon, SectionTitle, Text, Title } from "@/ui";
 import { StyledNativeTeacher, StyledTeacherCard } from "./styles";
 import { VideoBlock } from "@/ui/VideoBlock";
 
@@ -16,10 +16,8 @@ export const NativeTeacher = ({ className }: NativeTeacherProps) => {
   return (
     <StyledNativeTeacher id="native-teacher" className={className}>
       <div className="content">
-        <Title as="h3" align="start" className="title" mb={40}>
-          беседы с носителем
-        </Title>
-        <Text custFontSize={40} mb={50} color="secondary">
+        <SectionTitle color="primary">беседы с носителем</SectionTitle>
+        <Text fontSize="xl" color="secondary" mb={20}>
           вы всегда можете забронировать занятие c носителем языка в нашей школе
         </Text>
 

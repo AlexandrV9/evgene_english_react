@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PriceList } from "./PriceList";
-import { Title, Section } from "@/ui";
+import { Section, SectionTitle } from "@/ui";
 
 interface PricesProps {
   className?: string;
@@ -9,9 +9,7 @@ interface PricesProps {
 export const Prices = ({ className }: PricesProps) => {
   return (
     <StyledPrices id="prices" className={className}>
-      <Title color="accent" as="h3" align="start" className="title" mb={40}>
-        стоимость занятий
-      </Title>
+      <SectionTitle>стоимость занятий</SectionTitle>
       <div className="section__content">
         <PriceList />
       </div>

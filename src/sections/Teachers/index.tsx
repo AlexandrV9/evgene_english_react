@@ -1,4 +1,4 @@
-import { Section, Title } from "@/ui";
+import { Section, SectionTitle, Title } from "@/ui";
 import styled from "styled-components";
 import { TeachersList } from "./TeachersList";
 
@@ -12,9 +12,9 @@ export const Teachers = ({ className }: TeachersProps) => {
       <Title as="h4" align="end" fontFamily="MVCrooker" color="secondary">
         Without further ado
       </Title>
-      <Title color="accent" as="h3" align="end" mb="3.2rem">
+      <SectionTitle color="accent" align="end">
         наши крутые преподаватели
-      </Title>
+      </SectionTitle>
 
       <TeachersList />
     </StyledTeachers>

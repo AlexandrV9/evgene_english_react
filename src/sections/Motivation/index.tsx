@@ -1,6 +1,6 @@
 import { Title } from "@/ui";
 import styled from "styled-components";
-import { Section } from "../../ui/Section";
+import { Section, SectionTitle } from "../../ui/Section";
 import { MotivationList } from "./MotivationList";
 
 interface MotivationProps {
@@ -10,9 +10,7 @@ interface MotivationProps {
 export const Motivation = ({ className }: MotivationProps) => {
   return (
     <StyledMotivation id="motivation" className={className}>
-      <Title color="accent" as="h3" align="start" className="title" mb={40}>
-        Вот тебе немного мотивации
-      </Title>
+      <SectionTitle align="start">Вот тебе немного мотивации</SectionTitle>
       <MotivationList />
     </StyledMotivation>
   );

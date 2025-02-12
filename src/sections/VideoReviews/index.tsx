@@ -1,4 +1,4 @@
-import { Button, Icon, Section, Title } from "@/ui";
+import { Button, Icon, Section, SectionTitle, Title } from "@/ui";
 import styled from "styled-components";
 import { VideoReviewList } from "./VideoReviewList";
 
@@ -13,10 +13,8 @@ export const VideoReviews = ({ className }: VideoReviewsProps) => {
   return (
     <StyledVideoReviews id="reviews" className={className}>
       <div className="title_wrapper">
-        <Title color="accent" as="h3" align="center" className="title">
-          отзывы
-          <Icon svg={HeartIcon} className="icon" />
-        </Title>
+        <SectionTitle>отзывы</SectionTitle>
+        <Icon svg={HeartIcon} className="icon" />
       </div>
 
       <div className="container">
@@ -46,6 +44,7 @@ export const StyledVideoReviews = styled(Section)`
     top: 0;
     right: 0;
     margin-bottom: 3.2rem;
+    position: relative;
   }
 
   .container {

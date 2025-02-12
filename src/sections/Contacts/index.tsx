@@ -1,14 +1,14 @@
 import { BookingButton, Flex, Icon, Text, Title } from "@/ui";
 import styled from "styled-components";
-import { Section } from "../../ui/Section";
+import { Section, SectionTitle } from "../../ui/Section";
 import { LINKS_LIST } from "./constants";
 
 export const Contacts = () => {
   return (
     <StyledContacts id="contacts">
-      <Title as="h3" className="title" mb={40} color="accent">
+      <SectionTitle className="title" color="accent">
         контакты
-      </Title>
+      </SectionTitle>
 
       <div className="section__content">
         <Flex className="wrapper_btns_1">
@@ -23,7 +23,9 @@ export const Contacts = () => {
             <li key={id}>
               <a href={href} target="_blank">
                 <Icon svg={NetworkIcon} />
-                <Text fontSize="xl" color="secondary">{networkName}</Text>
+                <Text fontSize="xl" color="secondary">
+                  {networkName}
+                </Text>
               </a>
             </li>
           ))}
@@ -56,6 +58,13 @@ const StyledContacts = styled(Section)`
     li {
       background-color: var(--secondary-color);
       border-radius: 16px;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        transform: scale(1.05);
+      }
 
       a {
         padding: 27px 52px;
