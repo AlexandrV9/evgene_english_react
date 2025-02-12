@@ -1,0 +1,77 @@
+.text {
+  &.fontSize {
+    &_xs {
+      font-size: 10px;
+      line-height: 18px;
+    }
+
+    &_s {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    &_m {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    &_base {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &_l {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    &_xl {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  &.fontWeight {
+    &_light {
+      font-weight: 300;
+    }
+
+    &_regular {
+      font-weight: 400;
+    }
+
+    &_medium {
+      font-weight: 500;
+    }
+
+    &_semiBold {
+      font-weight: 600;
+    }
+
+    &_bold {
+      font-weight: 700;
+    }
+
+    &_extraBold {
+      font-weight: 800;
+    }
+
+    &_black {
+      font-weight: 800;
+    }
+  }
+
+  &.color {
+    &_primary {
+      color: var(--white-color);
+    }
+
+    &_secondary {
+      color: var(--text-color);
+    }
+
+    &_accent {
+      color: var(--accent-color);
+    }
+  }
+}

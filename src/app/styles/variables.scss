@@ -1,0 +1,23 @@
+:root {
+  --back-color: #e0e0e0;
+  --accent-color: #547793;
+  --text-color: #031a2c;
+  --secondary-color: #c0cacc;
+  --white-color: #ffffff;
+  --red-color: #e24412;
+  --green-color: #45aa67;
+  --insted-white-color: #f7f2ef;
+
+  --scaling-factor: calc((100vw - 1440px) / (1920 - 1440));
+  --tablet-scaling-factor: calc((100vw - 940px) / (1440 - 940));
+  --mobile-scaling-factor: calc((100vw - 360px) / (940 - 360));
+
+  --header-height: 150px;
+  --header-z-index: 5;
+
+  --mobile-menu-z-index: 10;
+
+  --font-family-main: "Roboto Flex", sans-serif;
+
+  --footer-height: 150px;
+}
