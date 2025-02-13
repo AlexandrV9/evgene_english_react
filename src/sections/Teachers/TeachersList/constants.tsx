@@ -62,7 +62,7 @@ export const TEACHERS_LIST = [
       </Text>
     ),
     addonAfter: (
-      <Button type="secondary" m="auto 0 0">
+      <Button type="secondary" m="20px 0 0">
         стать преподавателем
       </Button>
     ),

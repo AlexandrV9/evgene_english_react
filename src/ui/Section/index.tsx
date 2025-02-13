@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
 import { Title, TitleProps } from "../Typography/Title";
 
@@ -6,9 +6,9 @@ interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export const Section = ({ children, ...otherProps }: SectionProps) => {
+export const Section = forwardRef<HTMLElement, SectionProps>(({ children, ...otherProps }) => {
   return <StyledSection {...otherProps}>{children}</StyledSection>;
-};
+});
 
 interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {
   children: string;

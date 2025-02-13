@@ -1,4 +1,4 @@
-import { CSSProperties, FC, ReactNode } from "react";
+import { CSSProperties, forwardRef, ReactNode } from "react";
 import clsx from "clsx";
 
 import cls from "./Title.module.scss";
@@ -29,37 +29,43 @@ export interface TitleProps {
   custLineHeight?: CSSProperties["lineHeight"];
 }
 
-export const Title: FC<TitleProps> = ({
-  className,
-  as: Tag = "h3",
-  color = "primary",
-  children,
-  mb = 0,
-  align = "initial",
-  style,
-  custLineHeight,
-  fontFamily = "RobotoFlex",
-}) => {
-  const localStyle = {
-    ...style,
-    textAlign: align,
-    marginBottom: mb,
-    fontFamily: fontFamilyMap[fontFamily],
-    lineHeight: custLineHeight,
-  };
+export const Title = forwardRef<HTMLElement, TitleProps>(
+  (
+    {
+      className,
+      as: Tag = "h3",
+      color = "primary",
+      children,
+      mb = 0,
+      align = "initial",
+      style,
+      custLineHeight,
+      fontFamily = "RobotoFlex",
+    },
+    ref
+  ) => {
+    const localStyle = {
+      ...style,
+      textAlign: align,
+      marginBottom: mb,
+      fontFamily: fontFamilyMap[fontFamily],
+      lineHeight: custLineHeight,
+    };
 
-  return (
-    <Tag
-      className={clsx(
-        cls.title,
-        {
-          [cls[`color_${color}`]]: true,
-        },
-        className
-      )}
-      style={localStyle}
-    >
-      {children}
-    </Tag>
-  );
-};
+    return (
+      <Tag
+        ref={ref as never}
+        className={clsx(
+          cls.title,
+          {
+            [cls[`color_${color}`]]: true,
+          },
+          className
+        )}
+        style={localStyle}
+      >
+        {children}
+      </Tag>
+    );
+  }
+);

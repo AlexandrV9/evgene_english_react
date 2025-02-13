@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MessagesList } from "./MessagesList";
-import { Button, Flex, Text } from "@/ui";
+import { BookingButton, Flex, Text } from "@/ui";
 import { Section } from "../../ui/Section";
 
 export interface MessagesProps {
@@ -22,10 +22,7 @@ export const Messages = ({ className }: MessagesProps) => {
           Забронируй урок в любое удобное для тебя <br />
           время и убедись в этом.
         </Text>
-        <Button>
-          <span>записаться на занятие</span>
-          <img src="../src/assets/icons/telegram_white.svg" />
-        </Button>
+        <BookingButton />
       </Flex>
     </StyledMessages>
   );

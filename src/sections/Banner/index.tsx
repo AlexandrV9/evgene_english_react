@@ -8,11 +8,26 @@ interface BannerProps {
 }
 
 import USAIcon from "@/assets/icons/USA.svg";
+import { useIntersectionObserver } from "@/hooks";
+import { useEffect } from "react";
 
 export const Banner = ({ className }: BannerProps) => {
+  const { targetRef, isIntersecting } = useIntersectionObserver({
+    isOnce: true,
+    options: { threshold: 0 },
+  });
+
+  useEffect(() => {
+    if (isIntersecting) {
+      const container = document.querySelector("#banner");
+
+      container?.classList?.add("animate");
+    }
+  }, [isIntersecting]);
+
   return (
     <StyledBanner id="banner" className={className}>
-      <Title as="h1" align="center" color="accent">
+      <Title as="h1" align="center" color="accent" ref={targetRef}>
         Eugene English
       </Title>
 
@@ -54,7 +69,15 @@ export const Banner = ({ className }: BannerProps) => {
 export const StyledBanner = styled(Section)`
   position: relative;
   overflow: hidden;
-  margin-bottom: 0;
+
+  transform: translateY(-20%);
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+
+  &.animate {
+    transform: translateY(0);
+    opacity: 1;
+  }
 
   .icon {
     position: absolute;
