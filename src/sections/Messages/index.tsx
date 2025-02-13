@@ -31,4 +31,5 @@ export const Messages = ({ className }: MessagesProps) => {
 export const StyledMessages = styled(Section)`
   position: relative;
   width: calc(100vw - 50rem);
+  overflow: hidden;
 `;

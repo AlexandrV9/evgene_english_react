@@ -24,7 +24,8 @@ export const WhyWe = ({ className }: WhyWeProps) => {
 
   return (
     <StyledWhyWe id="why-we" className={className}>
-      <div className="why-we__wrapper" ref={targetRef}>
+      <span ref={targetRef} />
+      <div className="wrapper">
         <SectionTitle color="accent">почему мы?</SectionTitle>
 
         <Flex>
@@ -44,12 +45,18 @@ export const WhyWe = ({ className }: WhyWeProps) => {
 };
 
 export const StyledWhyWe = styled(Section)`
-  transform: translateX(100%);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+
+  .wrapper {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
 
   &.animate {
-    transform: translateX(0);
-    opacity: 1;
+    .wrapper {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 `;
