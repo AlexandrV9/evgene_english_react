@@ -1,15 +1,15 @@
 import { VideoBlock } from "@/ui/VideoBlock";
 import { MOTIVATION_LIST } from "./constants";
 import styled from "styled-components";
+import { SwiperContainer } from "@/ui";
 
 export const MotivationList = () => {
   return (
     <StyledMotivationList>
-      {MOTIVATION_LIST.map((item) => (
-        <li>
-          <VideoBlock video={item.video} className="video_block" />
-        </li>
-      ))}
+      <SwiperContainer
+        list={MOTIVATION_LIST}
+        renderItem={(item) => <VideoBlock {...item} className="video_block" />}
+      />
     </StyledMotivationList>
   );
 };
@@ -18,7 +18,6 @@ const StyledMotivationList = styled.ul`
   display: flex;
   gap: 2.4rem;
   max-width: 100%;
-  overflow: auto;
 
   li {
     height: 80rem;
@@ -27,7 +26,7 @@ const StyledMotivationList = styled.ul`
   }
 
   .video_block {
-    border-radius:12px;
-    height: 100%;
+    border-radius: 12px;
+    height: 70rem;
   }
 `;

@@ -1,4 +1,4 @@
-import { Button, Icon, Section, SectionTitle, Title } from "@/ui";
+import { Button, Icon, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { VideoReviewList } from "./VideoReviewList";
 
@@ -49,7 +49,6 @@ export const StyledVideoReviews = styled(Section)`
 
   .container {
     max-width: 100%;
-    overflow: auto;
     margin-bottom: 6rem;
   }
 

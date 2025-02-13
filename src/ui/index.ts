@@ -7,3 +7,4 @@ export * from "./Loader";
 export * from "./Card";
 export * from "./NavBar";
 export * from "./Section";
+export * from "./SwiperContainer";

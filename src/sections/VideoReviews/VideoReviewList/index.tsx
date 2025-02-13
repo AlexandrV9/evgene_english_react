@@ -2,12 +2,15 @@ import styled from "styled-components";
 import { VIDEO_REVIEWS_LIST } from "./constants";
 import { VideoReviewCard } from "./VideoReviewCard";
 
+import { SwiperContainer } from "@/ui";
+
 export const VideoReviewList = () => {
   return (
     <StyledVideoReviewList>
-      {VIDEO_REVIEWS_LIST.map((item) => (
-        <VideoReviewCard  key={item.id} {...item} />
-      ))}
+      <SwiperContainer
+        list={VIDEO_REVIEWS_LIST}
+        renderItem={(item) => <VideoReviewCard {...item} />}
+      />
     </StyledVideoReviewList>
   );
 };
@@ -15,4 +18,5 @@ export const VideoReviewList = () => {
 export const StyledVideoReviewList = styled.div`
   display: flex;
   gap: 2rem;
+
 `;

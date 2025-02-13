@@ -7,3 +7,6 @@ declare module "*.svg" {
   const SVG: FC<SVGProps<SVGSVGElement>>;
   export default SVG;
 }
+
+declare module "*.css";
+declare module "*.scss";

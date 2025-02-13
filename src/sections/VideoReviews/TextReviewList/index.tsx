@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { TEXT_REVIEWS_LIST } from "./constants";
 import { TextReviewCard } from "./TextReviewCard";
+import { SwiperContainer } from "@/ui";
 
 export const TextReviewList = () => {
   return (
     <StyledTextReviewList>
-      {TEXT_REVIEWS_LIST.map((item) => (
-        <TextReviewCard key={item.id} {...item} />
-      ))}
+      <SwiperContainer
+        list={TEXT_REVIEWS_LIST}
+        renderItem={(item) => <TextReviewCard {...item} />}
+      />
     </StyledTextReviewList>
   );
 };

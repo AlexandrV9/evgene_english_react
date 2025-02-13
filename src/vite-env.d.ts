@@ -1,2 +1,2 @@
-/// <reference types="./shared/types/declare.d.ts" />
+/// <reference types="./app/types/global.d.ts" />
 /// <reference types="vite/client" />

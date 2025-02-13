@@ -59,7 +59,7 @@ export const StyledBanner = styled(Section)`
   .icon {
     position: absolute;
     width: 600px;
-    top: 180px;
+    top: 80px;
     right: 143px;
   }
 

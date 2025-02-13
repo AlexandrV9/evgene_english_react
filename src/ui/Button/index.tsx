@@ -91,3 +91,4 @@ export const Button: FC<ButtonProps> = ({
 export const MemoButton = memo(Button);
 
 export * from "./BookingButton";
+export * from "./SwiperButton";
