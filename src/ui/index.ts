@@ -8,3 +8,6 @@ export * from "./Card";
 export * from "./NavBar";
 export * from "./Section";
 export * from "./SwiperContainer";
+export * from "./Header";
+export * from "./Footer";
+export * from "./MobileMenu";

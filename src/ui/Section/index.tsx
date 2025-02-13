@@ -14,9 +14,9 @@ interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {
   children: string;
 }
 
-export const SectionTitle = ({ children, ...otherProps }: SectionTitleProps) => {
+export const SectionTitle = ({ children, color = "accent", ...otherProps }: SectionTitleProps) => {
   return (
-    <Title as="h3" color="accent" mb={20} {...otherProps}>
+    <Title as="h3" color={color} mb={20} {...otherProps}>
       {children}
     </Title>
   );

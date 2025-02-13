@@ -10,7 +10,7 @@ import { fontFamilyMap } from "../constants";
  * secondary
  * accent
  */
-type ITextColor = "primary" | "secondary" | "accent";
+type ITextColor = "primary" | "secondary" | "accent" | "neutral";
 
 /**
  * Доступные тэги

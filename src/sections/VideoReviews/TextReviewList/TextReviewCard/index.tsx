@@ -36,7 +36,6 @@ const StyledTextReviewCard = styled.div`
   padding: 2.7rem;
   border-radius: 2rem;
   background-color: var(--insted-white-color);
-  width: 450px;
   flex-shrink: 0;
 
   display: flex;

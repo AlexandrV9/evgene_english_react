@@ -5,11 +5,12 @@ import styled, { css } from "styled-components";
 
 interface SwiperButtonProps {
   type?: "prev" | "next";
+  onClick?: () => void;
 }
 
-export const SwiperButton = ({ type = "prev" }: SwiperButtonProps) => {
+export const SwiperButton = ({ type = "prev", onClick }: SwiperButtonProps) => {
   return (
-    <StyledSwiperButton type={type}>
+    <StyledSwiperButton type={type} onClick={onClick}>
       <Icon svg={type === "prev" ? ArrowPrevIcon : ArrowNextIcon} />
     </StyledSwiperButton>
   );

@@ -77,8 +77,8 @@ export const Button: FC<ButtonProps> = ({
       disabled={disabled || loading}
       onClick={onClick}
       style={{
-        ...style,
         margin: m,
+        ...style,
       }}
     >
       {startIcon}
@@ -92,3 +92,4 @@ export const MemoButton = memo(Button);
 
 export * from "./BookingButton";
 export * from "./SwiperButton";
+export * from "./ScrollTopButton";

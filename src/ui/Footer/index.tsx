@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { NavBar } from "../../ui/NavBar";
+import { NavBar } from "../NavBar";
 import { FOOTER_NAV_LIST } from "./constants";
-import { Text } from "../../ui";
+import { Text } from "..";
 
 export const Footer = () => {
   return (

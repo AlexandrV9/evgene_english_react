@@ -4,10 +4,15 @@ import styled from "styled-components";
 interface NavItemProps {
   dataTarget: string;
   text: ReactNode;
+  onClick?: (selector: string) => void;
 }
 
-export const NavItem = ({ dataTarget, text }: NavItemProps) => {
-  return <StyledNavItem data-target={dataTarget}>{text}</StyledNavItem>;
+export const NavItem = ({ dataTarget, text, onClick }: NavItemProps) => {
+  return (
+    <StyledNavItem data-target={dataTarget} onClick={() => onClick?.(dataTarget)}>
+      {text}
+    </StyledNavItem>
+  );
 };
 
 const StyledNavItem = styled.li`

@@ -1,12 +1,12 @@
-import { Button, Flex, Icon, SectionTitle, Text, Title } from "@/ui";
-import { StyledNativeTeacher, StyledTeacherCard } from "./styles";
+import { BookingButton, Flex, Icon, SectionTitle, Text } from "@/ui";
 import { VideoBlock } from "@/ui/VideoBlock";
+import { StyledNativeTeacher, StyledTeacherCard } from "./styles";
 
-import video from "@/assets/videos/mason.mp4";
-import avatar from "@/assets/images/avatar-native-teacher.png";
+import GreenCircleIcon from "@/assets/icons/circle_4.svg";
 import LineIcon from "@/assets/icons/dash_1.svg";
 import RedLineIcon from "@/assets/icons/red_line_4.svg";
-import GreenCircleIcon from "@/assets/icons/circle_4.svg";
+import avatar from "@/assets/images/avatar-native-teacher.png";
+import video from "@/assets/videos/mason.mp4";
 
 interface NativeTeacherProps {
   className?: string;
@@ -16,8 +16,8 @@ export const NativeTeacher = ({ className }: NativeTeacherProps) => {
   return (
     <StyledNativeTeacher id="native-teacher" className={className}>
       <div className="content">
-        <SectionTitle color="primary">беседы с носителем</SectionTitle>
-        <Text fontSize="xl" color="secondary" mb={20}>
+        <SectionTitle color="neutral">беседы с носителем</SectionTitle>
+        <Text fontSize="xl" mb={40} color="primary">
           вы всегда можете забронировать занятие c носителем языка в нашей школе
         </Text>
 
@@ -76,15 +76,12 @@ export const NativeTeacher = ({ className }: NativeTeacherProps) => {
           <VideoBlock video={video} className="video_block" />
         </div>
 
-        <Text mt={20} mb={38} align="center" fontSize="xl" color="primary" fontWeight="semiBold">
+        <Text mt={40} mb={38} align="center" fontSize="xl" color="primary" fontWeight="semiBold">
           Мэйсон - это просто генератор крутых разговоров. Независимо от того, какой у вас уровень
           английского, он найдёт к вам подход!
         </Text>
 
-        <Button m="0 auto">
-          <span>записаться на занятие</span>
-          <img src="../src/assets/icons/telegram.svg" />
-        </Button>
+        <BookingButton style={{ margin: "0 auto" }} />
       </div>
     </StyledNativeTeacher>
   );

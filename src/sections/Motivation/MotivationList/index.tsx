@@ -26,7 +26,8 @@ const StyledMotivationList = styled.ul`
   }
 
   .video_block {
+    width: 100%;
     border-radius: 12px;
-    height: 70rem;
+    height: 90rem;
   }
 `;

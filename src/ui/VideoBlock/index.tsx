@@ -64,7 +64,10 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id }: VideoBloc
     if (!isIntersecting && videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.muted = true;
-      videoRef.current.play();
+
+      if (videoRef.current.readyState >= 3) {
+        videoRef.current.play();
+      }
 
       setIsStartVideo(false);
     }
@@ -74,6 +77,8 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id }: VideoBloc
     const onSuccessLoadVideo = () => {
       setIsLoading(false);
       setIsShow(true);
+
+      videoRef.current?.play();
     };
 
     const onFailLoadVide = () => {
@@ -95,7 +100,11 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id }: VideoBloc
       const videoSource = videoSourceRef.current as HTMLSourceElement;
       const video = videoRef.current as HTMLVideoElement;
 
-      setIsLoading(true);
+      if (video.src !== pathToVideo) {
+        setIsLoading(true);
+        videoSource.setAttribute("src", pathToVideo);
+        video.load();
+      }
 
       videoSource.setAttribute("src", pathToVideo);
       video.load();

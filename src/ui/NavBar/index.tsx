@@ -8,11 +8,17 @@ export interface NavBarProps {
 }
 
 export const NavBar = ({ className, list }: NavBarProps) => {
+  const handleClick = (selector: string) => {
+    const section = document.querySelector(selector);
+
+    section?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  };
+
   return (
     <StyledNavBar className={className}>
       <ul className="nav_list">
         {list.map(({ id, text, dataTarget }) => (
-          <NavItem key={id} text={text} dataTarget={dataTarget} />
+          <NavItem key={id} text={text} dataTarget={dataTarget} onClick={handleClick} />
         ))}
       </ul>
     </StyledNavBar>

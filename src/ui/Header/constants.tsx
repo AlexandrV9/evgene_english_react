@@ -1,5 +1,6 @@
 import { generateUUID } from "@/utils";
-import { INavItem } from "../../ui/NavBar/types";
+import { INavItem } from "../NavBar/types";
+import { Text } from "@/ui";
 
 export const HEADER_NAV_LIST: INavItem[] = [
   {
@@ -19,7 +20,11 @@ export const HEADER_NAV_LIST: INavItem[] = [
   },
   {
     id: generateUUID(),
-    text: "memes",
+    text: (
+      <Text fontFamily="MVCrooker" custFontSize={24} fontWeight="medium">
+        memes
+      </Text>
+    ),
     dataTarget: "#memes",
   },
   {

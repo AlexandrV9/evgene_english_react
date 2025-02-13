@@ -1,5 +1,5 @@
 import { generateUUID } from "@/utils";
-import { INavItem } from "../../ui/NavBar/types";
+import { INavItem } from "../NavBar/types";
 
 export const FOOTER_NAV_LIST: INavItem[] = [
   {

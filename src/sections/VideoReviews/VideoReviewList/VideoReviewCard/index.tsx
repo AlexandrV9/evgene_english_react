@@ -13,13 +13,7 @@ interface VideoReviewCardProps {
   video: string;
 }
 
-export const VideoReviewCard = ({
-  // icon,
-  userName,
-  userNickname,
-  video,
-  id,
-}: VideoReviewCardProps) => {
+export const VideoReviewCard = ({ userName, userNickname, video, id }: VideoReviewCardProps) => {
   return (
     <StyledVideoReviewCard>
       <div className="header">

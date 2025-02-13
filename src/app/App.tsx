@@ -1,28 +1,27 @@
 import styled from "styled-components";
-import {
-  Banner,
-  Bonuses,
-  Contacts,
-  Footer,
-  Header,
-  Memes,
-  Messages,
-  NativeTeacher,
-  Prices,
-  Teachers,
-  VideoReviews,
-  WhyWe,
-} from "../components";
 
 import "./styles/index.scss";
-import { Motivation } from "@/sections/Motivation";
+import { Footer, Header, ScrollTopButton } from "@/ui";
+import {
+  Banner,
+  Messages,
+  Teachers,
+  WhyWe,
+  Bonuses,
+  Memes,
+  VideoReviews,
+  Prices,
+  NativeTeacher,
+  Contacts,
+  Motivation,
+} from "@/sections";
 
 function App() {
   return (
     <>
       <Header />
       <StyledMain>
-        <Banner />§
+        <Banner />
         <Messages />
         <Teachers />
         <WhyWe />
@@ -35,6 +34,7 @@ function App() {
         <Contacts />
       </StyledMain>
       <Footer />
+      <ScrollTopButton />
     </>
   );
 }

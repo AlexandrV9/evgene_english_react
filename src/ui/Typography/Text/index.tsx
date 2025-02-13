@@ -30,7 +30,7 @@ type IFontWeight = "light" | "regular" | "medium" | "semiBold" | "bold" | "extra
  * secondary
  * accent
  */
-type ITextColor = "primary" | "secondary" | "accent";
+type ITextColor = "primary" | "secondary" | "accent" | "neutral";
 
 /**
  * Доступные тэги
