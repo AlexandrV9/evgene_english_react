@@ -27,26 +27,33 @@ export const Bonuses = ({ className }: BonusesProps) => {
 
   return (
     <StyledBonuses id="bonuses" className={className}>
-      <div className="title_wrapper" ref={targetRef}>
-        <SectionTitle align="end" className="title">
-          бонусы
-        </SectionTitle>
-        <Icon svg={StartsIcon} className="icon" />
-      </div>
+      <span ref={targetRef} />
+      <div className="wrapper">
+        <div className="title_wrapper">
+          <SectionTitle align="end" className="title">
+            бонусы
+          </SectionTitle>
+          <Icon svg={StartsIcon} className="icon" />
+        </div>
 
-      <BonusesList />
+        <BonusesList />
+      </div>
     </StyledBonuses>
   );
 };
 
 export const StyledBonuses = styled(Section)`
-  transform: translateX(-100%);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
+  .wrapper {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
 
   &.animate {
-    transform: translateX(0);
-    opacity: 1;
+    .wrapper {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 
   .title_wrapper {
