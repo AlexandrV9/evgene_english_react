@@ -1,4 +1,4 @@
-import { BookingButton, Flex, Icon, Text, Title } from "@/ui";
+import { BookingButton, Flex, Icon, Text } from "@/ui";
 import styled from "styled-components";
 import { Section, SectionTitle } from "../../ui/Section";
 import { LINKS_LIST } from "./constants";

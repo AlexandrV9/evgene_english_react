@@ -8,60 +8,51 @@ interface BannerProps {
 }
 
 import USAIcon from "@/assets/icons/USA.svg";
-import { useIntersectionObserver } from "@/hooks";
-import { useEffect } from "react";
+import { useAnimationBlock } from "@/hooks";
+import { SECTION_IDS } from "@/constants";
 
 export const Banner = ({ className }: BannerProps) => {
-  const { targetRef, isIntersecting } = useIntersectionObserver({
-    isOnce: true,
-    options: { threshold: 0 },
-  });
-
-  useEffect(() => {
-    if (isIntersecting) {
-      const container = document.querySelector("#banner");
-
-      container?.classList?.add("animate");
-    }
-  }, [isIntersecting]);
+  const { targetRef } = useAnimationBlock(SECTION_IDS.BANNER);
 
   return (
     <StyledBanner id="banner" className={className}>
-      <Title as="h1" align="center" color="accent" ref={targetRef}>
-        Eugene English
-      </Title>
+      <div ref={targetRef}>
+        <Title as="h1" align="center" color="accent" ref={targetRef}>
+          Eugene English
+        </Title>
 
-      <Icon svg={USAIcon} className="icon" />
+        <Icon svg={USAIcon} className="icon" />
 
-      <Flex vertical align="center">
-        <Text custFontSize="7rem" custLineHeight="9.8rem" fontWeight="medium" color="secondary">
-          школа английского языка
-        </Text>
-        <Text fontSize="xl" color="accent" mb={57}>
-          твой первый{" "}
-          <Text as="span" fontSize="xl" fontFamily="MVCrooker">
-            step
-          </Text>{" "}
-          к улучшению английского
-        </Text>
+        <Flex vertical align="center">
+          <Text custFontSize="7rem" custLineHeight="9.8rem" fontWeight="medium" color="secondary">
+            школа английского языка
+          </Text>
+          <Text fontSize="xl" color="accent" mb={57}>
+            твой первый{" "}
+            <Text as="span" fontSize="xl" fontFamily="MVCrooker">
+              step
+            </Text>{" "}
+            к улучшению английского
+          </Text>
 
-        <ul className="cards_list">
-          <BannerItem
-            title="300+"
-            emoji="🎓"
-            description="студентов по всему миру обучались в нашей школе"
-          />
-          <BannerItem title="7+ лет" emoji="🧑🏻‍🏫" description="опыта преподавания" />
-          <BannerItem
-            title="сертификат TESOL"
-            emoji="⭐️"
-            description="у всех преподавателей"
-            style={{ gridColumn: "3 / 5" }}
-          />
-        </ul>
+          <ul className="cards_list">
+            <BannerItem
+              title="300+"
+              emoji="🎓"
+              description="студентов по всему миру обучались в нашей школе"
+            />
+            <BannerItem title="7+ лет" emoji="🧑🏻‍🏫" description="опыта преподавания" />
+            <BannerItem
+              title="сертификат TESOL"
+              emoji="⭐️"
+              description="у всех преподавателей"
+              style={{ gridColumn: "3 / 5" }}
+            />
+          </ul>
 
-        <BookingButton />
-      </Flex>
+          <BookingButton />
+        </Flex>
+      </div>
     </StyledBanner>
   );
 };

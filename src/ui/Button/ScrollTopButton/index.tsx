@@ -36,8 +36,8 @@ export const ScrollTopButton = ({}: ScrollTopButtonProps) => {
 
 const StyledScrollTopButton = styled.button<{ isVisible: boolean }>`
   position: fixed;
-  bottom: 5rem;
-  right: 5rem;
+  bottom: 3rem;
+  right: 2rem;
 
   display: flex;
   flex-direction: column;

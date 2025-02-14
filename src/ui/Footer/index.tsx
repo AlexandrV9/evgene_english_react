@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { NavBar } from "../NavBar";
 import { FOOTER_NAV_LIST } from "./constants";
 import { Text } from "..";
+import { FOOTER_HEIGHT } from "@/constants";
 
 export const Footer = () => {
   return (
@@ -20,10 +21,9 @@ export const Footer = () => {
 };
 
 const StyledeFooter = styled.footer`
-  height: var(---footer-height);
+  height: ${FOOTER_HEIGHT}px;
 
   background-color: var(--insted-white-color);
-  padding: 48px;
 
   .footer__content {
     margin: 0 auto;

@@ -1,29 +1,23 @@
+import { SECTION_IDS } from "@/constants";
+import { useAnimationBlock } from "@/hooks";
+import { Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { PriceList } from "./PriceList";
-import { Section, SectionTitle } from "@/ui";
-import { useIntersectionObserver } from "@/hooks";
-import { useEffect } from "react";
 
 interface PricesProps {
   className?: string;
 }
 
 export const Prices = ({ className }: PricesProps) => {
-  const { targetRef, isIntersecting } = useIntersectionObserver({
+  const { targetRef } = useAnimationBlock(SECTION_IDS.PRICES, {
     isOnce: true,
-    options: { threshold: 0 },
+    options: {
+      threshold: 0,
+    },
   });
 
-  useEffect(() => {
-    if (isIntersecting) {
-      const container = document.querySelector("#prices");
-
-      container?.classList?.add("animate");
-    }
-  }, [isIntersecting]);
-
   return (
-    <StyledPrices id="prices" className={className}>
+    <StyledPrices id={SECTION_IDS.PRICES} className={className}>
       <SectionTitle>стоимость занятий</SectionTitle>
       <div className="section__content" ref={targetRef}>
         <PriceList />
