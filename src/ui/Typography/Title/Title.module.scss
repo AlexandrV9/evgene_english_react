@@ -67,3 +67,10 @@ h4 {
     }
   }
 }
+
+@media screen and (max-width: 1250px) {
+  h1 {
+    font-size: 12rem;
+    line-height: 19rem;
+  }
+}

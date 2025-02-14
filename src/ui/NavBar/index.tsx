@@ -1,15 +1,19 @@
 import styled from "styled-components";
 import { INavItem } from "./types";
 import { NavItem } from "./NavItem";
+import { BREAKPOINTS } from "@/constants";
 
 export interface NavBarProps {
   className?: string;
   list: INavItem[];
+  onClick?: () => void;
 }
 
-export const NavBar = ({ className, list }: NavBarProps) => {
+export const NavBar = ({ className, list, onClick }: NavBarProps) => {
   const handleClick = (selector: string) => {
     const section = document.querySelector(selector);
+
+    onClick?.();
 
     section?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   };
@@ -30,5 +34,9 @@ const StyledNavBar = styled.nav`
     list-style-type: none;
     display: flex;
     gap: 32px;
+
+    @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
+      gap: 20px;
+    }
   }
 `;

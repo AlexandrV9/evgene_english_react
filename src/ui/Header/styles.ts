@@ -1,7 +1,7 @@
 import { HEADER_HEIGHT } from "@/constants";
 import styled from "styled-components";
 
-export const StyledHeader = styled.header<{ isHidden: boolean }>`
+export const StyledHeader = styled.header<{ $isHidden: boolean }>`
   height: ${HEADER_HEIGHT}px;
   position: fixed;
   top: 0;
@@ -19,5 +19,5 @@ export const StyledHeader = styled.header<{ isHidden: boolean }>`
   background-color: var(--back-color);
   transition: transform 0.3s ease-in-out;
 
-  transform: ${({ isHidden }) => (isHidden ? "translateY(-100%)" : "translateY(0)")};
+  transform: ${({ $isHidden }) => ($isHidden ? "translateY(-100%)" : "translateY(0)")};
 `;

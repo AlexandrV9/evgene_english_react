@@ -6,8 +6,12 @@ interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-export const Section = forwardRef<HTMLElement, SectionProps>(({ children, ...otherProps }) => {
-  return <StyledSection {...otherProps}>{children}</StyledSection>;
+export const Section = forwardRef<HTMLElement, SectionProps>(({ children, ...otherProps }, ref) => {
+  return (
+    <StyledSection {...otherProps} ref={ref}>
+      {children}
+    </StyledSection>
+  );
 });
 
 interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {

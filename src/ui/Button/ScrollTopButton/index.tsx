@@ -25,14 +25,14 @@ export const ScrollTopButton = () => {
   }, []);
 
   return (
-    <StyledScrollTopButton onClick={handleClick} isVisible={isVisible}>
+    <StyledScrollTopButton onClick={handleClick} $isVisible={isVisible}>
       <Icon size={30} svg={ArrowUpIcon} />
       <Text>наверх</Text>
     </StyledScrollTopButton>
   );
 };
 
-const StyledScrollTopButton = styled.button<{ isVisible: boolean }>`
+const StyledScrollTopButton = styled.button<{ $isVisible: boolean }>`
   position: fixed;
   bottom: 3rem;
   right: 2rem;
@@ -46,7 +46,7 @@ const StyledScrollTopButton = styled.button<{ isVisible: boolean }>`
 
   transition: all 0.2s;
 
-  opacity: ${(props) => (props.isVisible ? "1" : "0")};
+  opacity: ${(props) => (props.$isVisible ? "1" : "0")};
 
   &:hover {
     cursor: pointer;

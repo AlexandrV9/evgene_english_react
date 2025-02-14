@@ -9,7 +9,7 @@ interface BannerProps {
 
 import USAIcon from "@/assets/icons/USA.svg";
 import { useAnimationBlock } from "@/hooks";
-import { SECTION_IDS } from "@/constants";
+import { BREAKPOINTS, SECTION_IDS } from "@/constants";
 
 export const Banner = ({ className }: BannerProps) => {
   const { targetRef } = useAnimationBlock(SECTION_IDS.BANNER);
@@ -42,12 +42,7 @@ export const Banner = ({ className }: BannerProps) => {
               description="студентов по всему миру обучались в нашей школе"
             />
             <BannerItem title="7+ лет" emoji="🧑🏻‍🏫" description="опыта преподавания" />
-            <BannerItem
-              title="сертификат TESOL"
-              emoji="⭐️"
-              description="у всех преподавателей"
-              style={{ gridColumn: "3 / 5" }}
-            />
+            <BannerItem title="сертификат TESOL" emoji="⭐️" description="у всех преподавателей" />
           </ul>
 
           <BookingButton />
@@ -65,6 +60,8 @@ export const StyledBanner = styled(Section)`
   opacity: 0;
   transition: all 0.5s ease-in-out;
 
+  padding-top: 30px;
+
   &.animate {
     transform: translateY(0);
     opacity: 1;
@@ -73,7 +70,7 @@ export const StyledBanner = styled(Section)`
   .icon {
     position: absolute;
     width: 600px;
-    top: 80px;
+    top: -15px;
     right: 143px;
   }
 
@@ -81,7 +78,35 @@ export const StyledBanner = styled(Section)`
     display: grid;
     grid-template-columns: repeat(4, 287px);
     grid-template-rows: 283px;
+    grid-auto-rows: 283px;
     gap: 24px;
     margin-bottom: 88px;
+
+    li:last-of-type {
+      grid-column: 3 / 5;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
+    .cards_list {
+      grid-template-columns: repeat(2, 487px);
+      grid-template-rows: 203px;
+      grid-auto-rows: 203px;
+
+      li:last-of-type {
+        grid-column: 1 / 3;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .cards_list {
+      grid-template-columns: repeat(2, 387px);
+
+
+      li:last-of-type {
+        grid-column: 1 / 3;
+      }
+    }
   }
 `;

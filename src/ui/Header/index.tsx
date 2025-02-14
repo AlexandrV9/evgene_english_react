@@ -4,18 +4,21 @@ import { StyledHeader } from "./styles";
 import LogoIcon from "@/assets/icons/logo.svg";
 import { NavBar } from "@/ui";
 import { HEADER_NAV_LIST } from "./constants";
-import { useScrollDirection } from "@/hooks";
+import { useMediaQuery, useScrollDirection } from "@/hooks";
+import { BurgerMenu } from "../BurgerMenu";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
+  const breakpoint = useMediaQuery();
 
   return (
-    <StyledHeader isHidden={scrollDirection === "down"}>
+    <StyledHeader $isHidden={scrollDirection === "down"}>
       <Icon svg={LogoIcon} size={150} />
 
       <Flex gap={40} align="center">
-        <NavBar list={HEADER_NAV_LIST} />
+        {["desktop", "desktopLow"].includes(breakpoint) && <NavBar list={HEADER_NAV_LIST} />}
         <BookingButton />
+        {!["desktop", "desktopLow"].includes(breakpoint) && <BurgerMenu />}
       </Flex>
     </StyledHeader>
   );

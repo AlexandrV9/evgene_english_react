@@ -12,12 +12,13 @@
   --tablet-scaling-factor: calc((100vw - 940px) / (1440 - 940));
   --mobile-scaling-factor: calc((100vw - 360px) / (940 - 360));
 
-  --header-height: 150px;
   --header-z-index: 5;
 
   --mobile-menu-z-index: 10;
 
   --font-family-main: "Roboto Flex", sans-serif;
 
-  --footer-height: 150px;
+  --scaling-factor: calc((100vw - 1440px) / (1920 - 1440));
+  --tablet-scaling-factor: calc((100vw - 940px) / (1440 - 940));
+  --mobile-scaling-factor: calc((100vw - 360px) / (940 - 360));
 }

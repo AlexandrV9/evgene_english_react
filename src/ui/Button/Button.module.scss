@@ -5,7 +5,8 @@
   align-items: center;
   gap: 1.2rem;
 
-  transition: all .2s;
+  transition: all 0.2s;
+  text-wrap: nowrap;
 
   &:hover {
     opacity: 0.5;
@@ -71,21 +72,14 @@
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1640px) {
   .button {
     &.size {
-      &_small {
-        font-size: 1.8rem;
-        line-height: 2.6rem;
-
-        padding: 1.5rem 3rem;
-      }
-
       &_big {
         font-size: 2.4rem;
         line-height: 3.2rem;
 
-        padding: 1.8rem 4.2rem;
+        padding: 1.3rem 3rem;
       }
     }
   }
@@ -94,12 +88,11 @@
 @media screen and (max-width: 1440px) {
   .button {
     &.size {
-      &_small,
       &_big {
-        font-size: 1.8rem;
-        line-height: 1.9rem;
+        font-size: 2.2rem;
+        line-height: 3rem;
 
-        padding: 1.2rem 3.2rem;
+        padding: 1.3rem 3rem;
       }
     }
   }

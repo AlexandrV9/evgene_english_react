@@ -22,7 +22,7 @@ function App() {
       <Header />
       <StyledMain>
         <Banner />
-        <Messages />
+        {/* <Messages />
         <Teachers />
         <WhyWe />
         <Bonuses />
@@ -31,7 +31,7 @@ function App() {
         <Prices />
         <NativeTeacher />
         <Motivation />
-        <Contacts />
+        <Contacts /> */}
       </StyledMain>
       <Footer />
       <ScrollTopButton />

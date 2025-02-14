@@ -1,3 +1,4 @@
+import { BREAKPOINTS } from "@/constants";
 import { ReactNode } from "react";
 import styled from "styled-components";
 
@@ -53,5 +54,10 @@ const StyledNavItem = styled.li`
 
   &:active {
     color: var(--text-color);
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
+    font-size: 20px;
+    line-height: 28px;
   }
 `;

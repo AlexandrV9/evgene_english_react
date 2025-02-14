@@ -7,10 +7,11 @@ export const BREAKPOINTS = {
   xs: 480,
   sm: 576,
   tablet: 768,
-  desktopLow: 992,
+  laptopLow: 1100,
   laptop: 1440,
+  desktopLow: 1640,
   desktop: 1920,
-};
+} as const;
 
 export enum SECTION_IDS {
   "BANNER" = "banner",
