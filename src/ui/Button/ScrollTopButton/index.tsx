@@ -5,9 +5,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { HEADER_HEIGHT } from "@/constants";
 
-interface ScrollTopButtonProps {}
-
-export const ScrollTopButton = ({}: ScrollTopButtonProps) => {
+export const ScrollTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClick = () => {

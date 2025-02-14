@@ -12,8 +12,8 @@ export const MessagesList = () => {
 
   useEffect(() => {
     if (isIntersecting) {
-      const leftBoxes = document.querySelectorAll(".messages__message_type_white");
-      const rightBoxes = document.querySelectorAll(".messages__message_type_dark");
+      const leftBoxes = document.querySelectorAll(".type_white");
+      const rightBoxes = document.querySelectorAll(".type_dark");
 
       leftBoxes.forEach((box) => box.classList.add("animate"));
       rightBoxes.forEach((box) => box.classList.add("animate"));
@@ -26,8 +26,8 @@ export const MessagesList = () => {
         <li
           key={item.id}
           className={clsx("messages__message", {
-            messages__message_type_white: item.position === "left",
-            messages__message_type_dark: item.position === "right",
+            type_white: item.position === "left",
+            type_dark: item.position === "right",
           })}
         >
           {item.text}
@@ -76,7 +76,7 @@ export const StyledMessagesList = styled.ul`
     }
   }
 
-  .messages__message_type_white {
+  .type_white {
     background-color: var(--insted-white-color);
     color: var(--text-color);
     align-self: start;
@@ -94,7 +94,7 @@ export const StyledMessagesList = styled.ul`
     }
   }
 
-  .messages__message_type_dark {
+  .type_dark {
     background-color: var(--text-color);
     color: var(--white-color);
     align-self: end;
