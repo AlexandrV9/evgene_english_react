@@ -1,41 +1,37 @@
 import clsx from "clsx";
 import styled from "styled-components";
 import { MESSAGES_LIST } from "./constants";
-import { useEffect } from "react";
-import { useIntersectionObserver } from "@/hooks";
+import { forwardRef, useEffect } from "react";
 
-export const MessagesList = () => {
-  const { targetRef, isIntersecting } = useIntersectionObserver({
-    isOnce: true,
-    options: { threshold: 0.2 },
-  });
+export const MessagesList = forwardRef<any, { isIntersecting: boolean }>(
+  ({ isIntersecting }, ref) => {
+    useEffect(() => {
+      if (isIntersecting) {
+        const leftBoxes = document.querySelectorAll(".type_white");
+        const rightBoxes = document.querySelectorAll(".type_dark");
 
-  useEffect(() => {
-    if (isIntersecting) {
-      const leftBoxes = document.querySelectorAll(".type_white");
-      const rightBoxes = document.querySelectorAll(".type_dark");
+        leftBoxes.forEach((box) => box.classList.add("animate"));
+        rightBoxes.forEach((box) => box.classList.add("animate"));
+      }
+    }, [isIntersecting]);
 
-      leftBoxes.forEach((box) => box.classList.add("animate"));
-      rightBoxes.forEach((box) => box.classList.add("animate"));
-    }
-  }, [isIntersecting]);
-
-  return (
-    <StyledMessagesList ref={targetRef}>
-      {MESSAGES_LIST.map((item) => (
-        <li
-          key={item.id}
-          className={clsx("messages__message", {
-            type_white: item.position === "left",
-            type_dark: item.position === "right",
-          })}
-        >
-          {item.text}
-        </li>
-      ))}
-    </StyledMessagesList>
-  );
-};
+    return (
+      <StyledMessagesList ref={ref}>
+        {MESSAGES_LIST.map((item) => (
+          <li
+            key={item.id}
+            className={clsx("messages__message", {
+              type_white: item.position === "left",
+              type_dark: item.position === "right",
+            })}
+          >
+            {item.text}
+          </li>
+        ))}
+      </StyledMessagesList>
+    );
+  }
+);
 
 export const StyledMessagesList = styled.ul`
   display: flex;
@@ -46,9 +42,11 @@ export const StyledMessagesList = styled.ul`
 
   .messages__message {
     padding: 16px;
-    font-size: 40px;
+
+    font-size: 36px;
     font-weight: 500;
-    line-height: 48px;
+    line-height: 42px;
+
     border-radius: 16px;
     position: relative;
     opacity: 0;

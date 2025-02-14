@@ -13,7 +13,7 @@ export const Header = () => {
     <StyledHeader isHidden={scrollDirection === "down"}>
       <Icon svg={LogoIcon} size={150} />
 
-      <Flex gap={10} align="center">
+      <Flex gap={40} align="center">
         <NavBar list={HEADER_NAV_LIST} />
         <BookingButton />
       </Flex>

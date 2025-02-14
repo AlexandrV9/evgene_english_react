@@ -52,6 +52,19 @@ export const RenderPriceItem = ({
         </StyleItem>
       );
     }
+    case "half_an_hour": {
+      return (
+        <StyleItem>
+          <Text custFontSize={27} color="accent" fontWeight="bold">
+            30 мин
+          </Text>
+          <Icon svg={LineIcon} />
+          <Text custFontSize={27} fontWeight="semiBold">
+            $ {currentPrice}/час
+          </Text>
+        </StyleItem>
+      );
+    }
   }
 };
 
@@ -76,9 +89,10 @@ const StyleItem = styled("li")`
 
   .new_price {
     position: absolute;
-    top: -10px;
-    right: -100px;
-    transform: rotate(15deg);
+    top: -13px;
+    right: -70px;
+    transform: rotate(6deg);
+    scale: 0.7;
 
     .inner_wrapper {
       position: relative;

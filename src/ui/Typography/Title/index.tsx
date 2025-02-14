@@ -25,6 +25,7 @@ export interface TitleProps {
   fontFamily?: "MVCrooker" | "RobotoFlex";
   style?: CSSProperties;
   align?: CSSProperties["textAlign"];
+  mt?: CSSProperties["marginTop"];
   mb?: CSSProperties["marginBottom"];
   custLineHeight?: CSSProperties["lineHeight"];
 }
@@ -36,6 +37,7 @@ export const Title = forwardRef<HTMLElement, TitleProps>(
       as: Tag = "h3",
       color = "primary",
       children,
+      mt = 0,
       mb = 0,
       align = "initial",
       style,
@@ -47,6 +49,7 @@ export const Title = forwardRef<HTMLElement, TitleProps>(
     const localStyle = {
       ...style,
       textAlign: align,
+      marginTop: mt,
       marginBottom: mb,
       fontFamily: fontFamilyMap[fontFamily],
       lineHeight: custLineHeight,

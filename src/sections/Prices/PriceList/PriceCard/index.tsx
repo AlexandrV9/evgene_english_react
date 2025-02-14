@@ -49,7 +49,7 @@ export const StyledPriceCard = styled(Card)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60rem;
+  width: 50rem;
   padding-bottom: 6rem;
 
   .video_block {

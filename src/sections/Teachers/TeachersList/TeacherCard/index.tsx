@@ -1,6 +1,8 @@
-import { Text, Title } from "@/ui";
+import { Icon, Text, Title } from "@/ui";
 import { ReactNode } from "react";
 import styled from "styled-components";
+
+import PushPinIcon from "@/assets/icons/pushpin.svg";
 
 export interface TeacherCardProps {
   name: string;
@@ -20,10 +22,10 @@ export const TeacherCard = ({
   return (
     <StyledTeacherCard className="teachers__card-teacher swiper-slide">
       <div className="content">
-        <img src="../src/assets/icons/pushpin.svg" className="pushpin-icon" />
+        <Icon svg={PushPinIcon} className="pushpin-icon" size={50} />
         <img src={avatar} className="avatar" />
 
-        <Title as="h4" color="accent" mb="1.3rem">
+        <Title as="h4" color="accent" mb="2rem" mt="2rem">
           {name}
         </Title>
 
@@ -67,8 +69,6 @@ export const StyledTeacherCard = styled.li`
     position: absolute;
     top: -1.6rem;
     left: -1.2rem;
-    width: 4.8rem;
-    height: 4.8rem;
   }
 `;
 
@@ -77,7 +77,7 @@ export const StyledAchievementsList = styled.ul`
   flex-direction: column;
   gap: 1.3rem;
 
-  margin: 0 6rem 3.2rem;
+  margin: 0 2rem 4rem 3.2rem;
 
   .achievement {
     position: relative;

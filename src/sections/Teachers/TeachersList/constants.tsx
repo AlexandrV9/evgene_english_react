@@ -38,7 +38,7 @@ export const TEACHERS_LIST = [
       <Text fontSize="l">
         Работал в Китае, а так же в различных школах онлайн, но Eugene English сделал ему
         предложение{" "}
-        <Text as="span" fontFamily="MVCrooker" fontWeight="bold">
+        <Text as="span" fontSize="l" fontFamily="MVCrooker" fontWeight="bold">
           {" "}
           he couldn’t refuse
         </Text>{" "}
@@ -62,7 +62,7 @@ export const TEACHERS_LIST = [
       </Text>
     ),
     addonAfter: (
-      <Button type="secondary" m="20px 0 0">
+      <Button type="secondary" m="4rem 0 0">
         стать преподавателем
       </Button>
     ),
