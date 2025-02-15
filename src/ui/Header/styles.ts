@@ -20,4 +20,27 @@ export const StyledHeader = styled.header<{ $isHidden: boolean }>`
   transition: transform 0.3s ease-in-out;
 
   transform: ${({ $isHidden }) => ($isHidden ? "translateY(-100%)" : "translateY(0)")};
+
+  .iconLogo {
+    width: 150px;
+    height: 150px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 10rem;
+
+    .iconLogo {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    height: 8rem;
+
+    .iconLogo {
+      width: 80px;
+      height: 80px;
+    }
+  }
 `;

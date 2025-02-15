@@ -2,6 +2,7 @@ import clsx from "clsx";
 import styled from "styled-components";
 import { MESSAGES_LIST } from "./constants";
 import { forwardRef, useEffect } from "react";
+import { BREAKPOINTS } from "@/constants";
 
 export const MessagesList = forwardRef<any, { isIntersecting: boolean }>(
   ({ isIntersecting }, ref) => {
@@ -107,6 +108,46 @@ export const StyledMessagesList = styled.ul`
       border: 14px solid transparent;
       border-top: 25px solid var(--text-color);
       transform: rotate(-27deg);
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
+    gap: 1.2rem;
+    margin-bottom: 40px;
+
+    .messages__message {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .messages__message {
+      &:nth-of-type(1) {
+        max-width: 70vw;
+      }
+      &:nth-of-type(2) {
+        max-width: 70vw;
+      }
+      &:nth-of-type(4) {
+        max-width: 70vw;
+      }
+      &:nth-of-type(5) {
+        max-width: 70vw;
+      }
+      &:nth-of-type(6) {
+        max-width: 70vw;
+      }
+      &:nth-of-type(8) {
+        max-width: 70vw;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    .messages__message {
+      font-size: 18px;
+      line-height: 24px;
     }
   }
 `;

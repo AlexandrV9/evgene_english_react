@@ -13,11 +13,11 @@ export const Header = () => {
 
   return (
     <StyledHeader $isHidden={scrollDirection === "down"}>
-      <Icon svg={LogoIcon} size={150} />
+      <Icon svg={LogoIcon} className="iconLogo" />
 
       <Flex gap={40} align="center">
         {["desktop", "desktopLow"].includes(breakpoint) && <NavBar list={HEADER_NAV_LIST} />}
-        <BookingButton />
+        {["desktop", "desktopLow", "laptop", "laptopLow"].includes(breakpoint) && <BookingButton />}
         {!["desktop", "desktopLow"].includes(breakpoint) && <BurgerMenu />}
       </Flex>
     </StyledHeader>

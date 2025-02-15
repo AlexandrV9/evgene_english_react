@@ -7,6 +7,7 @@ export const BREAKPOINTS = {
   xs: 480,
   sm: 576,
   tablet: 768,
+  tabletUp: 820,
   laptopLow: 1100,
   laptop: 1440,
   desktopLow: 1640,

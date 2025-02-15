@@ -97,3 +97,16 @@
     }
   }
 }
+
+@media screen and (max-width: 390px) {
+  .button {
+    &.size {
+      &_big {
+        font-size: 2rem;
+        line-height: 2.8rem;
+
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
 import { Title, TitleProps } from "../Typography/Title";
+import { BREAKPOINTS } from "@/constants";
 
 interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -30,5 +31,13 @@ const StyledSection = styled.section`
   width: 100%;
   max-width: 1480px;
   margin: 0 auto;
-  padding: 14rem 0;
+  padding: 14rem 0 0;
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    padding: 10rem 24px 0;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    padding: 6rem 12px 0;
+  }
 `;

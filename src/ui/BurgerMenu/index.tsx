@@ -90,4 +90,17 @@ const StyledContent = styled.div<{ $isOpen: boolean }>`
   .btn_booking {
     margin-top: 100px;
   }
+
+  @media screen and (max-width: 390px) {
+    .iconLogo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .btn_booking {
+      margin: 0;
+      position: absolute;
+      bottom:  2.4rem;
+    }
+  }
 `;

@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import { BannerItem } from "./BannerItem";
 import { BookingButton, Flex, Icon, Text, Title } from "@/ui";
+import styled from "styled-components";
 import { Section } from "../../ui/Section";
 
 interface BannerProps {
@@ -8,11 +7,14 @@ interface BannerProps {
 }
 
 import USAIcon from "@/assets/icons/USA.svg";
-import { useAnimationBlock } from "@/hooks";
 import { BREAKPOINTS, SECTION_IDS } from "@/constants";
+import { useAnimationBlock, useTextSize } from "@/hooks";
+import { BannerList } from "./BannerList";
 
 export const Banner = ({ className }: BannerProps) => {
   const { targetRef } = useAnimationBlock(SECTION_IDS.BANNER);
+
+  const fontSize = useTextSize();
 
   return (
     <StyledBanner id="banner" className={className}>
@@ -24,27 +26,18 @@ export const Banner = ({ className }: BannerProps) => {
         <Icon svg={USAIcon} className="icon" />
 
         <Flex vertical align="center">
-          <Text custFontSize="7rem" custLineHeight="9.8rem" fontWeight="medium" color="secondary">
+          <Text className="subtitle_1" fontWeight="medium" color="secondary" align="center">
             школа английского языка
           </Text>
-          <Text fontSize="xl" color="accent" mb={57}>
+          <Text fontSize={fontSize} color="accent" align="center" className="subtitle_2">
             твой первый{" "}
-            <Text as="span" fontSize="xl" fontFamily="MVCrooker">
+            <Text as="span" fontSize={fontSize} fontFamily="MVCrooker">
               step
             </Text>{" "}
             к улучшению английского
           </Text>
 
-          <ul className="cards_list">
-            <BannerItem
-              title="300+"
-              emoji="🎓"
-              description="студентов по всему миру обучались в нашей школе"
-            />
-            <BannerItem title="7+ лет" emoji="🧑🏻‍🏫" description="опыта преподавания" />
-            <BannerItem title="сертификат TESOL" emoji="⭐️" description="у всех преподавателей" />
-          </ul>
-
+          <BannerList />
           <BookingButton />
         </Flex>
       </div>
@@ -74,39 +67,75 @@ export const StyledBanner = styled(Section)`
     right: 143px;
   }
 
-  .cards_list {
-    display: grid;
-    grid-template-columns: repeat(4, 287px);
-    grid-template-rows: 283px;
-    grid-auto-rows: 283px;
-    gap: 24px;
-    margin-bottom: 88px;
+  .subtitle_1 {
+    font-size: 6rem;
+    line-height: 6.8rem;
+    margin-bottom: 2rem;
+  }
 
-    li:last-of-type {
-      grid-column: 3 / 5;
-    }
+  .subtitle_2 {
+    margin-bottom: 5.7rem;
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
-    .cards_list {
-      grid-template-columns: repeat(2, 487px);
-      grid-template-rows: 203px;
-      grid-auto-rows: 203px;
-
-      li:last-of-type {
-        grid-column: 1 / 3;
-      }
+    .subtitle_2 {
+      margin-bottom: 3rem;
     }
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
-    .cards_list {
-      grid-template-columns: repeat(2, 387px);
+    .subtitle_1 {
+      font-size: 4rem;
+      line-height: 4.8rem;
+    }
 
+    .icon {
+      width: 600px;
+      top: -10px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+  }
 
-      li:last-of-type {
-        grid-column: 1 / 3;
-      }
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    padding-top: 0;
+
+    .icon {
+      width: 400px;
+      top: -60px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    .subtitle_1 {
+      font-size: 3rem;
+      line-height: 3.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle_2 {
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+    padding-top: 0;
+
+    .icon {
+      width: 400px;
+      top: -60px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    .subtitle_1 {
+      font-size: 2.4rem;
+      line-height: 2.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle_2 {
+      margin-bottom: 1rem;
     }
   }
 `;

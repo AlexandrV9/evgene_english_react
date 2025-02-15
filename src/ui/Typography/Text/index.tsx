@@ -14,7 +14,7 @@ import { fontFamilyMap } from "../constants";
  * l - 28px
  * xl - 32px
  */
-type IFontSize = "xs" | "s" | "base" | "m" | "l" | "xl";
+type IFontSize = "xs" | "s" | "base" | "base_l" | "m" | "l" | "xl";
 
 /**
  * Начертание шрифта
@@ -71,8 +71,8 @@ export const Text: FC<TextProps> = ({
   const localStyle: CSSProperties = {
     ...style,
     textAlign: align,
-    marginTop: mt,
-    marginBottom: mb,
+    ...(mt && { marginTop: mt }),
+    ...(mb && { marginBottom: mb }),
     fontFamily: fontFamilyMap[fontFamily],
     fontSize: custFontSize,
     lineHeight: custLineHeight,
