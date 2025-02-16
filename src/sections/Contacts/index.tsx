@@ -38,14 +38,15 @@ const StyledContacts = styled(Section)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 8rem;
 
   .title {
     align-self: flex-start;
   }
 
   .wrapper_btns_1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 2.4rem;
     margin-bottom: 6rem;
   }

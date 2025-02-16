@@ -1,8 +1,10 @@
 import { BREAKPOINTS, SECTION_IDS } from "@/constants";
 import { useAnimationBlock } from "@/hooks";
-import { BookingButton, Flex, Section, SectionTitle } from "@/ui";
+import { BookingButton, Flex, Icon, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { AdvantagesList } from "./AdvantagesList";
+
+import NoteIcon from "@/assets/icons/note.svg";
 
 export interface WhyWeProps {
   className?: string;
@@ -23,7 +25,7 @@ export const WhyWe = ({ className }: WhyWeProps) => {
               <BookingButton className="btn" />
             </Flex>
 
-            <img src="../src/assets/icons/note.svg" className="why_we__img" />
+            <Icon svg={NoteIcon} className="why_we__img" />
           </div>
         </div>
       </div>
