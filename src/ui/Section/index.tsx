@@ -19,9 +19,14 @@ interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {
   children: string;
 }
 
-export const SectionTitle = ({ children, color = "accent", ...otherProps }: SectionTitleProps) => {
+export const SectionTitle = ({
+  children,
+  color = "accent",
+  mb = 20,
+  ...otherProps
+}: SectionTitleProps) => {
   return (
-    <Title as="h3" color={color} mb={20} {...otherProps}>
+    <Title as="h3" color={color} mb={mb} {...otherProps}>
       {children}
     </Title>
   );
@@ -31,13 +36,17 @@ const StyledSection = styled.section`
   width: 100%;
   max-width: 1480px;
   margin: 0 auto;
-  padding: 14rem 0 0;
+  padding: 14rem 24px 0;
 
   @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
     padding: 10rem 24px 0;
   }
 
   @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    padding: 6rem 24px 0;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
     padding: 6rem 12px 0;
   }
 `;

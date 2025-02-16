@@ -12,7 +12,7 @@ export const ADVANTAGES_LIST = [
     id: generateUUID(),
     icon: iconPlus_1,
     text: (
-      <Text fontSize="xl" fontWeight="bold">
+      <Text className="text" fontWeight="bold">
         крутые{" "}
         <Text as="span" fontFamily="MVCrooker" custFontSize="inherit" fontWeight="bold">
           teachers
@@ -24,7 +24,7 @@ export const ADVANTAGES_LIST = [
     id: generateUUID(),
     icon: iconPlus_2,
     text: (
-      <Text fontSize="xl" fontWeight="bold">
+      <Text className="text" fontWeight="bold">
         <Text as="span" fontFamily="MVCrooker" custFontSize="inherit" fontWeight="bold">
           engaging
         </Text>{" "}
@@ -36,7 +36,7 @@ export const ADVANTAGES_LIST = [
     id: generateUUID(),
     icon: iconPlus_3,
     text: (
-      <Text fontSize="xl" fontWeight="bold">
+      <Text className="text" fontWeight="bold">
         обучение на мемах
       </Text>
     ),
@@ -45,7 +45,7 @@ export const ADVANTAGES_LIST = [
     id: generateUUID(),
     icon: iconPlus_4,
     text: (
-      <Text fontSize="xl" fontWeight="bold">
+      <Text className="text" fontWeight="bold">
         наша школа пронизана{" "}
         <Text as="span" fontFamily="MVCrooker" custFontSize="inherit" fontWeight="bold">
           energy
@@ -65,7 +65,7 @@ export const ADVANTAGES_LIST = [
     id: generateUUID(),
     icon: iconPlus_5,
     text: (
-      <Text fontSize="xl" fontWeight="bold">
+      <Text className="text" fontWeight="bold">
         мы не просто учим, мы прививаем вам{" "}
         <Text as="span" fontFamily="MVCrooker" custFontSize="inherit" fontWeight="bold">
           love

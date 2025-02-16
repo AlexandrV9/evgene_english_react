@@ -12,7 +12,7 @@ export const BONUSES_LIST = [
     icon: icon_1,
     className: "block_1",
     text: (
-      <Text color="primary" fontSize="xl" fontWeight="semiBold">
+      <Text color="primary" fontWeight="semiBold">
         доступ в{" "}
         <Text as="span" custFontSize="inherit" fontWeight="semiBold">
           ЧАСТНЫЙ КАНАЛ
@@ -26,7 +26,7 @@ export const BONUSES_LIST = [
     icon: icon_2,
     className: "block_2",
     text: (
-      <Text color="primary" fontSize="xl" fontWeight="semiBold">
+      <Text color="primary" fontWeight="semiBold">
         постоянная обратная связь от преподавателя
       </Text>
     ),
@@ -36,7 +36,7 @@ export const BONUSES_LIST = [
     icon: icon_3,
     className: "block_3",
     text: (
-      <Text color="secondary" fontSize="xl" fontWeight="semiBold">
+      <Text color="secondary" fontWeight="semiBold">
         любая непонятная тема становится понятной
       </Text>
     ),
@@ -46,7 +46,7 @@ export const BONUSES_LIST = [
     icon: icon_4,
     className: "block_4",
     text: (
-      <Text color="secondary" fontSize="xl" fontWeight="semiBold">
+      <Text color="secondary" fontWeight="semiBold">
         <Text color="accent" as="span" custFontSize="inherit" fontWeight="semiBold">
           неформальный психолог
         </Text>

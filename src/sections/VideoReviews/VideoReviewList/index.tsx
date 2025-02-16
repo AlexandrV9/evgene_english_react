@@ -18,5 +18,4 @@ export const VideoReviewList = () => {
 export const StyledVideoReviewList = styled.div`
   display: flex;
   gap: 2rem;
-
 `;

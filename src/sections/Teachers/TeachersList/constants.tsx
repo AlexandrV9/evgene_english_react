@@ -16,7 +16,7 @@ export const TEACHERS_LIST = [
     ],
     avatar: teacherAvatar_1,
     otherInfo: (
-      <Text fontSize="l">
+      <Text className="description_text">
         Работал физически в Пекине, Китай, после этого был онлайн-преподавателем английского языка в
         одной из самых крупных школ Китая. <br />
         <br /> С 2021 работает на себя и является CEO Eugene English. <br />
@@ -35,10 +35,10 @@ export const TEACHERS_LIST = [
     ],
     avatar: teacherAvatar_2,
     otherInfo: (
-      <Text fontSize="l">
+      <Text className="description_text">
         Работал в Китае, а так же в различных школах онлайн, но Eugene English сделал ему
         предложение{" "}
-        <Text as="span" fontSize="l" fontFamily="MVCrooker" fontWeight="bold">
+        <Text as="span" fontFamily="MVCrooker" fontWeight="bold">
           {" "}
           he couldn’t refuse
         </Text>{" "}
@@ -57,7 +57,7 @@ export const TEACHERS_LIST = [
     ],
     avatar: teacherAvatar_3,
     otherInfo: (
-      <Text fontSize="l">
+      <Text className="description_text">
         Если все это про тебя, присоединяйся к нашей команде преподавателей ⬇️
       </Text>
     ),

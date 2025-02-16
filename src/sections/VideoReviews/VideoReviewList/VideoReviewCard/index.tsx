@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 import InstagramIcon from "@/assets/icons/instagram.svg";
+import { BREAKPOINTS } from "@/constants";
 
 interface VideoReviewCardProps {
   id: string;
@@ -18,16 +19,14 @@ export const VideoReviewCard = ({ userName, userNickname, video, id }: VideoRevi
     <StyledVideoReviewCard>
       <div className="header">
         <Icon size={48} svg={InstagramIcon} />
-        <Text fontSize="xl" fontWeight="medium">
+        <Text className="user_nickname" fontWeight="medium">
           {userNickname}
         </Text>
-        <Text custFontSize={25} fontWeight="medium" className="user_name">
+        <Text fontWeight="medium" className="user_name">
           {userName}
         </Text>
       </div>
-      <div className="content">
-        <VideoBlock video={video} id={id} className="video_block" />
-      </div>
+      <VideoBlock video={video} id={id} className="video_block" />
     </StyledVideoReviewCard>
   );
 };
@@ -36,9 +35,12 @@ export const StyledVideoReviewCard = styled.div`
   padding: 2.7rem;
   border-radius: 2rem;
   background-color: var(--insted-white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .header {
-    padding: 0 5rem;
     display: grid;
     grid-template-columns: min-content 1fr;
     grid-template-rows: repeat(2, min-content);
@@ -47,19 +49,59 @@ export const StyledVideoReviewCard = styled.div`
     align-items: center;
   }
 
+  .user_nickname {
+    font-size: 2.6rem;
+  }
+
   .user_name {
+    font-size: 2rem;
     grid-column: 2 / 3;
   }
 
-  .content {
-    border: 0.5rem solid white;
-    border-radius: 50%;
-    width: 40rem;
-  }
-
   .video_block {
-    width: 40rem;
-    height: 40rem;
+    border: 0.5rem solid white;
     overflow: hidden;
   }
+
+  @media screen and (max-width: ${BREAKPOINTS.desktop}px) {
+    .video_block {
+      max-width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  @media screen and (max-width: 1500px) {
+    .video_block {
+      max-width: 350px;
+      max-height: 350px;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .video_block {
+      max-width: 300px;
+      max-height: 300px;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .video_block {
+      max-width: 280px;
+      max-height: 280px;
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    .video_block {
+      max-width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  /* @media screen and (max-width: 665px) {
+    .video_block {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  } */
 `;

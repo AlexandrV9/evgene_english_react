@@ -1,28 +1,23 @@
 .text {
   &.fontSize {
     &_xs {
-      font-size: 10px;
-      line-height: 18px;
-    }
-
-    &_s {
       font-size: 12px;
       line-height: 20px;
     }
 
-    &_m {
-      font-size: 14px;
-      line-height: 22px;
-    }
-
-    &_base {
+    &_s {
       font-size: 16px;
       line-height: 24px;
     }
 
-    &_base_l {
+    &_m {
       font-size: 20px;
       line-height: 28px;
+    }
+
+    &_base {
+      font-size: 24px;
+      line-height: 32px;
     }
 
     &_l {

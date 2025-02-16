@@ -4,6 +4,7 @@ import { VideoReviewList } from "./VideoReviewList";
 
 import HeartIcon from "@/assets/icons/heart.svg";
 import { TextReviewList } from "./TextReviewList";
+import { BREAKPOINTS } from "@/constants";
 
 interface VideoReviewsProps {
   className?: string;
@@ -60,5 +61,9 @@ export const StyledVideoReviews = styled(Section)`
     position: absolute;
     top: -1rem;
     right: -5rem;
+  }
+
+  .swiper-wrapper {
+    max-width: 1420px;
   }
 `;

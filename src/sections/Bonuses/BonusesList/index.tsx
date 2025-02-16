@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { BONUSES_LIST } from "./constants";
 import { Icon } from "@/ui";
 import clsx from "clsx";
+import { BREAKPOINTS } from "@/constants";
 
 export const BonusesList = () => {
   return (
     <StyledBonusesList>
       {BONUSES_LIST.map((item) => (
         <li key={item.id} className={clsx("item", item.className)}>
-          <Icon svg={item.icon} size={60} />
+          <Icon svg={item.icon} size={60} className="item_icon" />
           {item.text}
         </li>
       ))}
@@ -21,7 +22,6 @@ export const StyledBonusesList = styled.ul`
   justify-content: end;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-right: 10rem;
 
   .item {
     padding: 2.7rem;
@@ -29,6 +29,11 @@ export const StyledBonusesList = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
+
+    p {
+      font-size: 3.2rem;
+      line-height: 4rem;
+    }
   }
 
   .block_1 {
@@ -49,5 +54,129 @@ export const StyledBonusesList = styled.ul`
   .block_4 {
     background-color: #f7f2ef;
     width: 66rem;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
+    .item {
+      p {
+        font-size: 2.8rem;
+        line-height: 3.6rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
+    .block_1 {
+      width: 40rem;
+    }
+
+    .block_2 {
+      width: 28rem;
+    }
+
+    .block_3 {
+      width: 28rem;
+    }
+
+    .block_4 {
+      width: 54rem;
+    }
+
+    .item {
+      p {
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .block_1 {
+      width: 40rem;
+    }
+
+    .block_2 {
+      width: 28rem;
+    }
+
+    .block_3 {
+      width: 28rem;
+    }
+
+    .block_4 {
+      width: 54rem;
+    }
+
+    .item {
+      p {
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    justify-content: start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, min-content);
+
+    .block_1,
+    .block_2,
+    .block_3,
+    .block_4 {
+      width: auto;
+    }
+
+    .block_1 {
+      grid-row: 1 / 2;
+      grid-column: 1 / 3;
+    }
+
+    .block_4 {
+      grid-row: 2 / 3;
+      grid-column: 1 / 3;
+    }
+
+    .item {
+      padding: 2rem;
+
+      p {
+        font-size: 2rem;
+        line-height: 2.8rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .item_icon {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+
+    .item {
+      padding: 1.2rem;
+
+      p {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+    .item_icon {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+
+    .item {
+      padding: 1.2rem;
+
+      p {
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+    }
   }
 `;

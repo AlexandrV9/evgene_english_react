@@ -23,11 +23,11 @@ function App() {
       <StyledMain>
         <Banner />
         <Messages />
-        {/* <Teachers /> */}
-        {/* <WhyWe /> */}
-        {/* <Bonuses /> */}
-        {/* <Memes /> */}
-        {/* <VideoReviews /> */}
+        <Teachers />
+        <WhyWe />
+        <Bonuses />
+        <Memes />
+        <VideoReviews />
         {/* <Prices /> */}
         {/* <NativeTeacher /> */}
         {/* <Motivation /> */}

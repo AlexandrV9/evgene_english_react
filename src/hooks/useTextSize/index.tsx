@@ -4,17 +4,17 @@ import { useMediaQuery } from "../useMediaQuery";
 const getTextSize = (breakpoint: keyof typeof BREAKPOINTS) => {
   switch (breakpoint) {
     case "xxs":
-      return "base";
+      return "xs";
     case "mobile":
-      return "base_l";
+      return "s";
     case "xs":
-      return "base_l";
+      return "m";
     case "sm":
-      return "base_l";
+      return "m";
     case "tablet":
-      return "base_l";
+      return "m";
     case "tabletUp":
-      return "base_l";
+      return "l";
     case "laptopLow":
       return "l";
     case "laptop":
@@ -28,8 +28,6 @@ const getTextSize = (breakpoint: keyof typeof BREAKPOINTS) => {
 
 export const useTextSize = () => {
   const breakpoint = useMediaQuery();
-
-  console.log(breakpoint)
 
   return getTextSize(breakpoint);
 };

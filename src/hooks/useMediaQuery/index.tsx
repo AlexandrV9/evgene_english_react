@@ -8,11 +8,12 @@ export const useMediaQuery = () => {
 
   useEffect(() => {
     const updateBreakpoint = () => {
-      const width = window.innerWidth;
+      const width = window.screen.width;
       let bestMatch: BreakpointKey = "desktop";
 
       for (const key in BREAKPOINTS) {
         const bp = key as BreakpointKey;
+
         if (width >= BREAKPOINTS[bp]) {
           bestMatch = bp;
         }

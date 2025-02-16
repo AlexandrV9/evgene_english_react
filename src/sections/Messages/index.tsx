@@ -44,6 +44,10 @@ export const StyledMessages = styled(Section)`
   width: calc(100vw - 50rem);
   overflow: hidden;
 
+  .subtitle_2 {
+    margin-bottom: 4rem;
+  }
+
   @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
     width: 998px;
 
