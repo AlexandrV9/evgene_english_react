@@ -28,13 +28,14 @@ function App() {
         <Bonuses />
         <Memes />
         <VideoReviews />
-        {/* <Prices /> */}
-        {/* <NativeTeacher /> */}
-        {/* <Motivation /> */}
-        {/* <Contacts /> */}
+
+        <Prices />
+        <NativeTeacher />
+        <Motivation />
+        <Contacts />
       </StyledMain>
-      {/* <Footer /> */}
-      {/* <ScrollTopButton /> */}
+      <Footer />
+      <ScrollTopButton />
     </>
   );
 }

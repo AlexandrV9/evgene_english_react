@@ -3,6 +3,8 @@ import { SwiperButton } from "../Button";
 import { ReactNode, useRef } from "react";
 import styled from "styled-components";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import "swiper/css";
 import { BREAKPOINTS } from "@/constants";
 

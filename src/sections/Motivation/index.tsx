@@ -1,4 +1,3 @@
-import { Title } from "@/ui";
 import styled from "styled-components";
 import { Section, SectionTitle } from "../../ui/Section";
 import { MotivationList } from "./MotivationList";

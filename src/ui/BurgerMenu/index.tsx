@@ -1,14 +1,13 @@
 import MenuIcon from "@/assets/icons/menu.svg";
-import { Icon } from "../Icon";
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
+import { Icon } from "../Icon";
 
 import CloseIcon from "@/assets/icons/close.svg";
 import LogoIcon from "@/assets/icons/logo.svg";
-import { Flex } from "../Flex";
-import { NavBar } from "../NavBar";
-import { HEADER_NAV_LIST } from "../Header/constants";
 import { BookingButton } from "../Button";
+import { HEADER_NAV_LIST } from "../Header/constants";
+import { NavBar } from "../NavBar";
 
 export const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);

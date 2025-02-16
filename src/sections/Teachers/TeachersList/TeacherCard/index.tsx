@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 
 import PushPinIcon from "@/assets/icons/pushpin.svg";
-import { useTextSize } from "@/hooks";
 import { BREAKPOINTS } from "@/constants";
 
 export interface TeacherCardProps {

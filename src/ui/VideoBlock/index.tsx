@@ -19,7 +19,7 @@ const options: IntersectionObserverInit = {
   threshold: 0.2,
 };
 
-export const VideoBlock = ({ video: pathToVideo = "", className, id }: VideoBlockProps) => {
+export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoSourceRef = useRef<HTMLSourceElement | null>(null);
 

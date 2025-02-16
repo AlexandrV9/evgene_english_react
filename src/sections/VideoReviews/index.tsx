@@ -4,7 +4,6 @@ import { VideoReviewList } from "./VideoReviewList";
 
 import HeartIcon from "@/assets/icons/heart.svg";
 import { TextReviewList } from "./TextReviewList";
-import { BREAKPOINTS } from "@/constants";
 
 interface VideoReviewsProps {
   className?: string;
@@ -25,7 +24,7 @@ export const VideoReviews = ({ className }: VideoReviewsProps) => {
       <div className="container">
         <TextReviewList />
       </div>
-
+``
       <Button>
         <span>записаться на занятие</span>
         <img src="../src/assets/icons/telegram.svg" />
