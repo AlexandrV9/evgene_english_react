@@ -21,4 +21,15 @@
   --scaling-factor: calc((100vw - 1440px) / (1920 - 1440));
   --tablet-scaling-factor: calc((100vw - 940px) / (1440 - 940));
   --mobile-scaling-factor: calc((100vw - 360px) / (940 - 360));
+
+  --xxs: 270px;
+  --mobile: 390px;
+  --xs: 480px;
+  --sm: 576px;
+  --tablet: 768px;
+  --tabletUp: 820px;
+  --laptopLow: 1100;
+  --laptop: 1440;
+  --desktopLow: 1640;
+  --desktop: 1920;
 }

@@ -25,7 +25,7 @@ export const SwiperContainer = <T extends { id: string }>({
   const swiperRef = useRef<SwiperClass | null>(null);
 
   return (
-    <StyledSwiperContainer className="swiper_wrapper">
+    <StyledSwiperContainer className="swiperWrapper">
       <SwiperButton type="prev" onClick={() => swiperRef.current?.slidePrev()} />
       <Swiper
         onSwiper={(swiper) => {
@@ -86,17 +86,43 @@ const StyledSwiperContainer = styled.div`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
-    max-width: calc(100vw - 150px);
+    max-width: calc(100vw - 192px);
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    max-width: calc(100vw - 96px);
+    padding: 0 60px;
+
+    .swiperBtnNext {
+      right: -0.2rem;
+      transform: scale(0.9);
+    }
+
+    .swiperBtnPrev {
+      left: -0.2rem;
+      transform: scale(0.9);
+    }
   }
 
   @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
-    .swiper_btn_prev,
-    .swiper_btn_next {
+    padding: 0 40px;
+
+    .swiperBtnPrev,
+    .swiperBtnNext {
       display: none;
     }
   }
 
   @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    padding: 0 20px;
     max-width: calc(100vw - 30px);
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    padding: 0 10px;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+    padding: 0;
   }
 `;

@@ -11,7 +11,7 @@ interface SwiperButtonProps {
 export const SwiperButton = ({ type = "prev", onClick }: SwiperButtonProps) => {
   return (
     <StyledSwiperButton
-      className={type === "next" ? "swiper_btn_next" : "swiper_btn_prev"}
+      className={type === "next" ? "swiperBtnNext" : "swiperBtnPrev"}
       type={type}
       onClick={onClick}
     >

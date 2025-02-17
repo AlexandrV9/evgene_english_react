@@ -18,90 +18,121 @@ export const VideoReviewCard = ({ userName, userNickname, video, id }: VideoRevi
   return (
     <StyledVideoReviewCard>
       <div className="header">
-        <Icon size={48} svg={InstagramIcon} />
-        <Text className="user_nickname" fontWeight="medium">
+        <Icon size={40} svg={InstagramIcon} className="netwrkIcon" />
+        <Text fontSize="l" fontWeight="medium" className="userNickname">
           {userNickname}
         </Text>
-        <Text fontWeight="medium" className="user_name">
+        <Text fontWeight="medium" className="userName">
           {userName}
         </Text>
       </div>
-      <VideoBlock video={video} id={id} className="video_block" />
+      <VideoBlock video={video} id={id} className="videoReview" />
     </StyledVideoReviewCard>
   );
 };
 
 export const StyledVideoReviewCard = styled.div`
-  padding: 2.7rem;
-  border-radius: 2rem;
   background-color: var(--insted-white-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 2rem;
+
+  padding: 2.7rem;
 
   .header {
+    align-self: self-start;
     display: grid;
     grid-template-columns: min-content 1fr;
-    grid-template-rows: repeat(2, min-content);
     gap: 0.7rem;
     margin-bottom: 2.7rem;
     align-items: center;
   }
 
-  .user_nickname {
-    font-size: 2.6rem;
-  }
-
-  .user_name {
-    font-size: 2rem;
+  .userName {
     grid-column: 2 / 3;
   }
 
-  .video_block {
+  .videoReview {
     border: 0.5rem solid white;
     overflow: hidden;
+
+    max-width: clamp(350px, 24vw, 400px);
+    max-height: clamp(350px, 24vw, 400px);
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.desktop}px) {
-    .video_block {
-      max-width: 400px;
-      max-height: 400px;
+  @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
+    padding: 1.6rem;
+
+    .userNickname {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+    }
+
+    .userName {
+      font-size: 2rem;
+      line-height: 2.7rem;
+    }
+
+    .videoReview {
+      max-width: clamp(220px, 24vw, 350px);
+      max-height: clamp(220px, 24vw, 350px);
     }
   }
 
-  @media screen and (max-width: 1500px) {
-    .video_block {
-      max-width: 350px;
-      max-height: 350px;
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow - 2}px) {
+    padding: 1.6rem;
+
+    .userNickname {
+      font-size: 2.8rem;
+      line-height: 3.6rem;
+    }
+
+    .userName {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
+
+    .videoReview {
+      max-width: clamp(450px, 20vw, 500px);
+      max-height: clamp(450px, 20vw, 500px);
     }
   }
 
-  @media screen and (max-width: 1300px) {
-    .video_block {
-      max-width: 300px;
-      max-height: 300px;
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    .userNickname {
+      font-size: 2rem;
+      line-height: 2.8rem;
+    }
+
+    .userName {
+      font-size: 2rem;
+      line-height: 2.8rem;
+    }
+
+    .videoReview {
+      max-width: clamp(300px, 50vw, 450px);
+      max-height: clamp(300px, 50vw, 450px);
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    .video_block {
-      max-width: 280px;
-      max-height: 280px;
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    .netwrkIcon {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+
+    .videoReview {
+      max-width: clamp(260px, 58vw, 450px);
+      max-height: clamp(260px, 58vw, 450px);
     }
   }
 
-  @media screen and (max-width: 1100px) {
-    .video_block {
-      max-width: 400px;
-      max-height: 400px;
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .videoReview {
+      max-width: clamp(220px, 70vw, 320px);
+      max-height: clamp(220px, 70vw, 320px);
     }
   }
-
-  /* @media screen and (max-width: 665px) {
-    .video_block {
-      max-width: 100%;
-      max-height: 100%;
-    }
-  } */
 `;

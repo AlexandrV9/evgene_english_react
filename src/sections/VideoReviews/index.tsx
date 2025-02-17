@@ -1,9 +1,10 @@
-import { Button, Icon, Section, SectionTitle } from "@/ui";
+import { BookingButton, Button, Divider, Icon, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { VideoReviewList } from "./VideoReviewList";
 
 import HeartIcon from "@/assets/icons/heart.svg";
 import { TextReviewList } from "./TextReviewList";
+import { BREAKPOINTS } from "@/constants";
 
 interface VideoReviewsProps {
   className?: string;
@@ -12,23 +13,18 @@ interface VideoReviewsProps {
 export const VideoReviews = ({ className }: VideoReviewsProps) => {
   return (
     <StyledVideoReviews id="reviews" className={className}>
-      <div className="title_wrapper">
+      <div className="titleWrapper">
         <SectionTitle>отзывы</SectionTitle>
         <Icon svg={HeartIcon} className="icon" />
       </div>
 
-      <div className="container">
-        <VideoReviewList />
-      </div>
+      <VideoReviewList />
 
-      <div className="container">
-        <TextReviewList />
-      </div>
-``
-      <Button>
-        <span>записаться на занятие</span>
-        <img src="../src/assets/icons/telegram.svg" />
-      </Button>
+      <Divider className="divider" />
+
+      <TextReviewList />
+
+      <BookingButton className="btn" />
     </StyledVideoReviews>
   );
 };
@@ -38,18 +34,25 @@ export const StyledVideoReviews = styled(Section)`
   flex-direction: column;
   align-items: center;
 
-  .title_wrapper {
-    display: flex;
-    justify-content: center;
-    top: 0;
-    right: 0;
-    margin-bottom: 3.2rem;
-    position: relative;
+  h3 {
+    margin: 0 !important;
   }
 
-  .container {
-    max-width: 100%;
-    margin-bottom: 6rem;
+  .divider {
+    max-width: 50vw;
+  }
+
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titleWrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3.2rem;
+    position: relative;
   }
 
   .title {
@@ -62,7 +65,36 @@ export const StyledVideoReviews = styled(Section)`
     right: -5rem;
   }
 
-  .swiper-wrapper {
-    max-width: 1420px;
+  .btn {
+    margin-top: 3rem;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .icon {
+      width: 3rem;
+      height: 3rem;
+      position: absolute;
+      top: -1rem;
+      right: -3rem;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .titleWrapper {
+      margin-bottom: 1.6rem;
+    }
+
+    .icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      position: absolute;
+      top: -1rem;
+      right: -2rem;
+    }
+
+    .divider {
+      max-width: 60vw;
+      margin: 2rem 0;
+    }
   }
 `;

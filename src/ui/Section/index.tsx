@@ -5,12 +5,13 @@ import { BREAKPOINTS } from "@/constants";
 
 interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
+  as?: JSX.ElementType;
 }
 
 export const Section = forwardRef<HTMLElement, SectionProps>(({ children, ...otherProps }, ref) => {
   return (
     <StyledSection {...otherProps} ref={ref}>
-      <div className="section_content">{children}</div>
+      <div className="sectionContent">{children}</div>
     </StyledSection>
   );
 });
@@ -22,7 +23,7 @@ interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {
 export const SectionTitle = ({
   children,
   color = "accent",
-  mb = 20,
+  mb = 28,
   ...otherProps
 }: SectionTitleProps) => {
   return (
@@ -37,30 +38,31 @@ const StyledSection = styled.section`
   margin: 0 auto;
   margin-top: 14rem;
 
-  .section_content {
+  .sectionContent {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
     position: relative;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.laptop + 96 * 2}px) {
+  @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
     padding: 0 96px;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.laptopLow + 48 * 2}px) {
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
     padding: 0 48px;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.tablet + 24 * 2}px) {
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
     padding: 0 24px;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.sm + 16 * 2}px) {
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
     padding: 0 16px;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile + 12 * 2}px) {
+  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+    margin-top: 10rem;
     padding: 0 12px;
   }
 `;

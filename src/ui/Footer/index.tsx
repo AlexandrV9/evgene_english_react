@@ -1,56 +1,72 @@
 import styled from "styled-components";
 import { NavBar } from "../NavBar";
 import { FOOTER_NAV_LIST } from "./constants";
-import { Text } from "..";
-import { FOOTER_HEIGHT } from "@/constants";
+import { Icon, Section, Text } from "..";
+
+import LogoIcon from "@/assets/icons/logo.svg";
+
+import cls from "./styles.module.scss";
+import { BREAKPOINTS } from "@/constants";
 
 export const Footer = () => {
   return (
-    <StyledeFooter id="footer">
-      <div className="footer__content">
-        <div className="footer__left-container">
-          <img src="../src/assets/icons/logo.svg" className="footer__logo logo" />
-          <Text fontSize="l" color="accent">
+    <Section as="footer" id="footer" className={cls.footer}>
+      <StyledFooterContent>
+        <div className="leftContainer">
+          <Icon svg={LogoIcon} size={100} className="logoIcon" />
+          <Text fontSize="m" color="accent" className="text">
             © All Rights Reserved
           </Text>
         </div>
-        <NavBar list={FOOTER_NAV_LIST} />
-      </div>
-    </StyledeFooter>
+        <NavBar list={FOOTER_NAV_LIST} className="navbar" />
+      </StyledFooterContent>
+    </Section>
   );
 };
 
-const StyledeFooter = styled.footer`
-  height: ${FOOTER_HEIGHT}px;
+const StyledFooterContent = styled.footer`
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 
-  background-color: var(--insted-white-color);
-
-  .footer__content {
-    margin: 0 auto;
-    max-width: 1530px;
+  .leftContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 16px;
   }
 
-  .footer__left-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .footer__logo {
-    margin-right: 24px;
-    &:hover {
-      cursor: pointer;
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    .logoIcon {
+      width: 8rem !important;
+      height: 8rem !important;
     }
   }
 
-  .footer__text {
-    margin-right: auto;
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -4rem;
+    }
+  }
 
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
-    color: var(--accent-color);
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    flex-direction: column-reverse;
+    padding-top: 1rem;
+
+    .text {
+      position: static;
+      transform: none;
+    }
+
+    .navbar ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1rem;
+      justify-content: center;
+    }
   }
 `;

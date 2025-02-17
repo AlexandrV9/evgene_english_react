@@ -1,5 +1,5 @@
-export const HEADER_HEIGHT = 150;
-export const FOOTER_HEIGHT = 150;
+export const HEADER_HEIGHT = 130;
+export const FOOTER_HEIGHT = 130;
 
 export const BREAKPOINTS = {
   xxs: 270,

@@ -11,3 +11,4 @@ export * from "./SwiperContainer";
 export * from "./Header";
 export * from "./Footer";
 export * from "./MobileMenu";
+export * from "./Divider";

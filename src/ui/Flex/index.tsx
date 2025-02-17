@@ -12,6 +12,7 @@ interface FlexProps extends HTMLAttributes<HTMLElement> {
   align?: CSSProperties["alignItems"];
   justify?: CSSProperties["justifyContent"];
   bg?: CSSProperties["backgroundColor"];
+  wrap?: CSSProperties["flexWrap"];
 }
 
 export const Flex: FC<FlexProps> = ({
@@ -24,6 +25,7 @@ export const Flex: FC<FlexProps> = ({
   align,
   style,
   bg,
+  wrap,
   ...otherProps
 }) => {
   const mods = {
@@ -36,6 +38,7 @@ export const Flex: FC<FlexProps> = ({
     alignItems: align,
     justifyContent: justify,
     backgroundColor: bg,
+    flexWrap: wrap,
   };
 
   return (

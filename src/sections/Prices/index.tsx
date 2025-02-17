@@ -19,7 +19,7 @@ export const Prices = ({ className }: PricesProps) => {
   return (
     <StyledPrices id={SECTION_IDS.PRICES} className={className}>
       <SectionTitle>стоимость занятий</SectionTitle>
-      <div className="section__content" ref={targetRef}>
+      <div className="content" ref={targetRef}>
         <PriceList />
       </div>
     </StyledPrices>
@@ -38,5 +38,10 @@ export const StyledPrices = styled(Section)`
   &.animate {
     transform: translateY(0);
     opacity: 1;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
   }
 `;
