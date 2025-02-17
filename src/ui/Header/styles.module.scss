@@ -1,0 +1,31 @@
+.header {
+  margin: 0 !important;
+  height: 130px;
+  display: grid;
+  place-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: var(--header-z-index);
+  background-color: var(--back-color);
+
+  transition: transform 0.3s ease-in-out;
+
+  // transform: translateY(-100%);
+  transform: translateY(0);
+
+  &.hide {
+    // transform: translateY(0);
+  }
+
+  @media screen and (max-width: 1110px) {
+    height: 100px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 80px;
+  }
+}

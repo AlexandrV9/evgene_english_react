@@ -15,7 +15,7 @@ export const BookingButton = ({ theme = "primary", style, className }: BookingBu
   return (
     <Button
       type={theme}
-      endIcon={<Icon svg={theme === "primary" ? TelagramBlackIcon : TelagramWhiteIcon} />}
+      endIcon={<Icon size={30} svg={theme === "primary" ? TelagramBlackIcon : TelagramWhiteIcon} />}
       style={style}
       className={className}
     >

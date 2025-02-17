@@ -33,7 +33,7 @@ const StyledNavBar = styled.nav`
   .nav_list {
     list-style-type: none;
     display: flex;
-    gap: 32px;
+    gap: 16px;
 
     @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
       gap: 20px;

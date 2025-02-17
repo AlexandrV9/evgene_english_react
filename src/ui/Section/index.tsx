@@ -10,7 +10,7 @@ interface SectionProps extends HTMLAttributes<HTMLDivElement> {
 export const Section = forwardRef<HTMLElement, SectionProps>(({ children, ...otherProps }, ref) => {
   return (
     <StyledSection {...otherProps} ref={ref}>
-      {children}
+      <div className="section_content">{children}</div>
     </StyledSection>
   );
 });
@@ -34,19 +34,33 @@ export const SectionTitle = ({
 
 const StyledSection = styled.section`
   width: 100%;
-  max-width: 1480px;
   margin: 0 auto;
-  padding: 14rem 24px 0;
+  margin-top: 14rem;
 
-  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
-    padding: 10rem 24px 0;
+  .section_content {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
-    padding: 6rem 24px 0;
+  @media screen and (max-width: ${BREAKPOINTS.laptop + 96 * 2}px) {
+    padding: 0 96px;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
-    padding: 6rem 12px 0;
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow + 48 * 2}px) {
+    padding: 0 48px;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tablet + 24 * 2}px) {
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm + 16 * 2}px) {
+    padding: 0 16px;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.mobile + 12 * 2}px) {
+    padding: 0 12px;
   }
 `;

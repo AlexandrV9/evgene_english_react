@@ -23,7 +23,7 @@ function App() {
       <StyledMain>
         <Banner />
         <Messages />
-        <Teachers />
+        {/* <Teachers />
         <WhyWe />
         <Bonuses />
         <Memes />
@@ -32,10 +32,10 @@ function App() {
         <Prices />
         <NativeTeacher />
         <Motivation />
-        <Contacts />
+        <Contacts /> */}
       </StyledMain>
-      <Footer />
-      <ScrollTopButton />
+      {/* <Footer /> */}
+      {/* <ScrollTopButton /> */}
     </>
   );
 }
@@ -43,17 +43,14 @@ function App() {
 export const StyledMain = styled.main`
   width: 100%;
   height: 100%;
-  padding-top: 15rem;
+  padding-top: 13rem;
   background-color: #e0e0e0;
-  min-height: calc(100vh - 15rem);
 
-  @media screen and (max-width: 768px) {
-    min-height: calc(100vh - 10rem);
+  @media screen and (max-width: 1110px) {
     padding-top: 10rem;
   }
 
-  @media screen and (max-width: 576px) {
-    min-height: calc(100vh - 8rem);
+  @media screen and (max-width: 768px) {
     padding-top: 8rem;
   }
 `;

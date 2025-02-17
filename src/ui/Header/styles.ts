@@ -1,46 +1,37 @@
-import { HEADER_HEIGHT } from "@/constants";
 import styled from "styled-components";
 
-export const StyledHeader = styled.header<{ $isHidden: boolean }>`
-  height: ${HEADER_HEIGHT}px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  width: 100%;
-
+export const StyledHeaderContent = styled("div")`
   display: flex;
+  gap: 1.6rem;
+  align-items: center;
   justify-content: space-between;
 
-  padding: 0 40px;
-  z-index: var(--header-z-index);
-
-  background-color: var(--back-color);
-  transition: transform 0.3s ease-in-out;
-
-  transform: ${({ $isHidden }) => ($isHidden ? "translateY(-100%)" : "translateY(0)")};
-
   .iconLogo {
-    width: 150px;
-    height: 150px;
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .rightContent {
+    display: flex;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1360px) {
+    .header_navbar {
+      display: none;
+    }
   }
 
   @media screen and (max-width: 768px) {
     height: 10rem;
 
     .iconLogo {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
     }
   }
 
   @media screen and (max-width: 576px) {
     height: 8rem;
-
-    .iconLogo {
-      width: 80px;
-      height: 80px;
-    }
   }
 `;

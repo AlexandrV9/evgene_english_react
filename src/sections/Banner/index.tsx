@@ -53,7 +53,8 @@ export const StyledBanner = styled(Section)`
   opacity: 0;
   transition: all 0.5s ease-in-out;
 
-  padding-top: 30px;
+  margin: 0 !important;
+
 
   &.animate {
     transform: translateY(0);

@@ -24,7 +24,7 @@ const StyledNavItem = styled.li`
 
   padding: 8px;
 
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 28px;
 

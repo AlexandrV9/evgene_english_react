@@ -1,25 +1,34 @@
-import { BookingButton, Flex, Icon } from "@/ui";
-import { StyledHeader } from "./styles";
+import { BookingButton, Icon, Section } from "@/ui";
+import { StyledHeaderContent } from "./styles";
 
 import LogoIcon from "@/assets/icons/logo.svg";
-import { NavBar } from "@/ui";
-import { HEADER_NAV_LIST } from "./constants";
 import { useMediaQuery, useScrollDirection } from "@/hooks";
+import { NavBar } from "@/ui";
 import { BurgerMenu } from "../BurgerMenu";
+import { HEADER_NAV_LIST } from "./constants";
+
+import clsx from "clsx";
+import cls from "./styles.module.scss";
+import { BREAKPOINTS } from "@/constants";
+import useWindowSize from "@/hooks/useWindowSize";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
   const breakpoint = useMediaQuery();
 
-  return (
-    <StyledHeader $isHidden={scrollDirection === "down"}>
-      <Icon svg={LogoIcon} className="iconLogo" />
+  const breakpointValue = BREAKPOINTS[breakpoint];
 
-      <Flex gap={40} align="center">
-        {["desktop", "desktopLow"].includes(breakpoint) && <NavBar list={HEADER_NAV_LIST} />}
-        {["desktop", "desktopLow", "laptop", "laptopLow"].includes(breakpoint) && <BookingButton />}
-        {!["desktop", "desktopLow"].includes(breakpoint) && <BurgerMenu />}
-      </Flex>
-    </StyledHeader>
+  const { w } = useWindowSize();
+
+  return (
+    <Section as="header" className={clsx(cls.header, { [cls.hide]: scrollDirection === "down" })}>
+      <StyledHeaderContent>
+        <Icon svg={LogoIcon} className="iconLogo" />
+
+        <NavBar list={HEADER_NAV_LIST} className="header_navbar" />
+        {w >= 1360 && <BookingButton />}
+        {w <= 1360 && <BurgerMenu />}
+      </StyledHeaderContent>
+    </Section>
   );
 };
