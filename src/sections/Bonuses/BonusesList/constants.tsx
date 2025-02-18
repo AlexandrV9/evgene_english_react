@@ -15,7 +15,7 @@ export const BONUSES_LIST = [
       <Text color="primary" fontWeight="semiBold">
         доступ в{" "}
         <Text as="span" custFontSize="inherit" fontWeight="semiBold">
-          ЧАСТНЫЙ КАНАЛ
+          ЧАСТНЫЙ ТЕЛЕГРАМ КАНАЛ
         </Text>{" "}
         c актуальными идиомами из фильмов/сериалов 🍿🎬
       </Text>
