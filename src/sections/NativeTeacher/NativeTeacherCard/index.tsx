@@ -31,7 +31,7 @@ export const NativeTeacherCard = () => {
                 30 минут
               </Text>
               <Icon svg={DashIcon} className="dashIcon" />
-              <Text fontSize="l" className="current_price" fontWeight="semiBold" className="text">
+              <Text fontSize="l" className="current_price text" fontWeight="semiBold">
                 $ 15
               </Text>
             </li>

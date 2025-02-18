@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import "./styles/index.scss";
-import { Footer, Header, ScrollTopButton } from "@/ui";
+import { Footer, Header } from "@/ui";
 import {
   Banner,
   Messages,

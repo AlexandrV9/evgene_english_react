@@ -1,4 +1,4 @@
-import { BookingButton, Button, Divider, Icon, Section, SectionTitle } from "@/ui";
+import { BookingButton, Divider, Icon, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { VideoReviewList } from "./VideoReviewList";
 

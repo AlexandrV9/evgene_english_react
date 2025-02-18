@@ -2,21 +2,17 @@ import { BookingButton, Icon, Section } from "@/ui";
 import { StyledHeaderContent } from "./styles";
 
 import LogoIcon from "@/assets/icons/logo.svg";
-import { useMediaQuery, useScrollDirection } from "@/hooks";
+import { useScrollDirection } from "@/hooks";
 import { NavBar } from "@/ui";
 import { BurgerMenu } from "../BurgerMenu";
 import { HEADER_NAV_LIST } from "./constants";
 
 import clsx from "clsx";
 import cls from "./styles.module.scss";
-import { BREAKPOINTS } from "@/constants";
 import useWindowSize from "@/hooks/useWindowSize";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
-  const breakpoint = useMediaQuery();
-
-  const breakpointValue = BREAKPOINTS[breakpoint];
 
   const { w } = useWindowSize();
 

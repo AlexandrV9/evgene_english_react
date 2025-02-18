@@ -1,6 +1,6 @@
 import { BREAKPOINTS, SECTION_IDS } from "@/constants";
 import { useAnimationBlock } from "@/hooks";
-import { BookingButton, Flex, Icon, Section, SectionTitle } from "@/ui";
+import { BookingButton, Flex, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { AdvantagesList } from "./AdvantagesList";
 
