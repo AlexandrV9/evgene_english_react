@@ -4,7 +4,7 @@ import { BookingButton, Flex, Icon, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
 import { AdvantagesList } from "./AdvantagesList";
 
-import NoteIcon from "@/assets/icons/note.svg";
+import pathNote from "@/assets/images/note.png";
 
 export interface WhyWeProps {
   className?: string;
@@ -25,7 +25,7 @@ export const WhyWe = ({ className }: WhyWeProps) => {
               <BookingButton className="btn" />
             </Flex>
 
-            <Icon svg={NoteIcon} className="why_we__img" />
+            <img src={pathNote} className="why_we__img" />
           </div>
         </div>
       </div>
@@ -35,6 +35,12 @@ export const WhyWe = ({ className }: WhyWeProps) => {
 
 export const StyledWhyWe = styled(Section)`
   overflow: hidden;
+
+  .why_we__img {
+    flex-shrink: 0;
+    position: relative;
+    top: -40px;
+  }
 
   .wrapper {
     transform: translateX(100%);
@@ -64,11 +70,19 @@ export const StyledWhyWe = styled(Section)`
     }
 
     .why_we__img {
-      width: 50vw;
+      flex-shrink: 0;
+      width: clamp(500px, 40vw, 1200px);
+      height: clamp(300px, 30vw, 900px);
     }
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .why_we__img {
+      width: 60vw;
+      height: auto;
+      position: static;
+    }
+
     .wrapper_1 {
       flex-direction: column-reverse;
       align-items: center;
@@ -81,7 +95,9 @@ export const StyledWhyWe = styled(Section)`
 
   @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
     .why_we__img {
-      width: 70vw;
+      width: 80vw;
+      height: auto;
+      position: static;
     }
   }
 

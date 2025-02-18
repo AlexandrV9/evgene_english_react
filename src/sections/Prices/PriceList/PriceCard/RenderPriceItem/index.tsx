@@ -5,6 +5,7 @@ import LineIcon from "@/assets/icons/dash_1.svg";
 import RedLineIcon from "@/assets/icons/red_line_1.svg";
 import GreenCircleIcon from "@/assets/icons/circle_1.svg";
 import styled from "styled-components";
+import { BREAKPOINTS } from "@/constants";
 
 export const RenderPriceItem = ({
   quantityHours,
@@ -16,11 +17,11 @@ export const RenderPriceItem = ({
     case "one": {
       return (
         <StyleItem>
-          <Text custFontSize={27} color="accent" fontWeight="bold">
+          <Text fontSize="l" color="accent" fontWeight="bold" className="desc_2">
             1 час в неделю
           </Text>
-          <Icon svg={LineIcon} />
-          <Text custFontSize={27} fontWeight="semiBold">
+          <Icon svg={LineIcon} className="lineIcon" />
+          <Text fontSize="l" fontWeight="semiBold" className="currentPrice">
             $ {currentPrice}/час
           </Text>
         </StyleItem>
@@ -28,21 +29,21 @@ export const RenderPriceItem = ({
     }
     case "two": {
       return (
-        <StyleItem>
-          <Text custFontSize={27} color="accent" fontWeight="bold">
+        <StyleItem className="two">
+          <Text fontSize="l" color="accent" fontWeight="bold" className="desc_2">
             2+ часа в неделю
           </Text>
-          <Icon svg={LineIcon} />
+          <Icon svg={LineIcon} className="lineIcon" />
           <div className="wrapper">
             <div className="old_price">
-              <Text custFontSize={25} fontWeight="medium">
+              <Text fontSize="m" fontWeight="medium">
                 $ {oldPrice}/час
               </Text>
               <Icon svg={RedLineIcon} className="red_line" />
             </div>
             <div className="new_price">
               <div className="inner_wrapper">
-                <Text custFontSize={27} fontWeight="medium">
+                <Text fontSize="l" fontWeight="medium">
                   $ {newPrice}/час
                 </Text>
                 <Icon svg={GreenCircleIcon} className="circle" />
@@ -55,11 +56,11 @@ export const RenderPriceItem = ({
     case "half_an_hour": {
       return (
         <StyleItem>
-          <Text custFontSize={27} color="accent" fontWeight="bold">
+          <Text fontSize="l" color="accent" fontWeight="bold" className="desc_2">
             30 мин
           </Text>
-          <Icon svg={LineIcon} />
-          <Text custFontSize={27} fontWeight="semiBold">
+          <Icon svg={LineIcon} className="lineIcon" />
+          <Text fontSize="l" fontWeight="semiBold" className="currentPrice">
             $ {currentPrice}/час
           </Text>
         </StyleItem>
@@ -84,6 +85,7 @@ const StyleItem = styled("li")`
     .red_line {
       position: absolute;
       top: -4px;
+      width: 8rem;
     }
   }
 
@@ -92,16 +94,148 @@ const StyleItem = styled("li")`
     top: -13px;
     right: -70px;
     transform: rotate(6deg);
-    scale: 0.7;
+
+    p {
+      font-size: 2.2rem;
+      line-height: 3.2rem;
+    }
 
     .inner_wrapper {
       position: relative;
     }
 
     .circle {
-      top: -20px;
-      right: -34px;
+      width: 12rem;
+      top: -18px;
+      right: -19px;
       position: absolute;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tabletUp}px) {
+    .desc_2 {
+      font-size: 2.2rem;
+      line-height: 3rem;
+    }
+
+    .currentPrice {
+      font-size: 2.2rem;
+      line-height: 3.2rem;
+    }
+
+    .new_price {
+      top: -10px;
+      right: -90px;
+
+      p {
+        font-size: 2.2rem;
+        line-height: 3.2rem;
+      }
+
+      .inner_wrapper {
+        position: relative;
+      }
+
+      .circle {
+        width: 12rem;
+        top: -18px;
+        right: -19px;
+        position: absolute;
+      }
+    }
+
+    .lineIcon {
+      width: 2.4rem;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    &.two {
+      margin-top: 3rem !important;
+    }
+
+    .new_price {
+      top: -30px;
+      right: -20px;
+      transform: rotate(2deg);
+
+      .inner_wrapper {
+        position: relative;
+        width: 100px;
+      }
+
+      .circle {
+        width: 12rem;
+        top: -18px;
+        right: -5px;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    &.two {
+      margin-top: 3rem !important;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs - 30}px) {
+    display: grid;
+    grid-template-columns: 90px 20px max-content;
+
+    &.two {
+      margin-top: 1rem !important;
+    }
+
+    .lineIcon {
+      width: 2rem;
+    }
+
+    .desc_2 {
+      font-size: 2rem;
+      line-height: 2.8rem;
+    }
+
+    .currentPrice {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+    }
+
+    .old_price {
+      position: relative;
+      bottom: -10px;
+
+      p {
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+      }
+
+      .red_line {
+        position: absolute;
+        top: -4px;
+        width: 7rem;
+      }
+    }
+
+    .new_price {
+      top: -29px;
+      right: -10px;
+      transform: rotate(2deg);
+
+      p {
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+      }
+
+      .inner_wrapper {
+        position: relative;
+        width: 9rem;
+      }
+
+      .circle {
+        width: 10rem;
+        top: -2rem;
+        right: 1px;
+      }
     }
   }
 `;

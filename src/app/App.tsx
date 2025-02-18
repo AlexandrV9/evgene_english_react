@@ -21,15 +21,14 @@ function App() {
     <>
       <Header />
       <StyledMain>
-        {/* <Banner />
+        <Banner />
         <Messages />
         <Teachers />
         <WhyWe />
-        <Bonuses />*/}
-        {/* <Memes />  */}
+        <Bonuses />
+        <Memes /> 
         <VideoReviews />
-
-        {/* <Prices />*/}
+        <Prices />
         <NativeTeacher />
         <Motivation />
         <Contacts />

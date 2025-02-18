@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { PriceItemList } from "../types";
 import { RenderPriceItem } from "./RenderPriceItem";
 import { Fragment } from "react/jsx-runtime";
+import { BREAKPOINTS } from "@/constants";
 
 interface PriceCardProps extends PriceItemList {}
 
@@ -16,6 +17,7 @@ export const PriceCard = ({ id, list, video, userName }: PriceCardProps) => {
         fontFamily="MVCrooker"
         custLineHeight="4.8rem"
         fontWeight="semiBold"
+        className="title"
         mb={20}
       >
         {userName}
@@ -24,11 +26,11 @@ export const PriceCard = ({ id, list, video, userName }: PriceCardProps) => {
         {list?.map(({ id, title, subtitle, items }) => (
           <Fragment key={id}>
             <div>
-              <Text custFontSize={27} align="center" fontWeight="medium" mb={10}>
+              <Text fontSize="l" align="center" fontWeight="medium" className="itemTitle">
                 {title}
               </Text>
               {subtitle && (
-                <Text custFontSize={27} fontWeight="semiBold" align="center">
+                <Text fontSize="l" fontWeight="semiBold" align="center" className="itemSubtitle">
                   {subtitle}
                 </Text>
               )}
@@ -59,13 +61,83 @@ export const StyledPriceCard = styled(Card)`
   .list_1 {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
     width: 100%;
   }
 
   .list_2 {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    width: auto;
+
+    .list_1 {
+      align-items: center;
+    }
+
+    .list_2 {
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tabletUp}px) {
+    .list_1 {
+      gap: 2rem;
+    }
+
+    .list_2 {
+      gap: 1rem;
+    }
+
+    .title {
+      margin-bottom: 1rem !important;
+    }
+
+    .itemTitle {
+      font-size: 2.2rem;
+      line-height: 3rem;
+    }
+
+    .itemSubtitle {
+      font-size: 2rem;
+      line-height: 2.8rem;
+    }
+
+    .video_block {
+      width: clamp(300px, 50vw, 400px);
+      height: clamp(300px, 50vw, 400px);
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .list_1 {
+      gap: 1rem;
+    }
+
+    .list_2 {
+      gap: 0.8rem;
+    }
+
+    .video_block {
+      width: clamp(240px, 70vw, 300px);
+      height: clamp(240px, 70vw, 300px);
+    }
+
+    .itemTitle {
+      font-size: 2rem;
+      line-height: 2.8rem;
+    }
+
+    .itemSubtitle {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+    }
   }
 `;
