@@ -13,7 +13,7 @@ export const TextReviews = ({ className }: TextReviewsProps) => {
   return (
     <StyledTextReviews id="reviews" className={className}>
       <div className="titleWrapper">
-        <SectionTitle>Видео отзывы</SectionTitle>
+        <SectionTitle>Отзывы</SectionTitle>
         <Icon svg={HeartIcon} className="icon" />
       </div>
 

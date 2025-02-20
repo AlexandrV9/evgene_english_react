@@ -13,7 +13,7 @@ export const VideoReviews = ({ className }: VideoReviewsProps) => {
   return (
     <StyledVideoReviews id="reviews" className={className}>
       <div className="titleWrapper">
-        <SectionTitle>отзывы</SectionTitle>
+        <SectionTitle>Видео отзывы</SectionTitle>
         <Icon svg={HeartIcon} className="icon" />
       </div>
 

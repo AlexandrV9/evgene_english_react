@@ -23,13 +23,13 @@ function App() {
       <Header />
       <StyledMain>
         <Banner />
-        <TextReviews />
+        <VideoReviews />
         <Messages />
         <Teachers />
         <WhyWe />
         <Bonuses />
         <Memes />
-        <VideoReviews />
+        <TextReviews />
         <Prices />
         <NativeTeacher />
         <Motivation />
