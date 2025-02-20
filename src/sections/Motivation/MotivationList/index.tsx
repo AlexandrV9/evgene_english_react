@@ -33,12 +33,35 @@ const StyledMotivationList = styled.div`
   .videoBlock {
     width: 100%;
     border-radius: 12px;
-    height: 80rem;
+    height: 90rem;
   }
 
   @media screen and (max-width: ${BREAKPOINTS.desktopLow}px) {
     .videoBlock {
       height: clamp(60rem, 50vw, 80rem);
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
+    .videoBlock {
+      video {
+        object-fit: contain;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    .videoBlock {
+      height: 80rem;
+      video {
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .videoBlock {
+      height: 60rem;
     }
   }
 `;

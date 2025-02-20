@@ -178,12 +178,15 @@ const StyleItem = styled("li")`
     }
   }
 
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+  }
+
   @media screen and (max-width: ${BREAKPOINTS.xs - 30}px) {
     display: grid;
-    grid-template-columns: 90px 20px max-content;
+    grid-template-columns: 1fr 20px max-content;
 
     &.two {
-      margin-top: 1rem !important;
+      margin-top: 3rem !important;
     }
 
     .lineIcon {
@@ -236,6 +239,12 @@ const StyleItem = styled("li")`
         top: -2rem;
         right: 1px;
       }
+    }
+  }
+  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+    .desc_2 {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
     }
   }
 `;

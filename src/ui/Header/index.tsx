@@ -10,14 +10,29 @@ import { HEADER_NAV_LIST } from "./constants";
 import clsx from "clsx";
 import cls from "./styles.module.scss";
 import useWindowSize from "@/hooks/useWindowSize";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
 
   const { w } = useWindowSize();
 
+  const [isTop, setIsTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsTop(window.scrollY < 5);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <Section as="header" className={clsx(cls.header, { [cls.hide]: scrollDirection === "down" })}>
+    <Section
+      as="header"
+      className={clsx(cls.header, { [cls.hide]: scrollDirection === "down" || isTop })}
+    >
       <StyledHeaderContent>
         <Icon svg={LogoIcon} className="iconLogo" />
 

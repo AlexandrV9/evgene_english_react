@@ -13,12 +13,11 @@ export const PriceCard = ({ id, list, video, userName }: PriceCardProps) => {
     <StyledPriceCard>
       <VideoBlock id={id} video={video} className="video_block" />
       <Text
-        custFontSize={40}
+        fontSize="xl"
         fontFamily="MVCrooker"
         custLineHeight="4.8rem"
         fontWeight="semiBold"
         className="title"
-        mb={20}
       >
         {userName}
       </Text>
@@ -117,6 +116,8 @@ export const StyledPriceCard = styled(Card)`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    padding: 2rem 1rem;
+
     .list_1 {
       gap: 1rem;
     }

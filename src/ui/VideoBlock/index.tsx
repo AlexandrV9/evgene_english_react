@@ -6,6 +6,7 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 import PlayIcon from "@/assets/icons/play.svg";
 import { Icon } from "../Icon";
+import { useVideoStore } from "@/stores/useVideoStore";
 
 interface VideoBlockProps {
   id?: string;
@@ -19,7 +20,7 @@ const options: IntersectionObserverInit = {
   threshold: 0.2,
 };
 
-export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockProps) => {
+export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: VideoBlockProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoSourceRef = useRef<HTMLSourceElement | null>(null);
 
@@ -28,18 +29,25 @@ export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockPro
   const [isShow, setIsShow] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-
+  const [isFinishLoadedVideo, setIsFinishLoadedVideo] = useState(false);
   const [isStartVideo, setIsStartVideo] = useState(false);
+
+  const { activeVideoId, setActiveVideo } = useVideoStore();
+
+  const isActive = activeVideoId === id;
 
   const stopVideo = () => {
     if (!videoRef.current) return;
 
     videoRef.current.pause();
     videoRef.current.muted = true;
+    videoRef.current.play();
   };
 
   const startVideo = () => {
     if (!videoRef.current) return;
+
+    setActiveVideo(id);
 
     videoRef.current.muted = false;
     videoRef.current.play();
@@ -79,6 +87,8 @@ export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockPro
       setIsShow(true);
 
       videoRef.current?.play();
+
+      setIsFinishLoadedVideo(true);
     };
 
     const onFailLoadVide = () => {
@@ -96,7 +106,7 @@ export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockPro
       videoRef.current?.removeEventListener("error", onFailLoadVide);
     };
 
-    if (isIntersecting) {
+    if (isIntersecting && !isFinishLoadedVideo) {
       const videoSource = videoSourceRef.current as HTMLSourceElement;
       const video = videoRef.current as HTMLVideoElement;
 
@@ -115,13 +125,20 @@ export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockPro
     return () => {
       removeVideoListeners();
     };
-  }, [isIntersecting, pathToVideo]);
+  }, [isFinishLoadedVideo, isIntersecting, pathToVideo]);
+
+  useEffect(() => {
+    if (!isActive) {
+      stopVideo();
+      setIsStartVideo(false);
+    }
+  }, [isActive]);
 
   return (
     <StyledVideoBlock
       ref={targetRef}
       className={clsx(
-        { error: isError, success: isShow, loading: isLoading, started: isStartVideo },
+        { error: isError, success: isShow, started: isStartVideo, loading: isLoading },
         className
       )}
       onClick={handleToggleIsStartVideo}
@@ -131,7 +148,7 @@ export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockPro
         Your browser does not support the video tag.
       </video>
 
-      <div className="wrapper">
+      <div className="loaderWrapper">
         <Loader size={14} />
       </div>
 
@@ -139,8 +156,10 @@ export const VideoBlock = ({ video: pathToVideo = "", className }: VideoBlockPro
         <p className="error">Ошибка</p>
       </div>
 
-      <div className="overlay ">
-        <Icon svg={PlayIcon} size={80} />
+      <div className="overlay">
+        <button className="playButton">
+          <Icon svg={PlayIcon} size={80} />
+        </button>
       </div>
     </StyledVideoBlock>
   );
@@ -154,9 +173,16 @@ export const StyledVideoBlock = styled.div`
   flex-shrink: 0;
   cursor: pointer;
 
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   position: relative;
 
-  .wrapper {
+  .wrapper,
+  .loaderWrapper {
     display: none;
     position: absolute;
     top: 0;
@@ -191,18 +217,20 @@ export const StyledVideoBlock = styled.div`
     transform: translateZ(0);
   }
 
-  .btn_play {
+  .playButton {
     transition: opacity 0.3s;
+    opacity: 0;
 
     &:hover {
-      opacity: 0.7;
       cursor: pointer;
     }
   }
 
-  &.loading {
-    .loader-wrapper {
-      display: grid;
+  .overlay {
+    &:hover {
+      .playButton {
+        opacity: 1;
+      }
     }
   }
 
@@ -210,11 +238,21 @@ export const StyledVideoBlock = styled.div`
     .overlay {
       opacity: 0;
     }
+
+    .playButton {
+      opacity: 1;
+    }
   }
 
   &.error {
     .overlay {
       display: none;
+    }
+  }
+
+  &.loading {
+    .loaderWrapper {
+      display: grid;
     }
   }
 `;

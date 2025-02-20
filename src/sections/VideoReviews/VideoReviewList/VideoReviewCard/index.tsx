@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import InstagramIcon from "@/assets/icons/instagram.svg";
 import { BREAKPOINTS } from "@/constants";
+import clsx from "clsx";
 
 interface VideoReviewCardProps {
   id: string;
@@ -12,9 +13,16 @@ interface VideoReviewCardProps {
   userName?: string;
   userNickname?: string;
   video: string;
+  videoClassName?: string;
 }
 
-export const VideoReviewCard = ({ userName, userNickname, video, id }: VideoReviewCardProps) => {
+export const VideoReviewCard = ({
+  userName,
+  userNickname,
+  video,
+  id,
+  videoClassName,
+}: VideoReviewCardProps) => {
   return (
     <StyledVideoReviewCard>
       <div className="header">
@@ -26,7 +34,7 @@ export const VideoReviewCard = ({ userName, userNickname, video, id }: VideoRevi
           {userName}
         </Text>
       </div>
-      <VideoBlock video={video} id={id} className="videoReview" />
+      <VideoBlock video={video} id={id} className={clsx("videoReview", videoClassName)} />
     </StyledVideoReviewCard>
   );
 };

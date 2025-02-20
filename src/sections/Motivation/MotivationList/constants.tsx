@@ -9,17 +9,21 @@ export const MOTIVATION_LIST = [
   {
     id: generateUUID(),
     video: video_1,
+    videoClassName: "video_motivation_1",
   },
   {
     id: generateUUID(),
     video: video_2,
+    videoClassName: "video_motivation_2",
   },
   {
     id: generateUUID(),
     video: video_3,
+    videoClassName: "video_motivation_3",
   },
   {
     id: generateUUID(),
     video: video_4,
+    videoClassName: "video_motivation_4",
   },
 ];

@@ -14,11 +14,10 @@
 
   transition: transform 0.3s ease-in-out;
 
-  // transform: translateY(-100%);
-  transform: translateY(0);
+  transform: translateY(-100%);
 
   &.hide {
-    // transform: translateY(0);
+    transform: translateY(0);
   }
 
   @media screen and (max-width: 1110px) {
