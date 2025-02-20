@@ -16,7 +16,6 @@ import {
   Motivation,
   TextReviews,
 } from "@/sections";
-import { BREAKPOINTS } from "@/constants";
 
 function App() {
   return (
