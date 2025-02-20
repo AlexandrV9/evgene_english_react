@@ -18,12 +18,17 @@ export const BookingButton = ({
   className,
   text = "записаться на занятие",
 }: BookingButtonProps) => {
+  const handleClick = () => {
+    window.open("https://t.me/ftheenglishrules", "_blank", "noopener,noreferrer");
+  };
+
   return (
     <Button
       type={theme}
       endIcon={<Icon size={30} svg={theme === "primary" ? TelagramBlackIcon : TelagramWhiteIcon} />}
       style={style}
       className={className}
+      onClick={handleClick}
     >
       {text}
     </Button>

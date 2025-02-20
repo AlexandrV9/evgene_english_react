@@ -7,6 +7,7 @@
 
   transition: all 0.2s;
   text-wrap: nowrap;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.5;
@@ -87,7 +88,7 @@
       &_big {
         font-size: 2rem;
         line-height: 2.8rem;
-  
+
         padding: 1.7rem 4rem;
       }
     }

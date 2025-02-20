@@ -1,4 +1,4 @@
-import { BookingButton, Icon, Section } from "@/ui";
+import { BookingButton, Flex, Icon, Section } from "@/ui";
 import { StyledHeaderContent } from "./styles";
 
 import LogoIcon from "@/assets/icons/logo.svg";
@@ -11,6 +11,7 @@ import clsx from "clsx";
 import cls from "./styles.module.scss";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useEffect, useState } from "react";
+import { LinksList } from "./LinksList";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
@@ -28,17 +29,23 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  console.log(scrollDirection === "up" || isTop);
+
   return (
     <Section
       as="header"
-      className={clsx(cls.header, { [cls.hide]: scrollDirection === "down" || isTop })}
+      className={clsx(cls.header, { [cls.show]: scrollDirection === "up" || isTop })}
     >
       <StyledHeaderContent>
         <Icon svg={LogoIcon} className="iconLogo" />
 
         <NavBar list={HEADER_NAV_LIST} className="header_navbar" />
-        {w >= 1360 && <BookingButton />}
-        {w <= 1360 && <BurgerMenu />}
+
+        <Flex align="center" gap="1rem">
+          <LinksList />
+          {w > 1360 && <BookingButton />}
+          {w <= 1360 && <BurgerMenu />}
+        </Flex>
       </StyledHeaderContent>
     </Section>
   );

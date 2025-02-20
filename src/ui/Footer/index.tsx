@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavBar } from "../NavBar";
 import { FOOTER_NAV_LIST } from "./constants";
-import { Icon, Section, Text } from "..";
+import { Icon, ScrollTopButton, Section, Text } from "..";
 
 import LogoIcon from "@/assets/icons/logo.svg";
 
@@ -20,16 +20,23 @@ export const Footer = () => {
         </div>
         <NavBar list={FOOTER_NAV_LIST} className="navbar" />
       </StyledFooterContent>
+      <ScrollTopButton />
     </Section>
   );
 };
 
-const StyledFooterContent = styled.footer`
+const StyledFooterContent = styled.div`
   margin: 0 auto;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+
+  .sectionContent {
+    position: static !important;
+  }
+
 
   .leftContainer {
     display: flex;

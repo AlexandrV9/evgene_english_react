@@ -17,7 +17,7 @@ export const Banner = ({ className }: BannerProps) => {
   const fontSize = useTextSize();
 
   return (
-    <StyledBanner id="banner" className={className}>
+    <StyledBanner id="banner" className={className} sectionContentClassName="content">
       <div ref={targetRef}>
         <Title as="h1" align="center" color="accent" ref={targetRef}>
           Eugene English
@@ -54,6 +54,10 @@ export const StyledBanner = styled(Section)`
   transition: all 0.5s ease-in-out;
 
   margin: 0 !important;
+
+  .content {
+    position: relative;
+  }
 
 
   &.animate {

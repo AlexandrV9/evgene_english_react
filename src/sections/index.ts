@@ -10,3 +10,4 @@ export * from "./Teachers";
 export * from "./VideoReviews";
 export * from "./WhyWe";
 export * from "./Motivation";
+export * from "./TextReviews";

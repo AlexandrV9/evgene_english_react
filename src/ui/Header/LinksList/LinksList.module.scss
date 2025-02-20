@@ -1,0 +1,14 @@
+.LinksList {
+  display: flex;
+  gap: 1rem;
+
+  @media screen and (max-width: 1440px) {
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+  }
+
+  @media screen and (max-width: 1360px) {
+    position: static;
+  }
+}

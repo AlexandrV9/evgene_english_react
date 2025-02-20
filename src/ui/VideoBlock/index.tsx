@@ -172,6 +172,7 @@ export const StyledVideoBlock = styled.div`
   border-radius: 50%;
   flex-shrink: 0;
   cursor: pointer;
+  z-index: 55;
 
   video {
     width: 100%;

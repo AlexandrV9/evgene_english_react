@@ -7,7 +7,7 @@ import TikTokIcon from "@/assets/icons/tik-tok.svg";
 export const LINKS_LIST = [
   {
     id: generateUUID(),
-    href: "https://t.me/esharygine",
+    href: "https://t.me/ftheenglishrules",
     NetworkIcon: TelegramIcon,
     networkName: "Telegram",
   },

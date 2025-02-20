@@ -1,30 +1,30 @@
 import { BookingButton, Icon, Section, SectionTitle } from "@/ui";
 import styled from "styled-components";
-import { VideoReviewList } from "./VideoReviewList";
 
 import HeartIcon from "@/assets/icons/heart.svg";
+import { TextReviewList } from "./TextReviewList";
 import { BREAKPOINTS } from "@/constants";
 
-interface VideoReviewsProps {
+interface TextReviewsProps {
   className?: string;
 }
 
-export const VideoReviews = ({ className }: VideoReviewsProps) => {
+export const TextReviews = ({ className }: TextReviewsProps) => {
   return (
-    <StyledVideoReviews id="reviews" className={className}>
+    <StyledTextReviews id="reviews" className={className}>
       <div className="titleWrapper">
-        <SectionTitle>отзывы</SectionTitle>
+        <SectionTitle>Видео отзывы</SectionTitle>
         <Icon svg={HeartIcon} className="icon" />
       </div>
 
-      <VideoReviewList />
+      <TextReviewList />
 
       <BookingButton className="btn" />
-    </StyledVideoReviews>
+    </StyledTextReviews>
   );
 };
 
-export const StyledVideoReviews = styled(Section)`
+export const StyledTextReviews = styled(Section)`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -5,6 +5,7 @@ export const StyledHeaderContent = styled("div")`
   gap: 1.6rem;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   .iconLogo {
     width: 10rem;

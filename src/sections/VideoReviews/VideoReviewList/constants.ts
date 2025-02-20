@@ -3,6 +3,7 @@ import video_2 from "@/assets/videos/diana.mp4";
 import video_3 from "@/assets/videos/alexander.mp4";
 import video_4 from "@/assets/videos/natalia.mp4";
 import video_5 from "@/assets/videos/metey-2.mp4";
+import videoLika from "@/assets/videos/lika.mp4";
 import { generateUUID } from "@/utils";
 
 export const VIDEO_REVIEWS_LIST = [
@@ -11,34 +12,35 @@ export const VIDEO_REVIEWS_LIST = [
     userName: "Андерей",
     userNickname: "@andre_lifehack",
     video: video_1,
-    videoClassName: "video_review_1",
   },
   {
     id: generateUUID(),
-    userName: "Диана",
-    userNickname: "@diaaanochkaa____",
-    video: video_2,
-    videoClassName: "video_review_2",
+    userName: "Лика",
+    userNickname: "@ange_cope",
+    video: videoLika,
   },
   {
     id: generateUUID(),
     userName: "Александр",
     userNickname: "@a_tsykunov",
     video: video_3,
-    videoClassName: "video_review_3",
-  },
-  {
-    id: generateUUID(),
-    userName: "Наталья",
-    userNickname: "@nataliia.wv",
-    video: video_4,
-    videoClassName: "video_review_4",
   },
   {
     id: generateUUID(),
     userName: "Метей",
     userNickname: "@meteysh",
     video: video_5,
-    videoClassName: "video_review_5",
+  },
+  {
+    id: generateUUID(),
+    userName: "Наталья",
+    userNickname: "@nataliia.wv",
+    video: video_4,
+  },
+  {
+    id: generateUUID(),
+    userName: "Диана",
+    userNickname: "@diaaanochkaa____",
+    video: video_2,
   },
 ];

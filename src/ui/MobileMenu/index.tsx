@@ -1,3 +1,5 @@
+import { BookingButton } from "../Button";
+
 export const MobileMenu = () => {
   return (
     <div className="mobile-menu">
@@ -30,10 +32,7 @@ export const MobileMenu = () => {
           </li>
         </ul>
       </nav>
-      <button className="btn big light btn_booking mobile-menu__btn-booking">
-        <span>записаться на занятие</span>
-        <img src="../src/assets/icons/telegram.svg" />
-      </button>
+      <BookingButton />
     </div>
   );
 };

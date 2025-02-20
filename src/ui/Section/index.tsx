@@ -2,19 +2,23 @@ import { forwardRef, HTMLAttributes, ReactNode } from "react";
 import styled from "styled-components";
 import { Title, TitleProps } from "../Typography/Title";
 import { BREAKPOINTS } from "@/constants";
+import clsx from "clsx";
 
 interface SectionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   as?: JSX.ElementType;
+  sectionContentClassName?: string;
 }
 
-export const Section = forwardRef<HTMLElement, SectionProps>(({ children, ...otherProps }, ref) => {
-  return (
-    <StyledSection {...otherProps} ref={ref}>
-      <div className="sectionContent">{children}</div>
-    </StyledSection>
-  );
-});
+export const Section = forwardRef<HTMLElement, SectionProps>(
+  ({ children, sectionContentClassName, ...otherProps }, ref) => {
+    return (
+      <StyledSection {...otherProps} ref={ref}>
+        <div className={clsx("sectionContent", sectionContentClassName)}>{children}</div>
+      </StyledSection>
+    );
+  }
+);
 
 interface SectionTitleProps extends Omit<TitleProps, "children" | "as"> {
   children: string;
@@ -38,11 +42,12 @@ const StyledSection = styled.section`
   margin: 0 auto;
   margin-top: 14rem;
 
+  position: relative;
+
   .sectionContent {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    position: relative;
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptop}px) {

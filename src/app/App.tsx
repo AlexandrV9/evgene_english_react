@@ -14,22 +14,22 @@ import {
   NativeTeacher,
   Contacts,
   Motivation,
+  TextReviews,
 } from "@/sections";
+import { BREAKPOINTS } from "@/constants";
 
 function App() {
-
-  
-
   return (
     <>
       <Header />
       <StyledMain>
         <Banner />
+        <TextReviews />
         <Messages />
         <Teachers />
         <WhyWe />
         <Bonuses />
-        <Memes /> 
+        <Memes />
         <VideoReviews />
         <Prices />
         <NativeTeacher />
@@ -37,7 +37,6 @@ function App() {
         <Contacts />
       </StyledMain>
       <Footer />
-      {/* <ScrollTopButton /> */}
     </>
   );
 }
@@ -54,6 +53,10 @@ export const StyledMain = styled.main`
 
   @media screen and (max-width: 768px) {
     padding-top: 8rem;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    padding-top: 3rem;
   }
 `;
 
