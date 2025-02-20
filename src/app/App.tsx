@@ -54,10 +54,6 @@ export const StyledMain = styled.main`
   @media screen and (max-width: 768px) {
     padding-top: 8rem;
   }
-
-  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
-    padding-top: 3rem;
-  }
 `;
 
 export default App;
