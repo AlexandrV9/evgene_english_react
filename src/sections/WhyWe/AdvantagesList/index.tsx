@@ -26,6 +26,11 @@ export const StyledAdvantagesList = styled.ul`
   .iconWrapper {
     position: absolute;
     left: -3rem;
+    top: -12px;
+
+    svg {
+      position: relative;
+    }
   }
 
   .item {
@@ -48,7 +53,7 @@ export const StyledAdvantagesList = styled.ul`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.sm}px) {
-    gap: 0.4rem;
+    gap: 0.8rem;
 
     .text {
       font-size: 1.6rem;

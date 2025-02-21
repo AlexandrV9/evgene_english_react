@@ -59,5 +59,9 @@ export const StyledMemsList = styled.ul`
   @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
     display: flex;
     justify-content: center;
+
+    .mems_list_item {
+      min-height: clamp(280px, 80vw, 590px);
+    }
   }
 `;
