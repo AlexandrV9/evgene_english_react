@@ -30,9 +30,8 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
-    <StyledHeader
+    <Section
       as="header"
       className={clsx(cls.header, { [cls.show]: scrollDirection === "up" || isTop })}
     >
@@ -47,10 +46,6 @@ export const Header = () => {
           {w <= 1420 && <BurgerMenu />}
         </Flex>
       </StyledHeaderContent>
-    </StyledHeader>
+    </Section>
   );
 };
-
-const StyledHeader = styled(Section)`
-  z-index: 1000;
-`;

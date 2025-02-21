@@ -13,7 +13,7 @@ export const TEACHERS_LIST = [
     id: generateUUID(),
     name: "EUGENE",
     listAchievements: [
-      "TESOL certified преподавател",
+      "TESOL certified преподаватель",
       "более 7 лет опыта обучения",
       "подтвержденный уровень C1",
     ],
