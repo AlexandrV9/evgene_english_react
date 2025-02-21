@@ -19,7 +19,7 @@ export const BookingButton = ({
   text = "записаться на занятие",
 }: BookingButtonProps) => {
   const handleClick = () => {
-    window.open("https://t.me/ftheenglishrules", "_blank", "noopener,noreferrer");
+    window.open("https://t.me/esharygine", "_blank", "noopener,noreferrer");
   };
 
   return (

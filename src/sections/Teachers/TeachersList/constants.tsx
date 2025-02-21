@@ -1,9 +1,12 @@
 import { Button, Text } from "@/ui";
 
-import teacherAvatar_1 from "@/assets/images/avatar-eugene.png";
-import teacherAvatar_2 from "@/assets/images/avatar-alex.png";
-import teacherAvatar_3 from "@/assets/images/avatar-user.png";
+import teacherAvatar_1 from "@/assets/images/avatar-eugene-2.png";
+import teacherAvatar_2 from "@/assets/images/avatar-alex-2.png";
 import { generateUUID } from "@/utils";
+
+const handleClick = () => {
+  window.open("https://t.me/esharygine", "_blank", "noopener,noreferrer");
+};
 
 export const TEACHERS_LIST = [
   {
@@ -14,7 +17,8 @@ export const TEACHERS_LIST = [
       "более 7 лет опыта обучения",
       "подтвержденный уровень C1",
     ],
-    avatar: teacherAvatar_1,
+    //
+    avatar: <img src={teacherAvatar_1} className="avatar" />,
     otherInfo: (
       <Text className="description_text">
         Работал физически в Пекине, Китай, после этого был онлайн-преподавателем английского языка в
@@ -33,16 +37,11 @@ export const TEACHERS_LIST = [
       "подтвержденный уровень C1",
       "занимается со взрослыми и подростками",
     ],
-    avatar: teacherAvatar_2,
+    avatar: <img src={teacherAvatar_2} className="avatar" />,
     otherInfo: (
       <Text className="description_text">
         Работал в Китае, а так же в различных школах онлайн, но Eugene English сделал ему
-        предложение{" "}
-        <Text as="span" fontFamily="MVCrooker" fontWeight="bold">
-          {" "}
-          he couldn’t refuse
-        </Text>{" "}
-        и теперь этот крутой преподаватель с нами. 
+        предложение he couldn’t refuse и теперь этот крутой преподаватель с нами. 
       </Text>
     ),
   },
@@ -55,14 +54,18 @@ export const TEACHERS_LIST = [
       "уровень английского C1",
       "чувство юмора",
     ],
-    avatar: teacherAvatar_3,
+    avatar: (
+      <Text as="span" className="emoji" align="center">
+        🧑‍🏫
+      </Text>
+    ),
     otherInfo: (
       <Text className="description_text">
         Если все это про тебя, присоединяйся к нашей команде преподавателей ⬇️
       </Text>
     ),
     addonAfter: (
-      <Button type="secondary" m="4rem 0 0">
+      <Button type="secondary" m="4rem 0 0" onClick={handleClick}>
         стать преподавателем
       </Button>
     ),

@@ -9,7 +9,7 @@ export interface TeacherCardProps {
   name: string;
   listAchievements: string[];
   otherInfo: ReactNode;
-  avatar: string;
+  avatar: ReactNode;
   addonAfter?: ReactNode;
 }
 
@@ -26,8 +26,8 @@ export const TeacherCard = ({
         <Icon svg={PushPinIcon} className="pushpin-icon" size={50} />
 
         <div className="wrapper">
-          <Flex vertical align="center" className="avatar_wrapper">
-            <img src={avatar} className="avatar" />
+          <Flex vertical align="center" className="wrapper_1">
+            <div className="avatarWrapper">{avatar}</div>
 
             <Title as="h4" color="accent" mt="2rem">
               {name}
@@ -36,7 +36,7 @@ export const TeacherCard = ({
 
           <StyledAchievementsList>
             {listAchievements.map((item) => (
-              <Text key={item} as="li" fontSize="l" className="achievement">
+              <Text key={item} as="li" fontSize="l" className="achievement" fontWeight="bold" fontFamily="MVCrooker">
                 {item}
               </Text>
             ))}
@@ -67,13 +67,30 @@ export const StyledTeacherCard = styled.div`
     height: 100%;
   }
 
-  .avatar_wrapper {
+  .avatarWrapper {
+    background-color: #547793;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    width: 210px;
+    height: 210px;
+    display: grid;
+    justify-content: center;
+    align-content: end;
+
+    .emoji {
+      font-size: 160px;
+      width: 100%;
+      line-height: 100%;
+    }
+  }
+
+  .wrapper_1 {
     margin-bottom: 2rem;
   }
 
   .avatar {
     width: 100%;
-    max-height: 21rem;
+    height: 100%;
     object-fit: contain;
   }
 
@@ -92,6 +109,10 @@ export const StyledTeacherCard = styled.div`
     .description_text * {
       font-size: 18px;
       line-height: 24px;
+    }
+
+    .content {
+      padding: 2rem;
     }
   }
 
@@ -119,7 +140,7 @@ export const StyledTeacherCard = styled.div`
       max-width: 100%;
     }
 
-    .avatar_wrapper {
+    .wrapper_1 {
       margin-bottom: 0;
     }
   }

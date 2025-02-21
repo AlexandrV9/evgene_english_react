@@ -12,49 +12,84 @@ interface VideoReviewCardProps {
   icon?: ReactNode;
   userName?: string;
   userNickname?: string;
+  className?: string;
   video: string;
   videoClassName?: string;
+  addonAfter?: ReactNode;
 }
 
 export const VideoReviewCard = ({
   userName,
   userNickname,
   video,
+  className,
   id,
   videoClassName,
+  addonAfter,
 }: VideoReviewCardProps) => {
   return (
-    <StyledVideoReviewCard>
-      <div className="header">
-        <Icon size={40} svg={InstagramIcon} className="netwrkIcon" />
-        <Text fontSize="l" fontWeight="medium" className="userNickname">
-          {userNickname}
-        </Text>
-        <Text fontWeight="medium" className="userName">
-          {userName}
-        </Text>
+    <StyledVideoReviewCard className={className}>
+      <div className="content">
+        <div className="header">
+          <Icon size={40} svg={InstagramIcon} className="netwrkIcon" />
+          <Text fontSize="l" fontWeight="medium" className="userNickname">
+            {userNickname}
+          </Text>
+          <Text fontWeight="medium" className="userName">
+            {userName}
+          </Text>
+        </div>
+        <VideoBlock video={video} id={id} className={clsx("videoReview", videoClassName)} />
+        {addonAfter}
       </div>
-      <VideoBlock video={video} id={id} className={clsx("videoReview", videoClassName)} />
     </StyledVideoReviewCard>
   );
 };
 
 export const StyledVideoReviewCard = styled.div`
-  background-color: var(--insted-white-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2rem;
+  padding-top: 1.5rem;
 
-  padding: 2.7rem;
+  &.accent {
+    .content {
+      border: 4px solid #547793;
+    }
+  }
+
+  .content {
+    position: relative;
+    border-radius: 2rem;
+    background-color: var(--insted-white-color);
+    padding: 2.7rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid transparent;
+
+    gap: 1rem;
+  }
+
+  .addContent {
+    top: -17px;
+    left: 50%;
+    position: absolute;
+    background-color: #547793;
+    padding: 0 10px;
+
+    transform: translateX(-50%);
+    border-radius: 12px;
+
+    .addText {
+      white-space: nowrap;
+    }
+  }
 
   .header {
     align-self: self-start;
     display: grid;
     grid-template-columns: min-content 1fr;
     gap: 0.7rem;
-    margin-bottom: 2.7rem;
     align-items: center;
   }
 
@@ -71,7 +106,13 @@ export const StyledVideoReviewCard = styled.div`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
-    padding: 1.6rem;
+    .addText {
+      font-size: 1.6rem;
+    }
+
+    .content {
+      padding: 3rem 1.6rem 1.6rem;
+    }
 
     .userNickname {
       font-size: 1.8rem;
@@ -90,7 +131,9 @@ export const StyledVideoReviewCard = styled.div`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptopLow - 2}px) {
-    padding: 1.6rem;
+    .addText {
+      font-size: 2rem;
+    }
 
     .userNickname {
       font-size: 2.8rem;
@@ -138,6 +181,10 @@ export const StyledVideoReviewCard = styled.div`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .addText {
+      font-size: 1.6rem;
+    }
+
     .videoReview {
       max-width: clamp(220px, 70vw, 320px);
       max-height: clamp(220px, 70vw, 320px);

@@ -5,19 +5,28 @@ import video_4 from "@/assets/videos/natalia.mp4";
 import video_5 from "@/assets/videos/metey-2.mp4";
 import videoLika from "@/assets/videos/lika.mp4";
 import { generateUUID } from "@/utils";
+import { Text } from "@/ui";
 
 export const VIDEO_REVIEWS_LIST = [
   {
     id: generateUUID(),
-    userName: "Андерей",
+    userName: "Андрей",
     userNickname: "@andre_lifehack",
     video: video_1,
   },
   {
     id: generateUUID(),
+    className: "accent",
     userName: "Лика",
     userNickname: "@ange_cope",
     video: videoLika,
+    addonAfter: (
+      <div className="addContent">
+        <Text className="addText" color="primary">
+          Результат после первого занятия!
+        </Text>
+      </div>
+    ),
   },
   {
     id: generateUUID(),

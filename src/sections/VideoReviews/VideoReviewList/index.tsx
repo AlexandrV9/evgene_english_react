@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VIDEO_REVIEWS_LIST } from "./constants";
+import { VIDEO_REVIEWS_LIST } from "./constants.tsx";
 import { VideoReviewCard } from "./VideoReviewCard";
 
 import { SwiperContainer } from "@/ui";

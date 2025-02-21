@@ -2,10 +2,17 @@
   display: flex;
   gap: 1rem;
 
+  li {
+    &:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+
   @media screen and (max-width: 1440px) {
-    position: absolute;
-    bottom: -40px;
-    right: 0;
+    // position: absolute;
+    // bottom: -40px;
+    // right: 0;
   }
 
   @media screen and (max-width: 1360px) {

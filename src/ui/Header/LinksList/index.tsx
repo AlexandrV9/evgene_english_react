@@ -11,9 +11,11 @@ export const LinksList = () => {
   return (
     <ul className={cls.LinksList}>
       {LINKS_LIST.map((item, index) => (
-        <a href={item.href} target="_blank" key={index}>
-          <Icon svg={item.NetworkIcon} size={BREAKPOINTS[breakpoint] < 600 ? 28 : 30} />
-        </a>
+        <li>
+          <a href={item.href} target="_blank" key={index}>
+            <Icon svg={item.NetworkIcon} size={BREAKPOINTS[breakpoint] < 600 ? 28 : 30} />
+          </a>
+        </li>
       ))}
     </ul>
   );

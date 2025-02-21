@@ -15,6 +15,7 @@ import {
   Contacts,
   Motivation,
   TextReviews,
+  PrivateTelegramChannel,
 } from "@/sections";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Prices />
         <NativeTeacher />
         <Motivation />
+        <PrivateTelegramChannel />
         <Contacts />
       </StyledMain>
       <Footer />

@@ -11,3 +11,4 @@ export * from "./VideoReviews";
 export * from "./WhyWe";
 export * from "./Motivation";
 export * from "./TextReviews";
+export * from "./PrivateTelegramChannel";

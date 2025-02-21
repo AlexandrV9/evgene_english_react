@@ -8,6 +8,7 @@ import LogoIcon from "@/assets/icons/logo.svg";
 import { BookingButton } from "../Button";
 import { HEADER_NAV_LIST } from "../Header/constants";
 import { NavBar } from "../NavBar";
+import { BREAKPOINTS } from "@/constants";
 
 export const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,6 +91,14 @@ const StyledContent = styled.div<{ $isOpen: boolean }>`
     margin-top: 100px;
   }
 
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    .btn_booking {
+      margin: 0;
+      position: absolute;
+      bottom: 2.4rem;
+    }
+  }
+
   @media screen and (max-width: 390px) {
     .iconLogo {
       width: 80px;
@@ -99,7 +108,7 @@ const StyledContent = styled.div<{ $isOpen: boolean }>`
     .btn_booking {
       margin: 0;
       position: absolute;
-      bottom:  2.4rem;
+      bottom: 2.4rem;
     }
   }
 `;
