@@ -12,6 +12,7 @@ import cls from "./styles.module.scss";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useEffect, useState } from "react";
 import { LinksList } from "./LinksList";
+import styled from "styled-components";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
@@ -29,10 +30,9 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  console.log(scrollDirection === "up" || isTop);
 
   return (
-    <Section
+    <StyledHeader
       as="header"
       className={clsx(cls.header, { [cls.show]: scrollDirection === "up" || isTop })}
     >
@@ -47,6 +47,10 @@ export const Header = () => {
           {w <= 1420 && <BurgerMenu />}
         </Flex>
       </StyledHeaderContent>
-    </Section>
+    </StyledHeader>
   );
 };
+
+const StyledHeader = styled(Section)`
+  z-index: 1000;
+`;

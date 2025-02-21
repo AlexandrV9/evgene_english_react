@@ -68,7 +68,7 @@ export const StyledTeacherCard = styled.div`
   }
 
   .avatarWrapper {
-    background-color: #547793;
+    background-color: #54779376;
     border-radius: 1.2rem;
     overflow: hidden;
     width: 210px;
@@ -76,6 +76,7 @@ export const StyledTeacherCard = styled.div`
     display: grid;
     justify-content: center;
     align-content: end;
+    border-radius: 50%;
 
     .emoji {
       font-size: 160px;
