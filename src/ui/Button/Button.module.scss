@@ -73,15 +73,6 @@
   }
 }
 
-@media screen and (max-width: 1640px) {
-  .button {
-    &.size {
-      &_big {
-      }
-    }
-  }
-}
-
 @media screen and (max-width: 1440px) {
   .button {
     &.size {
@@ -95,11 +86,11 @@
   }
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 480px) {
   .button {
     &.size {
       &_big {
-        font-size: 2rem;
+        font-size: 1.7rem;
         line-height: 2.8rem;
 
         padding: 1rem 2rem;

@@ -22,7 +22,7 @@ export const Messages = ({ className }: MessagesProps) => {
       <div ref={targetRef}>
         <MessagesList isIntersecting={isIntersecting} />
         <Flex className="messages__box" vertical align="center">
-          <Text align="center" fontSize={fontSize} mb={24}>
+          <Text align="center" fontSize={fontSize} mb={24} className={"text_1"}>
             Английский вписывается в{" "}
             <Text as="span" fontSize={fontSize} fontWeight="bold" color="accent">
               любой график.
@@ -71,6 +71,18 @@ export const StyledMessages = styled(Section)`
       margin-bottom: 4rem;
     }
   }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .text_1 {
+      margin-bottom: 1rem !important;
+    }
+
+    .subtitle_2 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  /*  */
 
   @media screen and (max-width: ${BREAKPOINTS.sm}px) {
     padding-left: 0;

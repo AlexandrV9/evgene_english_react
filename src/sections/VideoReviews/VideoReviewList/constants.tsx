@@ -2,7 +2,7 @@ import video_1 from "@/assets/videos/andrew.mp4";
 import video_2 from "@/assets/videos/diana.mp4";
 import video_3 from "@/assets/videos/alexander.mp4";
 import video_4 from "@/assets/videos/natalia.mp4";
-import video_5 from "@/assets/videos/metey-2.mp4";
+import video_5 from "@/assets/videos/compressed/metey-2.mp4";
 import videoLika from "@/assets/videos/lika.mp4";
 import { generateUUID } from "@/utils";
 import { Text } from "@/ui";

@@ -2,6 +2,7 @@ import { Flex, Icon, Text } from "@/ui";
 import styled from "styled-components";
 import { TextReviewItem } from "../constants";
 import { BREAKPOINTS } from "@/constants";
+import { Avatar } from "@/ui/Avatar";
 
 interface TextReviewCardProps extends TextReviewItem {}
 
@@ -11,12 +12,12 @@ export const TextReviewCard = ({
   userName,
   userNickname,
   text,
-  lastName
+  lastName,
 }: TextReviewCardProps) => {
   return (
     <StyledTextReviewCard>
       <Flex className="container_1">
-        <img className="avatar" src={userAvatar} />
+        <Avatar className="avatar" src={userAvatar} loading="lazy" />
         <div className="wrapper">
           <Flex align="center" className="container_2">
             <Icon svg={NetworkIcon} size={30} />

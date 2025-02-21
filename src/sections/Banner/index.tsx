@@ -123,7 +123,7 @@ export const StyledBanner = styled(Section)`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
     padding-top: 0;
 
     .icon {

@@ -29,14 +29,21 @@ export const TeacherCard = ({
           <Flex vertical align="center" className="wrapper_1">
             <div className="avatarWrapper">{avatar}</div>
 
-            <Title as="h4" color="accent" mt="2rem">
+            <Title as="h4" color="accent" mt="2rem" className="text_9">
               {name}
             </Title>
           </Flex>
 
           <StyledAchievementsList>
             {listAchievements.map((item) => (
-              <Text key={item} as="li" fontSize="l" className="achievement" fontWeight="bold" fontFamily="MVCrooker">
+              <Text
+                key={item}
+                as="li"
+                fontSize="l"
+                className="achievement"
+                fontWeight="bold"
+                fontFamily="MVCrooker"
+              >
                 {item}
               </Text>
             ))}
@@ -156,10 +163,25 @@ export const StyledTeacherCard = styled.div`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .text_9 {
+      margin-top: 1rem !important;
+    }
+
     .description_text {
       font-size: 14px;
       line-height: 22px;
+    }
+
+    .avatarWrapper {
+      width: 150px;
+      height: 150px;
+
+      .emoji {
+        font-size: 110px;
+        width: 100%;
+        line-height: 100%;
+      }
     }
   }
 `;
@@ -233,15 +255,15 @@ export const StyledAchievementsList = styled.ul`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
-    margin-left: 1.6rem;
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    margin-left: 1.2rem;
 
     .achievement {
       font-size: 14px;
       line-height: 22px;
 
       &::after {
-        left: -20px;
+        left: -18px;
         width: 9px;
         height: 9px;
       }

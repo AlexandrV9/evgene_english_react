@@ -2,7 +2,7 @@ import { BookingButton, SectionTitle, Text } from "@/ui";
 import { VideoBlock } from "@/ui/VideoBlock";
 import { StyledNativeTeacher } from "./styles";
 
-import video from "@/assets/videos/mason.mp4";
+import video from "@/assets/videos/compressed/mason.mp4";
 import { NativeTeacherCard } from "./NativeTeacherCard";
 
 interface NativeTeacherProps {
@@ -23,7 +23,15 @@ export const NativeTeacher = ({ className }: NativeTeacherProps) => {
           <VideoBlock video={video} className="videoBlock" />
         </div>
 
-        <Text mt={40} mb={38} align="center" fontSize="l" color="primary" fontWeight="semiBold" className="desc">
+        <Text
+          mt={40}
+          mb={38}
+          align="center"
+          fontSize="l"
+          color="primary"
+          fontWeight="semiBold"
+          className="desc"
+        >
           Мэйсон - это просто генератор крутых разговоров. <br />
           Независимо от того, какой у вас уровень английского, он найдёт к вам подход!
         </Text>

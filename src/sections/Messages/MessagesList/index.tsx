@@ -150,4 +150,12 @@ export const StyledMessagesList = styled.ul`
       line-height: 24px;
     }
   }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .messages__message {
+      font-size: 14px;
+      line-height: 22px;
+      padding: 12px;
+    }
+  }
 `;

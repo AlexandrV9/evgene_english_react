@@ -2,7 +2,9 @@ import { Button, Text } from "@/ui";
 
 import teacherAvatar_1 from "@/assets/images/avatar-eugene-2.png";
 import teacherAvatar_2 from "@/assets/images/avatar-alex-2.png";
+
 import { generateUUID } from "@/utils";
+import { Avatar } from "@/ui/Avatar";
 
 const handleClick = () => {
   window.open("https://t.me/esharygine", "_blank", "noopener,noreferrer");
@@ -17,8 +19,7 @@ export const TEACHERS_LIST = [
       "более 7 лет опыта обучения",
       "подтвержденный уровень C1",
     ],
-    //
-    avatar: <img src={teacherAvatar_1} className="avatar" />,
+    avatar: <Avatar src={teacherAvatar_1} className="avatar" loading="lazy" />,
     otherInfo: (
       <Text className="description_text">
         Работал физически в Пекине, Китай, после этого был онлайн-преподавателем английского языка в
@@ -37,11 +38,11 @@ export const TEACHERS_LIST = [
       "подтвержденный уровень C1",
       "занимается со взрослыми и подростками",
     ],
-    avatar: <img src={teacherAvatar_2} className="avatar" />,
+    avatar: <Avatar src={teacherAvatar_2} className="avatar" loading="lazy" />,
     otherInfo: (
       <Text className="description_text">
         Работал в Китае, а так же в различных школах онлайн, но Eugene English сделал ему
-        предложение he couldn’t refuse и теперь этот крутой преподаватель с нами. 
+        предложение he couldn’t refuse и теперь этот крутой преподаватель с нами.
       </Text>
     ),
   },
