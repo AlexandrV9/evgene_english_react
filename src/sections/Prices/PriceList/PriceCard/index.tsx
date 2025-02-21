@@ -127,13 +127,13 @@ export const StyledPriceCard = styled(Card)`
     }
 
     .video_block {
-      width: clamp(240px, 70vw, 300px);
-      height: clamp(240px, 70vw, 300px);
+      width: clamp(240px, 70vw, 280px);
+      height: clamp(240px, 70vw, 280px);
     }
 
     .itemTitle {
-      font-size: 2rem;
-      line-height: 2.8rem;
+      font-size: 1.7rem;
+      line-height: 2.5rem;
     }
 
     .itemSubtitle {

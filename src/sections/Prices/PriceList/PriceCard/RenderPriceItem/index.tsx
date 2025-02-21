@@ -179,9 +179,6 @@ const StyleItem = styled("li")`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.xs}px) {
-  }
-
-  @media screen and (max-width: ${BREAKPOINTS.xs - 30}px) {
     display: grid;
     grid-template-columns: 1fr 20px max-content;
 
@@ -194,8 +191,8 @@ const StyleItem = styled("li")`
     }
 
     .desc_2 {
-      font-size: 2rem;
-      line-height: 2.8rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
     }
 
     .currentPrice {

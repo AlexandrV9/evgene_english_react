@@ -102,7 +102,7 @@ const StyledTextReviewCard = styled.div`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
     .userNickname {
       font-size: 1.8rem;
       line-height: 2.6rem;

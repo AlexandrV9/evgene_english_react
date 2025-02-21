@@ -145,6 +145,8 @@ export const StyledMessagesList = styled.ul`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    margin-bottom: 2.5rem;
+
     .messages__message {
       font-size: 18px;
       line-height: 24px;
@@ -152,10 +154,13 @@ export const StyledMessagesList = styled.ul`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    gap: 1rem;
+    margin-bottom: 2rem;
+
     .messages__message {
       font-size: 14px;
       line-height: 22px;
-      padding: 12px;
+      padding: 9px 10px;
     }
   }
 `;

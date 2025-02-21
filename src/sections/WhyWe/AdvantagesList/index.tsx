@@ -8,7 +8,9 @@ export const AdvantagesList = () => {
     <StyledAdvantagesList>
       {ADVANTAGES_LIST.map((item) => (
         <li className="item" key={item.id}>
-          <Icon svg={item.icon} width="2.4rem" />
+          <div className="iconWrapper">
+            <Icon svg={item.icon} width="2.4rem" />
+          </div>
           {item.text}
         </li>
       ))}
@@ -21,10 +23,17 @@ export const StyledAdvantagesList = styled.ul`
   flex-direction: column;
   gap: 2rem;
 
+  .iconWrapper {
+    position: absolute;
+    left: -3rem;
+  }
+
   .item {
     display: flex;
     align-items: center;
     gap: 0.7rem;
+    position: relative;
+    margin-left: 20px;
   }
 
   @media screen and (max-width: ${BREAKPOINTS.desktop}px) {
