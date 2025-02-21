@@ -32,7 +32,7 @@ export const TEXT_REVIEWS_LIST: TextReviewItem[] = [
   },
   {
     id: generateUUID(),
-    userAvatar: victoria1Avatar,
+    userAvatar: victoria2Avatar,
     NetworkIcon: InstagramIcon,
     userNickname: "@bakana_kitsune",
     userName: "Виктория",
@@ -56,7 +56,7 @@ export const TEXT_REVIEWS_LIST: TextReviewItem[] = [
   },
   {
     id: generateUUID(),
-    userAvatar: victoria2Avatar,
+    userAvatar: victoria1Avatar,
     NetworkIcon: TelegramIcon,
     userNickname: "@vctr.ryy",
     userName: "Виктория",
