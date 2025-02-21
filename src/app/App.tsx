@@ -15,7 +15,6 @@ import {
   Contacts,
   Motivation,
   TextReviews,
-  PrivateTelegramChannel,
 } from "@/sections";
 
 function App() {
