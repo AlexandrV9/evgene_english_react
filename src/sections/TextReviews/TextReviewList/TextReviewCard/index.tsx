@@ -11,6 +11,7 @@ export const TextReviewCard = ({
   userName,
   userNickname,
   text,
+  lastName
 }: TextReviewCardProps) => {
   return (
     <StyledTextReviewCard>
@@ -25,7 +26,7 @@ export const TextReviewCard = ({
           </Flex>
 
           <Text fontSize="m" fontWeight="medium" className="userName">
-            {userName}
+            {userName} {lastName}
           </Text>
         </div>
       </Flex>
