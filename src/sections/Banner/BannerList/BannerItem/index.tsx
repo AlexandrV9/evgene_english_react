@@ -73,7 +73,7 @@ export const StyledBannerItem = styled.li`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
     padding: 1.8rem 1.8rem;
 
     .title {

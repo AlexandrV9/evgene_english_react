@@ -51,7 +51,7 @@ const StyledBannerList = styled.ul`
     grid-auto-rows: 180px;
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
     gap: 8px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 164px;
