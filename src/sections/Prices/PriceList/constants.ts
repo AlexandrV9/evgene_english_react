@@ -1,5 +1,5 @@
 import video_1 from "@/assets/videos/eugene.mp4";
-import video_2 from "@/assets/videos/compressed/mason.mp4";
+import video_2 from "@/assets/videos/cropped/alex.mp4";
 import { generateUUID } from "@/utils";
 import { PriceItemList } from "./types";
 
