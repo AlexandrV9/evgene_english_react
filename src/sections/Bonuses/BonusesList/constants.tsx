@@ -19,7 +19,7 @@ export const BONUSES_LIST = [
         <Text as="span" custFontSize="inherit" fontWeight="semiBold">
           ЧАСТНЫЙ ТЕЛЕГРАМ КАНАЛ
         </Text>{" "}
-        c актуальными идиомами из фильмов/сериалов 🍿🎬
+        c актуальными идиомами из фильмов/сериалов с видео примерами 🍿🎬
       </Text>
     ),
     rightContent: <img src={pathImgTelegramChannel} className="image" />,
