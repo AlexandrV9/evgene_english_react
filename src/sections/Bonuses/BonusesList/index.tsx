@@ -9,8 +9,11 @@ export const BonusesList = () => {
     <StyledBonusesList>
       {BONUSES_LIST.map((item) => (
         <li key={item.id} className={clsx("item", item.className)}>
-          <Icon svg={item.icon} size={60} className="item_icon" />
-          {item.text}
+          <div>
+            <Icon svg={item.icon} size={60} className="item_icon" />
+            {item.text}
+          </div>
+          {item.rightContent}
         </li>
       ))}
     </StyledBonusesList>
@@ -23,11 +26,14 @@ export const StyledBonusesList = styled.ul`
   flex-wrap: wrap;
   gap: 2rem;
 
+  .image{
+    height: 20rem;
+  }
+
   .item {
     padding: 2.7rem;
     border-radius: 2rem;
     display: flex;
-    flex-direction: column;
     gap: 1.3rem;
 
     p {
@@ -38,7 +44,7 @@ export const StyledBonusesList = styled.ul`
 
   .block_1 {
     background-color: #031a2c;
-    width: 50rem;
+    width: 80rem;
   }
 
   .block_2 {
@@ -66,10 +72,6 @@ export const StyledBonusesList = styled.ul`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptop}px) {
-    .block_1 {
-      width: 40rem;
-    }
-
     .block_2 {
       width: 28rem;
     }
@@ -91,22 +93,6 @@ export const StyledBonusesList = styled.ul`
   }
 
   @media screen and (max-width: ${BREAKPOINTS.laptopLow}px) {
-    .block_1 {
-      width: 40rem;
-    }
-
-    .block_2 {
-      width: 28rem;
-    }
-
-    .block_3 {
-      width: 28rem;
-    }
-
-    .block_4 {
-      width: 54rem;
-    }
-
     .item {
       p {
         font-size: 2.4rem;
@@ -115,7 +101,7 @@ export const StyledBonusesList = styled.ul`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+  @media screen and (max-width: ${BREAKPOINTS.tabletUp + 60}px) {
     justify-content: start;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -134,7 +120,7 @@ export const StyledBonusesList = styled.ul`
     }
 
     .block_4 {
-      grid-row: 2 / 3;
+      grid-row: 3 / 4;
       grid-column: 1 / 3;
     }
 
@@ -145,6 +131,12 @@ export const StyledBonusesList = styled.ul`
         font-size: 2rem;
         line-height: 2.8rem;
       }
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    .image {
+      height: 15rem;
     }
   }
 

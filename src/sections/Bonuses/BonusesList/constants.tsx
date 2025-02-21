@@ -4,6 +4,8 @@ import icon_1 from "@/assets/icons/user-lock.svg";
 import icon_2 from "@/assets/icons/features.svg";
 import icon_3 from "@/assets/icons/comments-question.svg";
 import icon_4 from "@/assets/icons/high-five-celebration-yes.svg";
+import pathImgTelegramChannel from "@/assets/images/telegram-channel.png";
+
 import { generateUUID } from "@/utils";
 
 export const BONUSES_LIST = [
@@ -20,6 +22,7 @@ export const BONUSES_LIST = [
         c актуальными идиомами из фильмов/сериалов 🍿🎬
       </Text>
     ),
+    rightContent: <img src={pathImgTelegramChannel} className="image" />,
   },
   {
     id: generateUUID(),

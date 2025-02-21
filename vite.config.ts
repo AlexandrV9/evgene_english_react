@@ -11,8 +11,8 @@ export default defineConfig({
     svgr({ include: "**/*.svg" }),
     visualizer({
       open: false,
-      gzipSize: true,
-      brotliSize: true,
+      gzipSize: false,
+      brotliSize: false,
     }),
   ],
   resolve: {

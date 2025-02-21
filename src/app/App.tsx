@@ -33,7 +33,6 @@ function App() {
         <Prices />
         <NativeTeacher />
         <Motivation />
-        {/* <PrivateTelegramChannel /> */}
         <Contacts />
       </StyledMain>
       <Footer />
