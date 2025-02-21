@@ -12,7 +12,6 @@ import cls from "./styles.module.scss";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useEffect, useState } from "react";
 import { LinksList } from "./LinksList";
-import styled from "styled-components";
 
 export const Header = () => {
   const scrollDirection = useScrollDirection();
