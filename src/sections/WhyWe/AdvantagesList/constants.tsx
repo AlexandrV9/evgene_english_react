@@ -37,7 +37,7 @@ export const ADVANTAGES_LIST = [
     icon: iconPlus_3,
     text: (
       <Text className="text" fontWeight="bold">
-        обучение на мемах
+        обучение на мемах, фильмах, и крутых разговорах
       </Text>
     ),
   },
