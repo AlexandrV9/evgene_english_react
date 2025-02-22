@@ -33,7 +33,6 @@ export const StyledListLinks = styled.ul`
     &:hover {
       cursor: pointer;
       opacity: 0.8;
-      transform: scale(1.05);
     }
 
     a {
