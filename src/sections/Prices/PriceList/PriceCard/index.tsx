@@ -151,11 +151,16 @@ export const StyledPriceCard = styled(Card)`
 
   @media screen and (max-width: ${BREAKPOINTS.sm}px) {
     padding: 2rem;
-    
+
     .video_block {
       margin-bottom: 0.4rem;
     }
 
+    .wrap_7 {
+      &:last-of-type {
+        margin-top: 2.2rem;
+      }
+    }
   }
 
   @media screen and (max-width: ${BREAKPOINTS.xs}px) {
