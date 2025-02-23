@@ -24,7 +24,7 @@ export const PriceCard = ({ id, list, video, userName }: PriceCardProps) => {
       <div className="list_1">
         {list?.map(({ id, title, subtitle, items }) => (
           <Fragment key={id}>
-            <div>
+            <div className="wrap_7">
               <Text fontSize="l" align="center" fontWeight="medium" className="itemTitle">
                 {title}
               </Text>
@@ -85,10 +85,20 @@ export const StyledPriceCard = styled(Card)`
   @media screen and (max-width: ${BREAKPOINTS.tabletUp}px) {
     .list_1 {
       gap: 2rem;
+      align-items: flex-start;
     }
 
     .list_2 {
       gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .wrap_7 {
+      width: 100%;
+
+      &:last-of-type {
+        margin-top: 1rem;
+      }
     }
 
     .title {
@@ -98,11 +108,17 @@ export const StyledPriceCard = styled(Card)`
     .itemTitle {
       font-size: 2.2rem;
       line-height: 3rem;
+      text-align: center;
     }
 
     .itemSubtitle {
       font-size: 2rem;
       line-height: 2.8rem;
+    }
+
+    .itemSubtitle {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
     }
 
     .video_block {
@@ -111,13 +127,14 @@ export const StyledPriceCard = styled(Card)`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
-    padding: 2rem;
+  @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
+    .title {
+      margin-bottom: 0 !important;
+    }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
-    padding: 2rem 1rem;
-
+  /* TODO; убрать */
+  @media screen and (max-width: 650px) {
     .list_1 {
       gap: 1rem;
     }
@@ -126,19 +143,90 @@ export const StyledPriceCard = styled(Card)`
       gap: 0.8rem;
     }
 
+    .itemTitle {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
+    padding: 2rem;
+    
     .video_block {
-      width: clamp(240px, 70vw, 280px);
-      height: clamp(240px, 70vw, 280px);
+      margin-bottom: 0.4rem;
+    }
+
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
+    .video_block {
+      width: clamp(240px, 50vw, 300px);
+      height: clamp(240px, 50vw, 300px);
+    }
+
+    .list_1 {
+      gap: 0.2rem;
+    }
+
+    .list_2 {
+      gap: 0.1rem;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    padding: 2rem 1rem;
+
+    .video_block {
+      margin-bottom: 0.4rem;
+    }
+
+    .list_1 {
+      gap: 0.2rem;
+    }
+
+    .list_2 {
+      gap: 0.1rem;
     }
 
     .itemTitle {
-      font-size: 1.7rem;
-      line-height: 2.5rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
     }
 
     .itemSubtitle {
-      font-size: 1.8rem;
-      line-height: 2.6rem;
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+    padding: 2rem 1rem;
+
+    .video_block {
+      margin-bottom: 1rem;
+    }
+
+    .list_1 {
+      gap: 0.2rem;
+    }
+
+    .list_2 {
+      gap: 0.1rem;
+    }
+
+    .video_block {
+      width: 240px;
+      height: 240px;
+    }
+
+    .itemTitle {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+
+    .itemSubtitle {
+      font-size: 1.4rem;
+      line-height: 2.2rem;
     }
   }
 `;

@@ -151,13 +151,12 @@ const StyleItem = styled("li")`
 
   @media screen and (max-width: ${BREAKPOINTS.tablet}px) {
     &.two {
-      margin-top: 3rem !important;
     }
 
     .new_price {
-      top: -30px;
+      /* top: -30px;
       right: -20px;
-      transform: rotate(2deg);
+      transform: rotate(2deg); */
 
       .inner_wrapper {
         position: relative;
@@ -172,18 +171,62 @@ const StyleItem = styled("li")`
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.sm}px) {
-    &.two {
-      margin-top: 3rem !important;
+  /* TODO: постараться убрать */
+  @media screen and (max-width: 650px) {
+    .desc_2 {
+      font-size: 1.8rem;
+      line-height: 2.3rem;
+    }
+
+    .currentPrice {
+      font-size: 1.8rem;
+      line-height: 2.3rem;
+    }
+
+    .old_price {
+      position: relative;
+      bottom: -10px;
+
+      p {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+      }
+
+      .red_line {
+        position: absolute;
+        top: -6px;
+        width: 6rem;
+      }
+    }
+
+    .new_price {
+      top: -5px;
+      right: -90px;
+
+      p {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+      }
+
+      .inner_wrapper {
+        position: relative;
+        width: 9rem;
+      }
+
+      .circle {
+        width: 9rem;
+        top: -2rem;
+        right: 12px;
+      }
     }
   }
 
-  @media screen and (max-width: ${BREAKPOINTS.xs}px) {
-    display: grid;
-    grid-template-columns: 1fr 20px max-content;
+  @media screen and (max-width: 470px) {
+    /* display: grid; */
+    /* grid-template-columns: 1fr 20px max-content; */
 
     &.two {
-      margin-top: 3rem !important;
+      /* margin-top: 3rem !important; */
     }
 
     .lineIcon {
@@ -196,8 +239,8 @@ const StyleItem = styled("li")`
     }
 
     .currentPrice {
-      font-size: 1.8rem;
-      line-height: 2.6rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
     }
 
     .old_price {
@@ -205,25 +248,24 @@ const StyleItem = styled("li")`
       bottom: -10px;
 
       p {
-        font-size: 1.8rem;
-        line-height: 2.6rem;
+        font-size: 1.3rem;
+        line-height: 2.1rem;
       }
 
       .red_line {
         position: absolute;
-        top: -4px;
-        width: 7rem;
+        top: -7px;
+        width: 5rem;
       }
     }
 
     .new_price {
-      top: -29px;
-      right: -10px;
-      transform: rotate(2deg);
+      top: 0;
+      right: -90px;
 
       p {
-        font-size: 1.8rem;
-        line-height: 2.6rem;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
       }
 
       .inner_wrapper {
@@ -232,16 +274,70 @@ const StyleItem = styled("li")`
       }
 
       .circle {
-        width: 10rem;
-        top: -2rem;
-        right: 1px;
+        width: 8.6rem;
+        top: -2.1rem;
+        right: 15px;
       }
     }
   }
-  @media screen and (max-width: ${BREAKPOINTS.mobile}px) {
+
+  @media screen and (max-width: 440px) {
+    /* display: grid; */
+    /* grid-template-columns: 1fr 20px max-content; */
+
+    &.two {
+      /* margin-top: 3rem !important; */
+    }
+
+    .lineIcon {
+      width: 2rem;
+    }
+
     .desc_2 {
-      font-size: 1.8rem;
-      line-height: 2.6rem;
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+    }
+
+    .currentPrice {
+      font-size: 1.4rem;
+      line-height: 2.2rem;
+    }
+
+    .old_price {
+      position: relative;
+      bottom: -10px;
+
+      p {
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+      }
+
+      .red_line {
+        position: absolute;
+        top: -7px;
+        width: 5rem;
+      }
+    }
+
+    .new_price {
+      top: 0;
+      right: -90px;
+
+      p {
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+      }
+
+      .inner_wrapper {
+        position: relative;
+        width: 9rem;
+      }
+
+      .circle {
+        width: 7.5rem;
+        top: -2.2rem;
+        right: 25px;
+      }
     }
   }
 `;
