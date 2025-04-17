@@ -13,7 +13,15 @@ export const VideoReviewList = () => {
   const list = useMemo(() => {
     if (BREAKPOINTS[breakpoint] <= 1100) {
       const current = VIDEO_REVIEWS_LIST;
-      [current[0], current[1]] = [current[1], current[0]];
+
+      const firstVideo = current[0];
+      const secondVideo = current[1];
+      const thirdVideo = current[2];
+
+      current[0] = secondVideo;
+      current[1] = thirdVideo;
+      current[2] = firstVideo;
+
       return current;
     } else {
       return VIDEO_REVIEWS_LIST;

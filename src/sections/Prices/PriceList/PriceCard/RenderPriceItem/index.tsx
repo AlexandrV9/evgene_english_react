@@ -61,7 +61,7 @@ export const RenderPriceItem = ({
           </Text>
           <Icon svg={LineIcon} className="lineIcon" />
           <Text fontSize="l" fontWeight="semiBold" className="currentPrice">
-            $ {currentPrice}/час
+            $ {currentPrice}
           </Text>
         </StyleItem>
       );

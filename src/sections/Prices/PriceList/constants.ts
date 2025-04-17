@@ -20,7 +20,7 @@ export const PRICES_LIST: PriceItemList[] = [
       {
         id: generateUUID(),
         title: "Занятия для тех, кто всегда busy",
-        items: [{ id: generateUUID(), quantityHours: "half_an_hour", currentPrice: "20" }],
+        items: [{ id: generateUUID(), quantityHours: "half_an_hour", currentPrice: "25" }],
       },
     ],
   },
