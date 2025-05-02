@@ -13,7 +13,7 @@ export const LinksList = () => {
       {LINKS_LIST.map((item, index) => (
         <li key={index}>
           <a href={item.href} target="_blank">
-            <Icon svg={item.NetworkIcon} size={BREAKPOINTS[breakpoint] < 600 ? 28 : 30} />
+            <Icon svg={item.NetworkIcon} size={BREAKPOINTS[breakpoint] < 600 ? 28 : 30} color="black" />
           </a>
         </li>
       ))}

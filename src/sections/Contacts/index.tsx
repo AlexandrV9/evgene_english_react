@@ -24,6 +24,7 @@ export const Contacts = () => {
     </StyledContacts>
   );
 };
+
 const StyledContacts = styled(Section)`
   display: flex;
   flex-direction: column;

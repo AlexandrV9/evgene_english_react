@@ -6,9 +6,10 @@ interface IconProps {
   height?: CSSProperties["height"];
   size?: CSSProperties["width"];
   className?: string;
+  color?: CSSProperties["color"];
 }
 
-export const Icon = ({ svg: SvgIcon, width, height, size, className }: IconProps) => {
+export const Icon = ({ svg: SvgIcon, width, height, size, className, color }: IconProps) => {
   return (
     <SvgIcon
       className={className}
@@ -16,6 +17,7 @@ export const Icon = ({ svg: SvgIcon, width, height, size, className }: IconProps
         width: size ? size : width,
         height: size ? size : height,
         flexShrink: 0,
+        color,
       }}
     />
   );

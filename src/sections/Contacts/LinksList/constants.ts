@@ -3,6 +3,7 @@ import { generateUUID } from "@/utils";
 import TelegramIcon from "@/assets/icons/telegram.svg";
 import InstagramIcon from "@/assets/icons/instagram.svg";
 import TikTokIcon from "@/assets/icons/tik-tok.svg";
+import YouTubeIcon from "@/assets/icons/youtube.svg";
 
 export const LINKS_LIST = [
   {
@@ -22,5 +23,11 @@ export const LINKS_LIST = [
     href: "https://www.tiktok.com/@eugene.sharygin?_t=8mnIyS37zlp&_r=1",
     NetworkIcon: TikTokIcon,
     networkName: "TikTok",
+  },
+  {
+    id: generateUUID(),
+    href: "https://www.youtube.com/@eugen1us1",
+    NetworkIcon: YouTubeIcon,
+    networkName: "YouTube",
   },
 ];
