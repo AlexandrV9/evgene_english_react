@@ -14,7 +14,7 @@ export const PRICES_LIST: PriceItemList[] = [
         title: "индивидуальные занятия",
         items: [
           { id: generateUUID(), quantityHours: "one", currentPrice: "75" },
-          { id: generateUUID(), quantityHours: "two", oldPrice: "45", newPrice: "60" },
+          { id: generateUUID(), quantityHours: "two", oldPrice: "75", newPrice: "60" },
         ],
       },
     ],

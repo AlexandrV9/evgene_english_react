@@ -18,7 +18,7 @@ export const Prices = ({ className }: PricesProps) => {
 
   return (
     <StyledPrices id={SECTION_IDS.PRICES} className={className}>
-      <SectionTitle>стоимость занятий</SectionTitle>
+      <SectionTitle align="center">стоимость занятий</SectionTitle>
       <div className="content" ref={targetRef}>
         <PriceList />
       </div>
