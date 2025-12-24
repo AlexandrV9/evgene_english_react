@@ -37,12 +37,12 @@ export const Header = () => {
       <StyledHeaderContent>
         <Icon svg={LogoIcon} className="iconLogo" />
 
-        {w > 1420 && <NavBar list={HEADER_NAV_LIST} className="header_navbar" />}
+        {w > 1440 && <NavBar list={HEADER_NAV_LIST} className="header_navbar" />}
 
         <Flex align="center" gap="1rem">
           <LinksList />
-          {w > 1420 && <BookingButton />}
-          {w <= 1420 && <BurgerMenu />}
+          {w > 1440 && <BookingButton />}
+          {w <= 1440 && <BurgerMenu />}
         </Flex>
       </StyledHeaderContent>
     </Section>
