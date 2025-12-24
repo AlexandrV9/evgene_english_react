@@ -4,6 +4,7 @@ import TelegramIcon from "@/assets/icons/telegram.svg";
 import InstagramIcon from "@/assets/icons/instagram.svg";
 import TikTokIcon from "@/assets/icons/tik-tok.svg";
 import YouTubeIcon from "@/assets/icons/youtube.svg";
+import TwitchIcon from "@/assets/icons/twitch.svg";
 
 export const LINKS_LIST = [
   {
@@ -26,8 +27,14 @@ export const LINKS_LIST = [
   },
   {
     id: generateUUID(),
-    href: "https://www.youtube.com/@eugen1us1",
+    href: "https://www.youtube.com/@eugen1usx",
     NetworkIcon: YouTubeIcon,
     networkName: "YouTube",
+  },
+  {
+    id: generateUUID(),
+    href: "https://www.twitch.tv/eugeniusx",
+    NetworkIcon: TwitchIcon,
+    networkName: "Twitch",
   },
 ];
