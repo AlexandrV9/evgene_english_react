@@ -45,7 +45,7 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
     const isTwitter =
       userAgent.includes("twitter") ||
       /TwitterAndroid|TwitteriPhone|TwitterForiPhone/i.test(navigator.userAgent);
-      
+
     setIsTwitterWebView(isTwitter);
 
     // Также проверяем другие социальные приложения
@@ -231,8 +231,12 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
     (node: HTMLDivElement) => {
       containerRef.current = node;
       if (typeof targetRef === "function") {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         targetRef(node);
       } else if (targetRef) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         targetRef.current = node;
       }
     },
