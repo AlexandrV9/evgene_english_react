@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import styled from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Loader } from "../Loader";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
@@ -23,6 +23,7 @@ const options: IntersectionObserverInit = {
 export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: VideoBlockProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoSourceRef = useRef<HTMLSourceElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const { isIntersecting, targetRef } = useIntersectionObserver({ options });
 
@@ -31,30 +32,75 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
   const [isError, setIsError] = useState(false);
   const [isFinishLoadedVideo, setIsFinishLoadedVideo] = useState(false);
   const [isStartVideo, setIsStartVideo] = useState(false);
+  const [isTwitterWebView, setIsTwitterWebView] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   const { activeVideoId, setActiveVideo } = useVideoStore();
 
   const isActive = activeVideoId === id;
 
-  const stopVideo = () => {
+  // Определяем, открыто ли в твиттерском WebView
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isTwitter =
+      userAgent.includes("twitter") ||
+      /TwitterAndroid|TwitteriPhone|TwitterForiPhone/i.test(navigator.userAgent);
+      
+    setIsTwitterWebView(isTwitter);
+
+    // Также проверяем другие социальные приложения
+    const isSocialApp =
+      userAgent.includes("instagram") || userAgent.includes("fban") || userAgent.includes("fbav");
+
+    // Для всех социальных приложений нужен особый подход
+    if (isTwitter || isSocialApp) {
+      // console.log("Социальное приложение обнаружено, активируем специальный режим");
+    }
+  }, []);
+
+  const stopVideo = useCallback(() => {
     if (!videoRef.current) return;
 
     videoRef.current.pause();
     videoRef.current.muted = true;
-    videoRef.current.play();
-  };
+    // Не пытаемся запустить снова - это может вызвать проблемы в WebView
+  }, []);
 
-  const startVideo = () => {
+  const startVideo = useCallback(() => {
     if (!videoRef.current) return;
 
     setActiveVideo(id);
+    setUserInteracted(true); // Пользователь взаимодействовал
 
     videoRef.current.muted = false;
-    videoRef.current.play();
-    videoRef.current.currentTime = 0;
-  };
 
-  const handleToggleIsStartVideo = () => {
+    // Для твиттера используем promise с обработкой ошибок
+    const playPromise = videoRef.current.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Видео успешно запущено
+          console.log("Видео запущено успешно");
+        })
+        .catch((error) => {
+          console.warn("Ошибка запуска видео в WebView:", error);
+          // Для твиттера показываем кнопку play
+          if (isTwitterWebView) {
+            setIsStartVideo(false);
+          }
+        });
+    }
+
+    videoRef.current.currentTime = 0;
+  }, [id, isTwitterWebView, setActiveVideo]);
+
+  const handleToggleIsStartVideo = useCallback(() => {
+    // Для твиттера всегда нужно явное взаимодействие
+    if (isTwitterWebView && !userInteracted) {
+      setUserInteracted(true);
+    }
+
     setIsStartVideo((prev) => {
       const newValue = !prev;
 
@@ -66,44 +112,85 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
 
       return newValue;
     });
-  };
+  }, [isTwitterWebView, startVideo, stopVideo, userInteracted]);
+
+  // Добавляем обработчик глобальных взаимодействий для твиттера
+  useEffect(() => {
+    if (!isTwitterWebView) return;
+
+    const handleGlobalInteraction = () => {
+      setUserInteracted(true);
+      // Убираем слушатели после первого взаимодействия
+      document.removeEventListener("click", handleGlobalInteraction);
+      document.removeEventListener("touchstart", handleGlobalInteraction);
+    };
+
+    document.addEventListener("click", handleGlobalInteraction);
+    document.addEventListener("touchstart", handleGlobalInteraction);
+
+    return () => {
+      document.removeEventListener("click", handleGlobalInteraction);
+      document.removeEventListener("touchstart", handleGlobalInteraction);
+    };
+  }, [isTwitterWebView]);
 
   useEffect(() => {
     if (!isIntersecting && videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.muted = true;
 
-      if (videoRef.current.readyState >= 3) {
-        videoRef.current.play();
+      // В твиттере не пытаемся автоматически запускать видео
+      if (!isTwitterWebView && videoRef.current.readyState >= 3) {
+        videoRef.current.play().catch(() => {
+          // Игнорируем ошибки при уходе из viewport
+        });
       }
 
       setIsStartVideo(false);
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, isTwitterWebView]);
 
   useEffect(() => {
     const onSuccessLoadVideo = () => {
       setIsLoading(false);
       setIsShow(true);
 
-      videoRef.current?.play();
+      // В твиттере не автозапускаем видео
+      if (!isTwitterWebView) {
+        videoRef.current?.play().catch(() => {
+          // Игнорируем ошибки автоплея
+        });
+      }
 
       setIsFinishLoadedVideo(true);
     };
 
-    const onFailLoadVide = () => {
+    const onFailLoadVideo = () => {
       setIsError(true);
       setIsLoading(false);
     };
 
     const setupVideoListeners = () => {
-      videoRef.current?.addEventListener("error", onFailLoadVide);
-      videoRef.current?.addEventListener("canplaythrough", onSuccessLoadVideo);
+      if (videoRef.current) {
+        videoRef.current.addEventListener("error", onFailLoadVideo);
+        videoRef.current.addEventListener("canplaythrough", onSuccessLoadVideo);
+
+        // Добавляем обработчик для специфичных ошибок WebView
+        videoRef.current.addEventListener("play", () => {
+          console.log("Видео начало воспроизведение");
+        });
+
+        videoRef.current.addEventListener("pause", () => {
+          console.log("Видео приостановлено");
+        });
+      }
     };
 
     const removeVideoListeners = () => {
-      videoRef.current?.removeEventListener("canplaythrough", onSuccessLoadVideo);
-      videoRef.current?.removeEventListener("error", onFailLoadVide);
+      if (videoRef.current) {
+        videoRef.current.removeEventListener("canplaythrough", onSuccessLoadVideo);
+        videoRef.current.removeEventListener("error", onFailLoadVideo);
+      }
     };
 
     if (isIntersecting && !isFinishLoadedVideo) {
@@ -113,11 +200,16 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
       if (video.src !== pathToVideo) {
         setIsLoading(true);
         videoSource.setAttribute("src", pathToVideo);
+
+        // Для твиттера используем другие атрибуты
+        if (isTwitterWebView) {
+          video.setAttribute("playsinline", "");
+          video.setAttribute("webkit-playsinline", "");
+          video.removeAttribute("autoplay"); // Убираем автоплей для твиттера
+        }
+
         video.load();
       }
-
-      videoSource.setAttribute("src", pathToVideo);
-      video.load();
 
       setupVideoListeners();
     }
@@ -125,41 +217,90 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
     return () => {
       removeVideoListeners();
     };
-  }, [isFinishLoadedVideo, isIntersecting, pathToVideo]);
+  }, [isFinishLoadedVideo, isIntersecting, pathToVideo, isTwitterWebView]);
 
   useEffect(() => {
     if (!isActive) {
       stopVideo();
       setIsStartVideo(false);
     }
-  }, [isActive]);
+  }, [isActive, stopVideo]);
+
+  // Объединяем refs
+  const setRefs = useCallback(
+    (node: HTMLDivElement) => {
+      containerRef.current = node;
+      if (typeof targetRef === "function") {
+        targetRef(node);
+      } else if (targetRef) {
+        targetRef.current = node;
+      }
+    },
+    [targetRef]
+  );
 
   return (
     <StyledVideoBlock
-      ref={targetRef}
+      ref={setRefs}
       className={clsx(
-        { error: isError, success: isShow, started: isStartVideo, loading: isLoading },
+        {
+          error: isError,
+          success: isShow,
+          started: isStartVideo,
+          loading: isLoading,
+          twitter: isTwitterWebView,
+        },
         className
       )}
       onClick={handleToggleIsStartVideo}
+      data-twitter={isTwitterWebView}
     >
-      <video muted loop autoPlay playsInline preload="auto" ref={videoRef}>
+      <video
+        ref={videoRef}
+        muted={!isStartVideo} // Размучиваем только когда видео запущено
+        loop
+        playsInline
+        preload={isTwitterWebView ? "metadata" : "auto"} // Для твиттера меньше прелоад
+        disablePictureInPicture
+        disableRemotePlayback
+        // Автоплей только если не твиттер и пользователь взаимодействовал
+        autoPlay={!isTwitterWebView && userInteracted}
+      >
         <source type="video/mp4" ref={videoSourceRef} />
-        Your browser does not support the video tag.
+        Ваш браузер не поддерживает видео.
       </video>
 
-      <div className="loaderWrapper">
-        <Loader size={14} />
-      </div>
+      {isLoading && (
+        <div className="loaderWrapper">
+          <Loader size={14} />
+        </div>
+      )}
 
-      <div className="wrapper">
-        <p className="error">Ошибка</p>
-      </div>
+      {isError && (
+        <div className="wrapper">
+          <p className="error">Ошибка загрузки видео</p>
+        </div>
+      )}
 
-      <div className="overlay">
-        <button className="playButton">
+      {/* Overlay с улучшениями для твиттера */}
+      <div
+        className={clsx("overlay", {
+          "force-show": isTwitterWebView && !isStartVideo,
+          hidden: isStartVideo,
+        })}
+        onClick={(e) => {
+          e.stopPropagation(); // Предотвращаем всплытие
+          handleToggleIsStartVideo();
+        }}
+      >
+        <button className="playButton" aria-label={isStartVideo ? "Пауза" : "Воспроизвести"}>
           <Icon svg={PlayIcon} size={80} />
         </button>
+
+        {/* Подсказка для твиттера */}
+        {isTwitterWebView && !userInteracted && (
+          <div className="twitter-hint">Нажмите для воспроизведения</div>
+        )}
       </div>
     </StyledVideoBlock>
   );
@@ -173,14 +314,18 @@ export const StyledVideoBlock = styled.div`
   flex-shrink: 0;
   cursor: pointer;
   z-index: 55;
+  position: relative;
 
   video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Оптимизация для мобильных устройств */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
   }
-
-  position: relative;
 
   .wrapper,
   .loaderWrapper {
@@ -192,6 +337,7 @@ export const StyledVideoBlock = styled.div`
     height: 100%;
     background-color: #6c6c6c;
     place-items: center;
+    z-index: 3;
   }
 
   .overlay {
@@ -199,36 +345,76 @@ export const StyledVideoBlock = styled.div`
     top: 0;
     left: 0;
     z-index: 2;
-
     width: 100%;
     height: 100%;
-
     background-color: rgba(0, 0, 0, 0.5);
-
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, visibility 0.3s;
     cursor: pointer;
     user-select: none;
-
     backface-visibility: hidden;
-    will-change: opacity, transform;
-    transform: translateZ(0);
-  }
+    will-change: opacity, visibility;
 
-  .playButton {
-    transition: opacity 0.3s;
-    opacity: 0;
+    &.force-show {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
 
-    &:hover {
-      cursor: pointer;
+    &.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
   }
 
-  .overlay {
+  .playButton {
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+
     &:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .twitter-hint {
+    color: white;
+    margin-top: 16px;
+    font-size: 14px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+
+  &:hover {
+    .overlay:not(.hidden) {
       .playButton {
         opacity: 1;
       }
@@ -238,6 +424,7 @@ export const StyledVideoBlock = styled.div`
   &.started {
     .overlay {
       opacity: 0;
+      visibility: hidden;
     }
 
     .playButton {
@@ -249,11 +436,23 @@ export const StyledVideoBlock = styled.div`
     .overlay {
       display: none;
     }
+
+    .wrapper {
+      display: grid;
+    }
   }
 
   &.loading {
     .loaderWrapper {
       display: grid;
+    }
+  }
+
+  /* Для твиттера всегда показываем overlay если видео не запущено */
+  &.twitter:not(.started) {
+    .overlay {
+      opacity: 1;
+      visibility: visible;
     }
   }
 `;
