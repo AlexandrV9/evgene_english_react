@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import styled from "styled-components";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Loader } from "../Loader";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
-import PlayIcon from "@/assets/icons/play.svg";
+import { Loader } from "../Loader";
 import { Icon } from "../Icon";
+import PlayIcon from "@/assets/icons/play.svg";
+
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useVideoStore } from "@/stores/useVideoStore";
 
 interface VideoBlockProps {
@@ -14,263 +15,174 @@ interface VideoBlockProps {
   className?: string;
 }
 
-const options: IntersectionObserverInit = {
-  root: null,
-  rootMargin: "0px",
+const observerOptions: IntersectionObserverInit = {
   threshold: 0.2,
 };
 
-export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: VideoBlockProps) => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const videoSourceRef = useRef<HTMLSourceElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export const VideoBlock = ({
+  video: pathToVideo = "",
+  className,
+  id = "",
+}: VideoBlockProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const sourceRef = useRef<HTMLSourceElement>(null);
 
-  const { isIntersecting, targetRef } = useIntersectionObserver({ options });
-
-  const [isShow, setIsShow] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [isFinishLoadedVideo, setIsFinishLoadedVideo] = useState(false);
-  const [isStartVideo, setIsStartVideo] = useState(false);
-  const [isTwitterWebView, setIsTwitterWebView] = useState(false);
-  const [userInteracted, setUserInteracted] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
+  const [isWebView, setIsWebView] = useState(false);
 
   const { activeVideoId, setActiveVideo } = useVideoStore();
-
   const isActive = activeVideoId === id;
 
-  // Определяем, открыто ли в твиттерском WebView
+  const { targetRef, isIntersecting } = useIntersectionObserver({
+    options: observerOptions,
+  });
+
+  /* ---------------------------------- */
+  /* Detect Twitter / social WebView    */
+  /* ---------------------------------- */
   useEffect(() => {
-    const userAgent = navigator.userAgent.toLowerCase();
-    const isTwitter =
-      userAgent.includes("twitter") ||
-      /TwitterAndroid|TwitteriPhone|TwitterForiPhone/i.test(navigator.userAgent);
+    const ua = navigator.userAgent.toLowerCase();
+    const isSocialWebView = /twitter|instagram|fbav|fban|tiktok|telegram/i.test(
+      ua,
+    );
 
-    setIsTwitterWebView(isTwitter);
-
-    // Также проверяем другие социальные приложения
-    const isSocialApp =
-      userAgent.includes("instagram") || userAgent.includes("fban") || userAgent.includes("fbav");
-
-    // Для всех социальных приложений нужен особый подход
-    if (isTwitter || isSocialApp) {
-      // console.log("Социальное приложение обнаружено, активируем специальный режим");
-    }
+    setIsWebView(isSocialWebView);
   }, []);
 
-  const stopVideo = useCallback(() => {
-    if (!videoRef.current) return;
-
-    videoRef.current.pause();
-    videoRef.current.muted = true;
-    // Не пытаемся запустить снова - это может вызвать проблемы в WebView
-  }, []);
-
-  const startVideo = useCallback(() => {
-    if (!videoRef.current) return;
-
-    setActiveVideo(id);
-    setUserInteracted(true); // Пользователь взаимодействовал
-
-    videoRef.current.muted = false;
-
-    // Для твиттера используем promise с обработкой ошибок
-    const playPromise = videoRef.current.play();
-
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          // Видео успешно запущено
-          console.log("Видео запущено успешно");
-        })
-        .catch((error) => {
-          console.warn("Ошибка запуска видео в WebView:", error);
-          // Для твиттера показываем кнопку play
-          if (isTwitterWebView) {
-            setIsStartVideo(false);
-          }
-        });
-    }
-
-    videoRef.current.currentTime = 0;
-  }, [id, isTwitterWebView, setActiveVideo]);
-
-  const handleToggleIsStartVideo = useCallback(() => {
-    // Для твиттера всегда нужно явное взаимодействие
-    if (isTwitterWebView && !userInteracted) {
-      setUserInteracted(true);
-    }
-
-    setIsStartVideo((prev) => {
-      const newValue = !prev;
-
-      if (!newValue) {
-        stopVideo();
-      } else {
-        startVideo();
-      }
-
-      return newValue;
-    });
-  }, [isTwitterWebView, startVideo, stopVideo, userInteracted]);
-
-  // Добавляем обработчик глобальных взаимодействий для твиттера
+  /* ---------------------------------- */
+  /* Load video only when visible       */
+  /* ---------------------------------- */
   useEffect(() => {
-    if (!isTwitterWebView) return;
+    if (!isIntersecting || !videoRef.current || !sourceRef.current) return;
+    if (videoRef.current.readyState > 0) return;
 
-    const handleGlobalInteraction = () => {
-      setUserInteracted(true);
-      // Убираем слушатели после первого взаимодействия
-      document.removeEventListener("click", handleGlobalInteraction);
-      document.removeEventListener("touchstart", handleGlobalInteraction);
-    };
+    sourceRef.current.src = pathToVideo;
+    videoRef.current.load();
+  }, [isIntersecting, pathToVideo]);
 
-    document.addEventListener("click", handleGlobalInteraction);
-    document.addEventListener("touchstart", handleGlobalInteraction);
-
-    return () => {
-      document.removeEventListener("click", handleGlobalInteraction);
-      document.removeEventListener("touchstart", handleGlobalInteraction);
-    };
-  }, [isTwitterWebView]);
-
+  /* ---------------------------------- */
+  /* Stop video when leaving viewport   */
+  /* ---------------------------------- */
   useEffect(() => {
     if (!isIntersecting && videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.muted = true;
+      const video = videoRef.current;
 
-      // В твиттере не пытаемся автоматически запускать видео
-      if (!isTwitterWebView && videoRef.current.readyState >= 3) {
-        videoRef.current.play().catch(() => {
-          // Игнорируем ошибки при уходе из viewport
-        });
-      }
+      video.pause();
+      video.currentTime = 0; // ⬅️ чтобы при возврате старт был чистый
+      video.muted = true;
 
-      setIsStartVideo(false);
-    }
-  }, [isIntersecting, isTwitterWebView]);
-
-  useEffect(() => {
-    const onSuccessLoadVideo = () => {
       setIsLoading(false);
-      setIsShow(true);
+      setIsStarted(false);
+    }
+  }, [isIntersecting]);
 
-      // В твиттере не автозапускаем видео
-      if (!isTwitterWebView) {
-        videoRef.current?.play().catch(() => {
-          // Игнорируем ошибки автоплея
-        });
-      }
+  /* ---------------------------------- */
+  /* Stop if another video becomes active */
+  /* ---------------------------------- */
+  useEffect(() => {
+    if (!isActive && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.muted = true;
+      setIsStarted(false);
+    }
+  }, [isActive]);
 
-      setIsFinishLoadedVideo(true);
-    };
+  /* ---------------------------------- */
+  /* Video events                       */
+  /* ---------------------------------- */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-    const onFailLoadVideo = () => {
+    const handleCanPlay = () => setIsLoading(false);
+    const handleError = () => {
       setIsError(true);
       setIsLoading(false);
     };
 
-    const setupVideoListeners = () => {
-      if (videoRef.current) {
-        videoRef.current.addEventListener("error", onFailLoadVideo);
-        videoRef.current.addEventListener("canplaythrough", onSuccessLoadVideo);
-
-        // Добавляем обработчик для специфичных ошибок WebView
-        videoRef.current.addEventListener("play", () => {
-          console.log("Видео начало воспроизведение");
-        });
-
-        videoRef.current.addEventListener("pause", () => {
-          console.log("Видео приостановлено");
-        });
-      }
-    };
-
-    const removeVideoListeners = () => {
-      if (videoRef.current) {
-        videoRef.current.removeEventListener("canplaythrough", onSuccessLoadVideo);
-        videoRef.current.removeEventListener("error", onFailLoadVideo);
-      }
-    };
-
-    if (isIntersecting && !isFinishLoadedVideo) {
-      const videoSource = videoSourceRef.current as HTMLSourceElement;
-      const video = videoRef.current as HTMLVideoElement;
-
-      if (video.src !== pathToVideo) {
-        setIsLoading(true);
-        videoSource.setAttribute("src", pathToVideo);
-
-        // Для твиттера используем другие атрибуты
-        if (isTwitterWebView) {
-          video.setAttribute("playsinline", "");
-          video.setAttribute("webkit-playsinline", "");
-          video.removeAttribute("autoplay"); // Убираем автоплей для твиттера
-        }
-
-        video.load();
-      }
-
-      setupVideoListeners();
-    }
+    video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("error", handleError);
 
     return () => {
-      removeVideoListeners();
+      video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("error", handleError);
     };
-  }, [isFinishLoadedVideo, isIntersecting, pathToVideo, isTwitterWebView]);
+  }, []);
+
+  /* ---------------------------------- */
+  /* Play / Pause toggle                */
+  /* ---------------------------------- */
+  const togglePlay = useCallback(async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.readyState === 0) return;
+
+    setActiveVideo(id);
+
+    if (!isStarted) {
+      try {
+        video.pause(); // ⛔ сбрасываем состояние
+        video.currentTime = 0; // ⬅️ ВСЕГДА С НУЛЯ
+        video.muted = false;
+
+        await video.play();
+        setIsLoading(false);
+        setIsStarted(true);
+      } catch {
+        return;
+      }
+    } else {
+      video.pause();
+      video.muted = true;
+      setIsStarted(false);
+    }
+  }, [id, isStarted, setActiveVideo]);
 
   useEffect(() => {
-    if (!isActive) {
-      stopVideo();
-      setIsStartVideo(false);
-    }
-  }, [isActive, stopVideo]);
+    const video = videoRef.current;
+    if (!video) return;
 
-  // Объединяем refs
-  const setRefs = useCallback(
-    (node: HTMLDivElement) => {
-      containerRef.current = node;
-      if (typeof targetRef === "function") {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        targetRef(node);
-      } else if (targetRef) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        targetRef.current = node;
-      }
-    },
-    [targetRef]
-  );
+    // ❌ WebView — без автоплея
+    if (isWebView) return;
+
+    if (isIntersecting && !isStarted) {
+      video.pause(); // на всякий случай
+      video.currentTime = 0; // ⬅️ ВСЕГДА С НУЛЯ
+      video.muted = true;
+
+      video.play().catch(() => {
+        // autoplay может быть заблокирован
+      });
+    }
+  }, [isIntersecting, isWebView, isStarted]);
 
   return (
     <StyledVideoBlock
-      ref={setRefs}
+      ref={targetRef}
       className={clsx(
         {
-          error: isError,
-          success: isShow,
-          started: isStartVideo,
           loading: isLoading,
-          twitter: isTwitterWebView,
+          error: isError,
+          started: isStarted,
+          webview: isWebView,
         },
-        className
+        className,
       )}
-      onClick={handleToggleIsStartVideo}
-      data-twitter={isTwitterWebView}
+      onClick={togglePlay}
     >
       <video
         ref={videoRef}
-        muted={!isStartVideo} // Размучиваем только когда видео запущено
+        muted
         loop
         playsInline
-        preload={isTwitterWebView ? "metadata" : "auto"} // Для твиттера меньше прелоад
+        preload={isWebView ? "metadata" : "auto"}
         disablePictureInPicture
         disableRemotePlayback
-        // Автоплей только если не твиттер и пользователь взаимодействовал
-        autoPlay={!isTwitterWebView && userInteracted}
       >
-        <source type="video/mp4" ref={videoSourceRef} />
+        <source ref={sourceRef} type="video/mp4" />
         Ваш браузер не поддерживает видео.
       </video>
 
@@ -286,25 +198,15 @@ export const VideoBlock = ({ video: pathToVideo = "", className, id = " " }: Vid
         </div>
       )}
 
-      {/* Overlay с улучшениями для твиттера */}
       <div
         className={clsx("overlay", {
-          "force-show": isTwitterWebView && !isStartVideo,
-          hidden: isStartVideo,
+          hidden: isStarted,
+          "force-show": isWebView && !isStarted,
         })}
-        onClick={(e) => {
-          e.stopPropagation(); // Предотвращаем всплытие
-          handleToggleIsStartVideo();
-        }}
       >
-        <button className="playButton" aria-label={isStartVideo ? "Пауза" : "Воспроизвести"}>
+        <button className="playButton" onClick={togglePlay}>
           <Icon svg={PlayIcon} size={80} />
         </button>
-
-        {/* Подсказка для твиттера */}
-        {isTwitterWebView && !userInteracted && (
-          <div className="twitter-hint">Нажмите для воспроизведения</div>
-        )}
       </div>
     </StyledVideoBlock>
   );
@@ -356,7 +258,9 @@ export const StyledVideoBlock = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition:
+      opacity 0.3s,
+      visibility 0.3s;
     cursor: pointer;
     user-select: none;
     backface-visibility: hidden;
@@ -377,7 +281,6 @@ export const StyledVideoBlock = styled.div`
   .playButton {
     transition: all 0.3s ease;
     opacity: 0.8;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     padding: 20px;
     border: none;
@@ -386,23 +289,11 @@ export const StyledVideoBlock = styled.div`
     &:hover {
       opacity: 1;
       transform: scale(1.05);
-      background: rgba(255, 255, 255, 0.3);
     }
 
     &:active {
       transform: scale(0.95);
     }
-  }
-
-  .twitter-hint {
-    color: white;
-    margin-top: 16px;
-    font-size: 14px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 8px 16px;
-    border-radius: 20px;
-    animation: pulse 2s infinite;
   }
 
   @keyframes pulse {
@@ -452,8 +343,8 @@ export const StyledVideoBlock = styled.div`
     }
   }
 
-  /* Для твиттера всегда показываем overlay если видео не запущено */
-  &.twitter:not(.started) {
+  /* Для WebView всегда показываем overlay если видео не запущено */
+  &.webview:not(.started) {
     .overlay {
       opacity: 1;
       visibility: visible;
