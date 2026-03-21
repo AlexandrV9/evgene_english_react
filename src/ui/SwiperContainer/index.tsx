@@ -1,4 +1,5 @@
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import type { SwiperOptions } from "swiper/types";
 import { SwiperButton } from "../Button";
 import { ReactNode, useRef } from "react";
 import styled from "styled-components";
@@ -16,6 +17,14 @@ interface SwiperContainerProps<T> {
   renderItem?: (item: T) => ReactNode;
 }
 
+
+const VIDEO_REVIEW_SWIPER_OPTIONS: SwiperOptions = {
+  /* Reduce ghost clicks on the video after a horizontal swipe (in-app browsers). */
+  threshold: 16,
+  preventClicks: true,
+  preventClicksPropagation: true,
+};
+
 export const SwiperContainer = <T extends { id: string }>({
   sliderProps = {},
   list,
@@ -31,6 +40,7 @@ export const SwiperContainer = <T extends { id: string }>({
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
+        {...VIDEO_REVIEW_SWIPER_OPTIONS}
         breakpoints={{
           [BREAKPOINTS.desktop]: {
             spaceBetween: 20,

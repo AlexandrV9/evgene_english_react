@@ -30,7 +30,10 @@ export const VideoReviewList = () => {
 
   return (
     <StyledVideoReviewList>
-      <SwiperContainer list={list} renderItem={(item) => <VideoReviewCard {...item} />} />
+      <SwiperContainer
+        list={list}
+        renderItem={(item) => <VideoReviewCard {...item} />}
+      />
     </StyledVideoReviewList>
   );
 };

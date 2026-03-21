@@ -1,6 +1,14 @@
 import clsx from "clsx";
 import styled from "styled-components";
-import { useEffect, useRef, useState, useCallback } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  type MouseEvent,
+  type TouchEvent,
+  type PointerEvent,
+} from "react";
 
 import { Loader } from "../Loader";
 import { Icon } from "../Icon";
@@ -111,6 +119,28 @@ export const VideoBlock = ({
     };
   }, []);
 
+  /* In-app browsers (TikTok, etc.): keep playback inline and avoid native layer stealing taps */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !isWebView) return;
+
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
+    video.playsInline = true;
+    // Tencent X5 (some embedded browsers)
+    video.setAttribute("x5-playsinline", "true");
+    video.setAttribute("x5-video-player-type", "h5");
+
+    const blockNativeFullscreen = (ev: Event) => {
+      ev.preventDefault();
+    };
+    video.addEventListener("webkitbeginfullscreen", blockNativeFullscreen);
+
+    return () => {
+      video.removeEventListener("webkitbeginfullscreen", blockNativeFullscreen);
+    };
+  }, [isWebView]);
+
   /* ---------------------------------- */
   /* Play / Pause toggle                */
   /* ---------------------------------- */
@@ -140,6 +170,15 @@ export const VideoBlock = ({
       setIsStarted(false);
     }
   }, [id, isStarted, setActiveVideo]);
+
+  const handlePlayButtonPointerDown = useCallback(
+    (e: MouseEvent | TouchEvent | PointerEvent) => {
+      // Play button sits inside the root click target; without this, the same
+      // gesture fires toggle twice (play then pause) before React re-renders.
+      e.stopPropagation();
+    },
+    [],
+  );
 
   useEffect(() => {
     const video = videoRef.current;
@@ -178,9 +217,13 @@ export const VideoBlock = ({
         muted
         loop
         playsInline
+        controls={false}
         preload={isWebView ? "metadata" : "auto"}
         disablePictureInPicture
         disableRemotePlayback
+        onClick={(e) => {
+          if (isWebView) e.preventDefault();
+        }}
       >
         <source ref={sourceRef} type="video/mp4" />
         Ваш браузер не поддерживает видео.
@@ -204,7 +247,15 @@ export const VideoBlock = ({
           "force-show": isWebView && !isStarted,
         })}
       >
-        <button className="playButton" onClick={togglePlay}>
+        <button
+          type="button"
+          className="playButton"
+          onPointerDown={handlePlayButtonPointerDown}
+          onClick={(e) => {
+            e.stopPropagation();
+            void togglePlay();
+          }}
+        >
           <Icon svg={PlayIcon} size={80} />
         </button>
       </div>
@@ -231,6 +282,10 @@ export const StyledVideoBlock = styled.div`
     transform: translateZ(0);
     backface-visibility: hidden;
     will-change: transform;
+  }
+
+  &.webview video {
+    pointer-events: none;
   }
 
   .wrapper,
