@@ -159,7 +159,7 @@ export const VideoBlock = ({
     setIsUserStarted(false);
     setIsManuallyPaused(false);
   }, []);
-
+ 
   const handleOverlayClick = useCallback(async () => {
     const video = videoRef.current;
     if (!video || isError) return;
@@ -170,7 +170,7 @@ export const VideoBlock = ({
       return;
     }
 
-    await startWithSound(!hasUserStartedOnce);
+    await startWithSound(!hasUserStartedOnce);  
   }, [
     hasUserStartedOnce,
     isError,
