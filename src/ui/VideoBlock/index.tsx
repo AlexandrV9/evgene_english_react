@@ -116,15 +116,20 @@ export const VideoBlock = ({
 
       setActiveVideo(id);
 
+      // Rewind in place instead of pause()+play(). Re-initiating playback with
+      // audio is what triggers the native fullscreen player in social webviews
+      // (TikTok/Instagram/Telegram). The video is already playing inline (muted),
+      // so we just seek and unmute it within the same user gesture.
       if (fromStart) {
-        video.pause();
         video.currentTime = 0;
       }
 
       video.muted = false;
 
-      const didPlay = await safePlay();
-      if (!didPlay) return;
+      if (video.paused) {
+        const didPlay = await safePlay();
+        if (!didPlay) return;
+      }
 
       setIsUserStarted(true);
       setIsManuallyPaused(false);
@@ -142,15 +147,17 @@ export const VideoBlock = ({
     setIsManuallyPaused(true);
   }, []);
 
-  const stopBecauseAnotherVideoStarted = useCallback(() => {
+  const returnToBackground = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    video.pause();
+    // When another video becomes active, this one keeps playing muted in the
+    // background (the "cover" effect), like Instagram. We only mute it and drop
+    // the user-started flags so the background-autoplay effect keeps it alive.
     video.muted = true;
 
     setIsUserStarted(false);
-    setIsManuallyPaused(true);
+    setIsManuallyPaused(false);
   }, []);
 
   const handleOverlayClick = useCallback(async () => {
@@ -290,8 +297,8 @@ export const VideoBlock = ({
     if (isActive) return;
     if (!isUserStarted) return;
 
-    stopBecauseAnotherVideoStarted();
-  }, [id, isActive, isUserStarted, stopBecauseAnotherVideoStarted]);
+    returnToBackground();
+  }, [id, isActive, isUserStarted, returnToBackground]);
 
   useEffect(() => {
     const video = videoRef.current;
