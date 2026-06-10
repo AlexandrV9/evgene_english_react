@@ -19,8 +19,8 @@ export const VideoReviewList = () => {
       const thirdVideo = current[2];
 
       current[0] = secondVideo;
-      current[1] = thirdVideo;
-      current[2] = firstVideo;
+      current[1] = firstVideo;
+      current[2] = thirdVideo;
 
       return current;
     } else {

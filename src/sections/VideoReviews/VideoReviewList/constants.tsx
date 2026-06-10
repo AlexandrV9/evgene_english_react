@@ -5,6 +5,8 @@ import videoNatalia from "@/assets/videos/natalia.mp4";
 import videoMetey from "@/assets/videos/compressed/metey-2.mp4";
 import videoLika from "@/assets/videos/lika.mp4";
 import videoRaya from "@/assets/videos/raya.mp4";
+import videoIlya from "@/assets/videos/ilya.mp4";
+
 
 import { generateUUID } from "@/utils";
 import { Text } from "@/ui";
@@ -12,9 +14,9 @@ import { Text } from "@/ui";
 export const VIDEO_REVIEWS_LIST = [
   {
     id: generateUUID(),
-    userName: "Андрей",
-    userNickname: "@andre_lifehack",
-    video: videoAndrew,
+    userName: "Илья",
+    userNickname: "@alohadanceq",
+    video: videoIlya,
   },
   {
     id: generateUUID(),
@@ -29,6 +31,12 @@ export const VIDEO_REVIEWS_LIST = [
         </Text>
       </div>
     ),
+  },
+  {
+    id: generateUUID(),
+    userName: "Андрей",
+    userNickname: "@andre_lifehack",
+    video: videoAndrew,
   },
   {
     id: generateUUID(),
