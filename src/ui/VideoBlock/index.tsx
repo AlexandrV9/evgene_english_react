@@ -38,6 +38,18 @@ const getIsSocialWebView = () => {
   return /instagram|fbav|fban|tiktok|telegram|twitter/i.test(ua);
 };
 
+// TikTok forces the native fullscreen player on any play(), including muted
+// autoplay when a carousel slide scrolls into view. Playback must be tap-only.
+const getIsTikTokWebView = () => {
+  if (typeof navigator === "undefined") return false;
+
+  const ua = navigator.userAgent.toLowerCase();
+
+  return /tiktok|musical_ly|bytedancewebview|bytelocale|bytefullversion|trill_/i.test(
+    ua,
+  );
+};
+
 export const VideoBlock = ({
   video: pathToVideo = "",
   poster = "",
@@ -59,6 +71,7 @@ export const VideoBlock = ({
   const [hasUserStartedOnce, setHasUserStartedOnce] = useState(false);
 
   const isWebView = useMemo(getIsSocialWebView, []);
+  const isTikTokWebView = useMemo(getIsTikTokWebView, []);
 
   const { activeVideoId, setActiveVideo } = useVideoStore();
   const isActive = activeVideoId === id;
@@ -151,14 +164,21 @@ export const VideoBlock = ({
     const video = videoRef.current;
     if (!video) return;
 
+    if (isTikTokWebView) {
+      video.pause();
+      video.muted = true;
+      setIsUserStarted(false);
+      setIsManuallyPaused(false);
+      return;
+    }
+
     // When another video becomes active, this one keeps playing muted in the
-    // background (the "cover" effect), like Instagram. We only mute it and drop
-    // the user-started flags so the background-autoplay effect keeps it alive.
+    // background (the "cover" effect), like Instagram.
     video.muted = true;
 
     setIsUserStarted(false);
     setIsManuallyPaused(false);
-  }, []);
+  }, [isTikTokWebView]);
  
   const handleOverlayClick = useCallback(async () => {
     const video = videoRef.current;
@@ -263,27 +283,18 @@ export const VideoBlock = ({
     video.setAttribute("x5-playsinline", "true");
     video.setAttribute("x5-video-player-type", "h5");
     video.playsInline = true;
-
-    if (!isWebView) return;
-
-    const blockNativeFullscreen = (event: Event) => {
-      event.preventDefault();
-    };
-
-    video.addEventListener("webkitbeginfullscreen", blockNativeFullscreen);
-
-    return () => {
-      video.removeEventListener("webkitbeginfullscreen", blockNativeFullscreen);
-    };
-  }, [isWebView]);
+  }, []);
 
   useEffect(() => {
+    // In TikTok any play() can open fullscreen, so never autoplay on scroll/swipe.
+    if (isTikTokWebView) return;
     if (!isLoaded || !isReady || isError) return;
     if (isUserStarted) return;
     if (isManuallyPaused) return;
 
     void playMutedBackground();
   }, [
+    isTikTokWebView,
     isLoaded,
     isReady,
     isError,
@@ -305,11 +316,20 @@ export const VideoBlock = ({
     if (!video) return;
     if (isIntersecting) return;
     if (video.paused) return;
+
+    if (isTikTokWebView) {
+      video.pause();
+      video.muted = true;
+      setIsUserStarted(false);
+      setIsManuallyPaused(false);
+      return;
+    }
+
     if (isManuallyPaused) return;
 
     video.muted = true;
     setIsUserStarted(false);
-  }, [isIntersecting, isManuallyPaused]);
+  }, [isIntersecting, isManuallyPaused, isTikTokWebView]);
 
   const isInteractivePlayback = isUserStarted && isPlaying;
   const showPlayButton = !isInteractivePlayback;
