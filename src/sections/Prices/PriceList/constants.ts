@@ -22,7 +22,8 @@ export const PRICES_LIST: PriceItemList[] = [
         title: "групповые занятия",
         subtitle: "(2 человека в  группе)",
         items: [
-          { id: generateUUID(), quantityHours: "one", currentPrice: "30" },
+          { id: generateUUID(), quantityHours: "one", currentPrice: "35" },
+          { id: generateUUID(), quantityHours: "two", oldPrice: "35", newPrice: "30" },
         ],
       },
     ],
