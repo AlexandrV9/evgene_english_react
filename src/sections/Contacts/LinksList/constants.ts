@@ -15,7 +15,7 @@ export const LINKS_LIST = [
   },
   {
     id: generateUUID(),
-    href: "https://www.instagram.com/eugene.sharygin?igsh=aGJ2ZWNqYW9kZ29t",
+    href: "https://www.instagram.com/eugene.sharyginn?igsh=aGJ2ZWNqYW9kZ29t",
     NetworkIcon: InstagramIcon,
     networkName: "Instagram",
   },
