@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@font-face {
+  font-family: "Roboto Flex";
+  src: url("@/assets/fonts/RobotoFlex-Regular.woff2") format("woff2"),
+    url("@/assets/fonts/RobotoFlex-Regular.woff") format("woff"),
+    url("@/assets/fonts/RobotoFlex-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
 @font-face {
   font-family: "MV-Crooker";
